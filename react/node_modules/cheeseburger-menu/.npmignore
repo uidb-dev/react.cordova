@@ -1,0 +1,5 @@
+node_modules
+.idea
+storybook-static
+.cache
+npm-debug.log

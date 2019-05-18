@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheeseburgerMenu/> matches snapshot when closed 1`] = `
+<div
+  className="cheeseburger-menu"
+>
+  <div
+    className="cheeseburger-menu-overlay"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "rgba(0, 0, 0, 0.3)",
+        "height": "100%",
+        "opacity": 0,
+        "position": "fixed",
+        "top": 0,
+        "transform": "translate3d(100%, 0px, 0px)",
+        "transition": "opacity 0.3s, transform 0s 0.3s",
+        "width": "100%",
+        "zIndex": 1001,
+      }
+    }
+  />
+  <ReactSwipe
+    allowMouseEvents={false}
+    onSwipeDown={[Function]}
+    onSwipeEnd={[Function]}
+    onSwipeLeft={[Function]}
+    onSwipeMove={[Function]}
+    onSwipeRight={[Function]}
+    onSwipeStart={[Function]}
+    onSwipeUp={[Function]}
+    tagName="div"
+    tolerance={0}
+  >
+    <div
+      className="cheeseburger-menu-outer"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "height": "100%",
+          "left": 0,
+          "maxWidth": "80%",
+          "position": "fixed",
+          "right": "inherit",
+          "top": 0,
+          "transform": "translate3d(-100%, 0px, 0px)",
+          "transition": "transform 0.3s",
+          "width": 300,
+          "zIndex": 1002,
+        }
+      }
+    >
+      <div
+        className="cheeseburger-menu-inner"
+        style={
+          Object {
+            "height": "100%",
+            "overflowY": "auto",
+            "paddingBottom": 0,
+          }
+        }
+      />
+      <div
+        className="cheeseburger-menu-shadow"
+        style={
+          Object {
+            "bottom": 0,
+            "boxShadow": "0 0 15px 0 rgba(0, 0, 0, .2)",
+            "height": "100%",
+            "left": 0,
+            "opacity": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "transition": "opacity 0.3s",
+            "width": "100%",
+            "zIndex": -1,
+          }
+        }
+      />
+    </div>
+  </ReactSwipe>
+</div>
+`;
+
+exports[`<CheeseburgerMenu/> matches snapshot when open 1`] = `
+<div
+  className="cheeseburger-menu open"
+>
+  <div
+    className="cheeseburger-menu-overlay"
+    onClick={[Function]}
+    style={
+      Object {
+        "background": "rgba(0, 0, 0, 0.3)",
+        "height": "100%",
+        "opacity": 1,
+        "position": "fixed",
+        "top": 0,
+        "transform": "none",
+        "transition": "opacity 0.3s",
+        "width": "100%",
+        "zIndex": 1001,
+      }
+    }
+  />
+  <ReactSwipe
+    allowMouseEvents={false}
+    onSwipeDown={[Function]}
+    onSwipeEnd={[Function]}
+    onSwipeLeft={[Function]}
+    onSwipeMove={[Function]}
+    onSwipeRight={[Function]}
+    onSwipeStart={[Function]}
+    onSwipeUp={[Function]}
+    tagName="div"
+    tolerance={0}
+  >
+    <div
+      className="cheeseburger-menu-outer"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "height": "100%",
+          "left": 0,
+          "maxWidth": "80%",
+          "position": "fixed",
+          "right": "inherit",
+          "top": 0,
+          "transform": "translate3d(0px, 0px, 0px)",
+          "transition": "transform 0.3s",
+          "width": 300,
+          "zIndex": 1002,
+        }
+      }
+    >
+      <div
+        className="cheeseburger-menu-inner"
+        style={
+          Object {
+            "height": "100%",
+            "overflowY": "auto",
+            "paddingBottom": 0,
+          }
+        }
+      />
+      <div
+        className="cheeseburger-menu-shadow"
+        style={
+          Object {
+            "bottom": 0,
+            "boxShadow": "0 0 15px 0 rgba(0, 0, 0, .2)",
+            "height": "100%",
+            "left": 0,
+            "opacity": 1,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "transition": "opacity 0.3s",
+            "width": "100%",
+            "zIndex": -1,
+          }
+        }
+      />
+    </div>
+  </ReactSwipe>
+</div>
+`;
