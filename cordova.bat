@@ -1,0 +1,1 @@
+call react-cordova cordova %1 %2 %3 %4 %5

@@ -1,0 +1,1 @@
+call react-cordova react %1 %2 %3 %4
