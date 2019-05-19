@@ -11,7 +11,7 @@ import About from "./pages/about";
 
 //----style----//
 //---//
-//"style.css" it's important style to mobile view (android and ios); 
+//"style.css" it's important style to mobile view (android ios); 
 import "./css/style.css";
 //---//
 
