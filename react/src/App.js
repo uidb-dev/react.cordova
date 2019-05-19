@@ -23,7 +23,7 @@ export default class App extends React.Component {
     this.myRef = React.createRef();
 
     this.state = {
-      nowPage: null
+    //
     }
 
     // this.nowPage=""; //it's will fill from NavigatorPages
@@ -65,17 +65,11 @@ export default class App extends React.Component {
 
   render() {
 
-    const fthis = this;
-    let changePage = null;
-
-    let nowPage = this.state.nowPage;
-
     return (
       [<ManagerPages
         myApp={this}
         //onChangePage={(nowPage) => { this.setState({ nowPage: nowPage }); }}
         homePageKey={"home"}>
-
         <Home key="home" levelPage={0} />
         <About key="about" levelPage={1} />
         <div key="test"></div>

@@ -196,7 +196,7 @@ export default class Navigator extends React.Component {
 
    this.historyPages = this.state.historyPages.slice();
     return this.props.children.map(child => {
-      return <div id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
+      return <div style={{ backgroundColor:"#fff"}} id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
         {nowPage === child.key || fthis.state.historyPages.includes(child.key)
           ? child
           : <div />}

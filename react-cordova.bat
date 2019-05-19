@@ -1,7 +1,7 @@
 if "%~1" == "init" goto init
 if "%~1" == "build" goto build
 if "%~1" == "react" goto react
-if "%~1" == "cordova" goto cordova
+if "%~1" == "cordova" goto cordovaRun
 
 :react
 cd react
@@ -11,7 +11,7 @@ goto end
 
 
 
-:cordova
+:cordovaRun
 
 cd cordova
 call cordova %2 %3 %4 %5
@@ -22,12 +22,14 @@ goto end
 
 
 :init
-RD /S /Q cordova
-mkdir cordova
+
+pause
+
 call cordova create cordova %3 %2
 
+pause
+
 cd react
-call npm i navigator-cordova-reactjs
 call npm run build
 
 cd ../cordova 

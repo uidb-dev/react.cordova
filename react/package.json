@@ -7,7 +7,7 @@
     "cheeseburger-menu": "0.0.13",
     "dateformat": "^3.0.3",
     "jquery": "^3.3.1",
-    "navigator-cordova-reactjs": "^1.0.4",
+    "navigator-cordova-reactjs": "^1.0.6",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-hamburger-menu": "^1.1.1",
