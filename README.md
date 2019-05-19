@@ -7,7 +7,7 @@ This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-cho
 [get-npm](https://www.npmjs.com/get-npm)
 
 ### Java 
-recommended version 1.8.0 [get-Java] (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 ### cordova 
 on OS X and Linux:
