@@ -34,10 +34,10 @@ on Windows:
 how can write cordova comand line.
 start the line whit cordo instead of cordova 
 **Example:** 
-###`cordo plugin add cordova-plugin-media`
+### `cordo plugin add cordova-plugin-media`
 Or You can insert to the folder and after run cordova
-##`cd cordova`
-##`cordova plugin add cordova-plugin-media`
+## `cd cordova`
+## `cordova plugin add cordova-plugin-media`
 
 
 
