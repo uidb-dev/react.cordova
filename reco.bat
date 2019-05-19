@@ -10,7 +10,6 @@ cd..
 goto end
 
 
-
 :cordovaRun
 
 cd cordova
@@ -23,11 +22,7 @@ goto end
 
 :init
 
-pause
-
 call cordova create cordova %3 %2
-
-pause
 
 cd react
 call npm run build
