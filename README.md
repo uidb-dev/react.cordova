@@ -23,10 +23,11 @@ on Windows:
 **!!! in this version it's work only from the cmd!!!**
 
 ## build native app
-### `reco init myAppName com.myapp_id`
+### `reco build`
 **Note: On Windows it's create .apk file to install in android**
 **Note: On Mac We have not yet built a caption script in one cmd line, but it will come soon.**
 **Anyone who knows cordova knew to compile to IOS**
+
 **!!! in this version it's work only from the cmd!!!**
 
 ## Available Scripts cordova
