@@ -209,7 +209,14 @@ debugger
      * Version - 3.7.0
      * Licensed under the MIT license - http://opensource.org/licenses/MIT
      *
-     * Copyright (c) 2018 Daniel Eden
+     * Copyright (c) 2018 Daniel Eden 
+     */
+
+       /*!
+     * managerPages.css
+     * Version - 1.0.0
+     *
+     * Copyright (c) 2019 Or Chuban 
      */
     const animateCSS = $('<style rel="stylesheet" type="text/css">');
     animateCSS.html(`
