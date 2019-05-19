@@ -5,12 +5,13 @@ export default class Navigator extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.state = {
-
-    // }
+    this.state = {
+      historyPages: [this.props.homePageKey]
+    }
     this.myApp = this.props.myApp;
 
-    this.historyPages = [this.props.homePageKey];
+
+    this.historyPages = this.state.historyPages;
 
     this.listLevelPages = [];
 
@@ -92,7 +93,7 @@ export default class Navigator extends React.Component {
 
 
   changePage(goToPage, fromPage, animation, timeAnimationInMS, callbackFun) {
-debugger
+    //debugger
     if (!this.bezy) {
       const fthis = this;
 
@@ -100,14 +101,15 @@ debugger
         fromPage = "" + this.historyPages[this.historyPages.length - 1] + "";
       }
 
-      //--זמן האנימציה
-      const timeAnimation = timeAnimationInMS !== undefined && timeAnimationInMS !== null ? timeAnimationInMS : 250;//250;//ms
+      //--animation time defult
+      const timeAnimation = timeAnimationInMS !== undefined && timeAnimationInMS !== null ? timeAnimationInMS
+        : 250;//ms
 
       if (goToPage !== fromPage) {
         //---ניהול חזרות----//
         this.bezy = true;
         //סיום האפליקציה, סגור
-        if (this.historyPages.length === 1
+        if (this.state.historyPages.length === 1
           && goToPage === undefined) {
           console.log('"window.navigator.app.exitApp()"');
           fthis.showSwalLater
@@ -115,7 +117,7 @@ debugger
             : window.navigator.app.exitApp();
         } else {
           ///שמור היסטוריה
-          let new_historyPages = this.historyPages;
+          let new_historyPages = this.state.historyPages.slice();
 
           if (this.listLevelPages[goToPage] <= this.listLevelPages[fromPage]) {
             //חוזרים אחורה, מחק את כל הדפים שהרמה שלהם גבוהה משלי.
@@ -124,9 +126,7 @@ debugger
           }
           new_historyPages.push(goToPage);
           //שמירת שינויים בהיסטוריה
-          this.setState({
-            historyPages: new_historyPages
-          });
+          this.setState({ historyPages: new_historyPages });
         }
 
         //----navigator and animation----///
@@ -164,7 +164,7 @@ debugger
         // }
 
         if (this.props.onchangePage !== undefined)
-          this.props.onchangePage(this.historyPages[this.historyPages.length - 1]);
+          this.props.onchangePage(this.state.historyPages[this.state.historyPages.length - 1]);
 
         if (callbackFun !== undefined)
           callbackFun();
@@ -192,11 +192,12 @@ debugger
   render() {
     const fthis = this;
 
-    const nowPage = this.historyPages[this.historyPages.length - 1];
+    const nowPage = this.state.historyPages[this.state.historyPages.length - 1];
 
+   this.historyPages = this.state.historyPages.slice();
     return this.props.children.map(child => {
       return <div id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
-        {nowPage === child.key || fthis.historyPages.includes(child.key)
+        {nowPage === child.key || fthis.state.historyPages.includes(child.key)
           ? child
           : <div />}
       </div>
@@ -211,76 +212,62 @@ debugger
      *
      * Copyright (c) 2018 Daniel Eden
      */
+    /*!
+   * managerPages.css
+   * Version - 1.0.3
+   *
+   * Copyright (c) 2019 Or Chuban
+   */
     const animateCSS = $('<style rel="stylesheet" type="text/css">');
     animateCSS.html(`
 
-        ::-webkit-scrollbar {
-
-            width: 0px;  /*  remove scrollbar space  */
-          
-             background: transparent; /* optional: just make scrollbar invisible  */
-          
-          }
-          html.w-mod-touch * {
-            background-attachment: unset !important;
-          }
-          
-          *{
-             -webkit-user-select: none;  
-            /* -webkit-overflow-scrolling:touch; */
-          }
-          input{
-            -webkit-user-select: auto;
-          } 
-           
-           
-           #root,html,body,.body,.top_section,.player_section,.noScroll{
-            background-attachment:unset !important;
-            overflow-x: visible !important;
-            overflow-y: visible !important;
-            overflow:visible !important;
-            -webkit-overflow-scrolling:auto;
-           }
-           
-           html ,body { 
-           overflow: hidden !important; 
-            height: 100%;
-            width: 100%;
-          }
-          
-          body {
-            margin: 0;
-            padding: 0;
-          }
-          
-          
-          
-          .showPage{   
-            width: 100%;
-            height: 100%; 
-            opacity: 1;
-            z-index: 9;
-            display: block;
-              left:0; 
-            position: absolute;
-          } 
-          .scrollPage{
-            position: absolute;
-            overflow-x:hidden; 
-            overflow-y:auto;
-            -webkit-overflow-scrolling:touch;
-          }
-          
-          .hiddenPage {
-            z-index: -1;
-            overflow:hidden;
-             position: absolute;
-              left:0; 
-              height: 0px;
-              display: none;
-          }
-
-
+    #root,html,body,.body,.top_section,.noScroll{
+      background-attachment:unset !important;
+      overflow-x: visible !important;
+      overflow-y: visible !important;
+      overflow:visible !important;
+      -webkit-overflow-scrolling:auto;
+     }
+     
+     html ,body { 
+     overflow: hidden !important; 
+      height: 100%;
+      width: 100%;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    
+    
+    .showPage{   
+      width: 100%;
+      height: 100%; 
+      opacity: 1;
+      z-index: 9;
+      display: block;
+        left:0; 
+      position: absolute;
+    } 
+    .scrollPage{
+      position: absolute;
+      overflow-x:hidden; 
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    
+    .hiddenPage {
+      z-index: -1;
+      overflow:hidden;
+       position: absolute;
+        left:0; 
+        height: 0px;
+        display: none;
+    }
+    
+    
         @charset "UTF-8";
 @-webkit-keyframes bounce {
   from,
