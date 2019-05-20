@@ -15,7 +15,7 @@ on OS X and Linux:
 
 on Windows:
  ####  `C:\>npm install -g cordova`
- 
+
 <br>
 
 ## Init new project
@@ -40,11 +40,11 @@ start the line with cordo instead of cordova
 #### `cordo plugin add cordova-plugin-media`
 <br>
 Or You can insert to the folder and after run cordova
-##### `cd cordova`
+#### `cd cordova`
 
 and after
 
-##### `cordova plugin add cordova-plugin-media`
+#### `cordova plugin add cordova-plugin-media`
 
 ## Learn More about Cordova
 
