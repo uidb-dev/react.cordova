@@ -15,7 +15,7 @@ on OS X and Linux:
 
 on Windows:
  ####  `C:\>npm install -g cordova`
-
+ 
 <br>
 ## init new project
 ### `reco init myAppName com.myapp_id`
@@ -38,7 +38,6 @@ start the line with cordo instead of cordova
 **Example:** 
 #### `cordo plugin add cordova-plugin-media`
 <br>
-<br>
 Or You can insert to the folder and after run cordova
 ##### `cd cordova`
 ##### `cordova plugin add cordova-plugin-media`
@@ -58,8 +57,8 @@ In the project directory, you can run react-js
 #### `react run build`
 #### `npm run eject`
 <br>
-<br>
 Or You can insert to the folder and after run react
+
 #### `cd react`
 #### `npm start`
 
