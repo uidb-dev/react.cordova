@@ -16,11 +16,9 @@ on OS X and Linux:
 on Windows:
  ####  `C:\>npm install -g cordova`
 
-<br>
 ## init
 ### `reco init myAppName com.myapp_id`
-**Note: It's create cordova app and merge bundle whit react**
-<br>
+**Note: It's create cordova app and merge bundle whit react**<br>
 **!!! in this version it's work only from the cmd!!!**
 
 ## build native app
