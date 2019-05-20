@@ -52,18 +52,15 @@ You can learn more in the [Cordova Get Started](https://cordova.apache.org/#gets
 
 In the project directory, you can run react-js
 
-#### `react start`
-<br>
-#### `react test`
-<br>
+#### `react start`<br>
+#### `react test`<br>
 #### `react run build`
-<br>
 #### `npm run eject`
 <br>
 <br>
-Or You can insert to the folder and after run cordova
-##### `cd cordova`
-##### `cordova plugin add cordova-plugin-media`
+Or You can insert to the folder and after run react
+#### `cd react`
+#### `npm start`
 
 ## Learn More about React
 
