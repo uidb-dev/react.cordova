@@ -49,7 +49,7 @@ and after
 
 #### `cordova plugin add cordova-plugin-media`
 
-## Learn More about Cordova
+### Learn More about Cordova
 
 You can learn more in the [Cordova Get Started](https://cordova.apache.org/#getstarted).
 
@@ -72,7 +72,7 @@ and after
 
 #### `npm start`
 
-## Learn More about React
+### Learn More about React
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
