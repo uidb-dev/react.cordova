@@ -16,7 +16,8 @@ on OS X and Linux:
 on Windows:
  ####  `C:\>npm install -g cordova`
 
-## init
+<br>
+## init new project
 ### `reco init myAppName com.myapp_id`
 **Note: It's create cordova app and merge bundle with react**<br>
 **!!! in this version it's work only from the cmd!!!**
