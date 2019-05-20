@@ -40,6 +40,7 @@ start the line with cordo instead of cordova
 #### `cordo plugin add cordova-plugin-media`
 <br>
 Or You can insert to the folder and after run cordova
+
 #### `cd cordova`
 
 and after
