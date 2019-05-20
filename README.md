@@ -31,6 +31,8 @@ on Windows:
 
 **!!! in this version it's work only from the cmd!!!**
 
+<br>
+
 ## Available Scripts cordova
 how can write cordova comand line.
 <br>
