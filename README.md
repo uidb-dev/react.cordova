@@ -17,12 +17,13 @@ on Windows:
  ####  `C:\>npm install -g cordova`
  
 <br>
-## init new project
+
+## Init new project
 ### `reco init myAppName com.myapp_id`
 **Note: It's create cordova app and merge bundle with react**<br>
 **!!! in this version it's work only from the cmd!!!**
 
-## build native app
+## Build native app
 ### `reco build`
 **Note: On Windows it's create .apk file to install in android**
 **Note: On Mac We have not yet built a caption script in one cmd line, but it will come soon.**
@@ -40,6 +41,9 @@ start the line with cordo instead of cordova
 <br>
 Or You can insert to the folder and after run cordova
 ##### `cd cordova`
+
+and after
+
 ##### `cordova plugin add cordova-plugin-media`
 
 ## Learn More about Cordova
@@ -60,6 +64,9 @@ In the project directory, you can run react-js
 Or You can insert to the folder and after run react
 
 #### `cd react`
+
+and after
+
 #### `npm start`
 
 ## Learn More about React
