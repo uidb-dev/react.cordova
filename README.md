@@ -18,7 +18,7 @@ on Windows:
 
 ## init
 ### `reco init myAppName com.myapp_id`
-**Note: It's create cordova app and merge bundle whit react**<br>
+**Note: It's create cordova app and merge bundle with react**<br>
 **!!! in this version it's work only from the cmd!!!**
 
 ## build native app
@@ -32,7 +32,7 @@ on Windows:
 ## Available Scripts cordova
 how can write cordova comand line.
 <br>
-start the line whit cordo instead of cordova 
+start the line with cordo instead of cordova 
 <br>
 **Example:** 
 #### `cordo plugin add cordova-plugin-media`
@@ -52,8 +52,8 @@ You can learn more in the [Cordova Get Started](https://cordova.apache.org/#gets
 
 In the project directory, you can run react-js
 
-#### `react start`<br>
-#### `react test`<br>
+#### `react start`
+#### `react test`
 #### `react run build`
 #### `npm run eject`
 <br>
