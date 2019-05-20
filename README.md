@@ -16,10 +16,11 @@ on OS X and Linux:
 on Windows:
  ####  `C:\>npm install -g cordova`
 
-
+<br>
 ## init
 ### `reco init myAppName com.myapp_id`
-**Note: It's create cordova app and merge bendel whit react**
+**Note: It's create cordova app and merge bundle whit react**
+<br>
 **!!! in this version it's work only from the cmd!!!**
 
 ## build native app
@@ -32,12 +33,14 @@ on Windows:
 
 ## Available Scripts cordova
 how can write cordova comand line.
+<br>
 start the line whit cordo instead of cordova 
+<br>
 **Example:** 
-### `cordo plugin add cordova-plugin-media`
+#### `cordo plugin add cordova-plugin-media`
 Or You can insert to the folder and after run cordova
-## `cd cordova`
-## `cordova plugin add cordova-plugin-media`
+##### `cd cordova`
+##### `cordova plugin add cordova-plugin-media`
 
 
 
