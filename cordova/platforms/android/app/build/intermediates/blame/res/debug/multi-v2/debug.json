@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\User\\Desktop\\react.cordova\\cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\User\\Desktop\\react.cordova\\cordova\\platforms\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "4,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "163,55,104",
+                        "endColumns": "63,48,58",
+                        "endOffsets": "222,99,158"
+                    },
+                    "to": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,119,168",
+                        "endColumns": "63,48,58",
+                        "endOffsets": "114,163,222"
+                    }
+                }
+            ]
+        }
+    ]
+}
