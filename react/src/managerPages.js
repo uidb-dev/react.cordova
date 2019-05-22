@@ -92,7 +92,7 @@ export default class Navigator extends React.Component {
   }
 
 
-  changePage(goToPage, animation, timeAnimationInMS, callbackFun) {
+  changePage(goToPage, animationIn,animationOut, timeAnimationInMS, callbackFun) {
     //debugger
     if (!this.bezy) {
       const fthis = this;
@@ -136,22 +136,22 @@ export default class Navigator extends React.Component {
 
           if (this.listLevelPages[goToPage] === 1) {
             //Up from level 0 to level 1
-            $('#' + goToPage).css('animation', (animation !== null && animation !== undefined ? animation : 'slideInRight') + " " + timeAnimation + 'ms');
+            $('#' + goToPage).css('animation', (animationIn !== null && animationIn !== undefined ? animationIn : 'slideInRight') + " " + timeAnimation + 'ms');
 
           } else { //else if (this.listLevelPages[goToPage] === 2) {
             //Up from level 1 to level 2
-            $('#' + goToPage).css('animation', (animation !== null && animation !== undefined ? animation : 'zoomIn') + " " + timeAnimation + 'ms');
+            $('#' + goToPage).css('animation', (animationIn !== null && animationIn !== undefined ? animationIn : 'zoomIn') + " " + timeAnimation + 'ms');
           }
         } else {
           //--חזרה בדפים Down--//   
           this.funAnimationOut1(goToPage, fromPage);
           if (this.listLevelPages[fromPage] === 1) {
             //Down from level 1 to level 0
-            $('#' + fromPage).css('animation', (animation !== null && animation !== undefined ? animation : 'slideOutRight') + " " + timeAnimation + 'ms');
+            $('#' + fromPage).css('animation', (animationOut !== null && animationOut !== undefined ? animationOut : 'slideOutRight') + " " + timeAnimation + 'ms');
           }
           else { //else if (this.listLevelPages[goToPage] === 1) {
             //Down from level 2 to level 1
-            $('#' + fromPage).css('animation', (animation !== null && animation !== undefined ? animation : 'zoomOut') + " " + timeAnimation + 'ms');
+            $('#' + fromPage).css('animation', (animationOut !== null && animationOut !== undefined ? animationOut : 'zoomOut') + " " + timeAnimation + 'ms');
 
           }
         }

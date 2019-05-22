@@ -115,5 +115,5 @@ the option to changePage it's:
                 //'animationIn' and 'animationOut' need name of the animated from https://daneden.github.io/animate.css/  //--(c) Daniel Eden (c)--//  
                 , timeAnimationInMS // defult=250//ms
                 , callbackFun
-                );
+              );
 ```
