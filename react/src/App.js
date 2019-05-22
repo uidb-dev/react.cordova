@@ -72,7 +72,6 @@ export default class App extends React.Component {
         homePageKey={"home"}>
         <Home key="home" levelPage={0} />
         <About key="about" levelPage={1} />
-        <div key="test"></div>
       </ManagerPages>
 
         , <div style={{

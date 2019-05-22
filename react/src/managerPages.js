@@ -8,7 +8,7 @@ export default class Navigator extends React.Component {
     this.state = {
       historyPages: [this.props.homePageKey]
     }
-    this.myApp = this.props.myApp;
+    this.myComponentApp = this.props.myComponentApp;
 
 
     this.historyPages = this.state.historyPages;
@@ -33,7 +33,7 @@ export default class Navigator extends React.Component {
     this.bezy = false;
 
 
-    this.props.myApp.managerPages = this;
+    this.props.myComponentApp.managerPages = this;
 
     this.changePage = this.changePage.bind(this);
   }
@@ -92,14 +92,13 @@ export default class Navigator extends React.Component {
   }
 
 
-  changePage(goToPage, fromPage, animation, timeAnimationInMS, callbackFun) {
+  changePage(goToPage, animation, timeAnimationInMS, callbackFun) {
     //debugger
     if (!this.bezy) {
       const fthis = this;
 
-      if (fromPage === null || fromPage === undefined) {
-        fromPage = "" + this.historyPages[this.historyPages.length - 1] + "";
-      }
+      const fromPage = "" + this.historyPages[this.historyPages.length - 1] + "";
+
 
       //--animation time defult
       const timeAnimation = timeAnimationInMS !== undefined && timeAnimationInMS !== null ? timeAnimationInMS
@@ -194,9 +193,9 @@ export default class Navigator extends React.Component {
 
     const nowPage = this.state.historyPages[this.state.historyPages.length - 1];
 
-   this.historyPages = this.state.historyPages.slice();
+    this.historyPages = this.state.historyPages.slice();
     return this.props.children.map(child => {
-      return <div style={{ backgroundColor:"#fff"}} id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
+      return <div style={{ backgroundColor: "#fff" }} id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
         {nowPage === child.key || fthis.state.historyPages.includes(child.key)
           ? child
           : <div />}

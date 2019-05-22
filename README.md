@@ -21,14 +21,14 @@ on Windows:
 ## Init new project
 ### `reco init myAppName com.myapp_id`
 **Note: It's create cordova app and merge bundle with react**<br>
-***!!!in this version it's work only from the cmd windows pc !!!**
+**!!In this version it's work only from the cmd windows pc!!**
 
 ## Build native app
 ### `reco build`
 **Note: On Windows it's create .apk file to install in android**<br>
 **Note: On Mac We have not yet built a caption script in one cmd line, but it will come soon.**<br>
 **Anyone who knows cordova knew to compile to IOS**<br>
-***!!!in this version it's work only from the cmd windows pc !!!**<br>
+**!!In this version it's work only from the cmd windows pc!!**<br>
 
 <br>
 
@@ -76,3 +76,34 @@ and after
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+<br>
+<br>
+
+
+##Scripts code
+In <'projectDirectory'>/react/App.js you well start the app.
+The project includ managerPages.
+it's important to manage your pages like Mobile App.
+
+### `import ManagerPages from './managerPages';`
+
+<br>
+In the render function return 
+### `<ManagerPages <br> myComponentApp={this} <br> //onChangePage={(nowPage) => { ... }} <br>   homePageKey={"home"}>
+        <MyHomePage key="home" levelPage={0} />
+        <AboutPage key="about" levelPage={1} />
+      </ManagerPages>`
+
+<br>
+
+To change page you need get the component that you send in 'myComponentApp' and do:
+### `this.managerPages.changePage("about");` 
+the option to changePage it's:
+### `.managerPages.changePage(
+  goToPage //it's must
+  , animation // the name of the animated from https://daneden.github.io/animate.css/  //--(c) Daniel Eden (c)--//  ///Have defult
+  , timeAnimationInMS // defult=250//ms
+  , callbackFun
+  );`
