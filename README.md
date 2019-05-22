@@ -87,16 +87,33 @@ In <'projectDirectory'>/react/App.js you well start the app.
 The project includ managerPages.
 it's important to manage your pages like Mobile App.
 
-### `import ManagerPages from './managerPages';`
+#### `import ManagerPages from './managerPages';`
 
 <br>
 In the render function return
 
-### `<ManagerPages <br> myComponentApp={this} <br>//onChangePage={(nowPage) => { ... }} <br>    homePageKey={"home"}><br>        <MyHomePage key="home" levelPage={0} /><br>        <AboutPage key="about" levelPage={1} /><br>      </ManagerPages>`
+ ```
+ <ManagerPages
+        myComponentApp={this}
+        onChangePage={(nowPage) => { ... }}    
+        homePageKey={"home"}>
+            <MyHomePage key="home" levelPage={0} />
+            <AboutPage key="about" levelPage={1} />
+  </ManagerPages>
+```
 
 <br>
 
 To change page you need get the component that you send in 'myComponentApp' and do:
-### `this.managerPages.changePage("about");` 
+#### `this.managerPages.changePage("about");` 
 the option to changePage it's:
-### `.managerPages.changePage(<br>   goToPage //it's must<br>   , animation // the name of the animated from https://daneden.github.io/animate.css/  //--(c) Daniel Eden (c)--//  ///Have defult<br>   , timeAnimationInMS // defult=250//ms<br>   , callbackFun<br>   );`
+```
+.managerPages.changePage(
+                goToPage //it's must
+                ,animationIn//have defult
+                ,animationOut//have defult
+                //'animationIn' and 'animationOut' need name of the animated from https://daneden.github.io/animate.css/  //--(c) Daniel Eden (c)--//  
+                , timeAnimationInMS // defult=250//ms
+                , callbackFun
+                );
+```
