@@ -82,10 +82,10 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 <br>
 
 
-##Scripts code
-In <'projectDirectory'>/react/App.js you well start the app.
-The project includ managerPages.
-it's important to manage your pages like Mobile App.
+## Scripts code
+In <'projectDirectory'>/react/App.js you well start the app.<br>
+The project includ managerPages.<br>
+It's important to manage your pages like Mobile App.<br>
 
 #### `import ManagerPages from './managerPages';`
 
