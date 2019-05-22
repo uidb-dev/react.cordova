@@ -90,10 +90,13 @@ it's important to manage your pages like Mobile App.
 ### `import ManagerPages from './managerPages';`
 
 <br>
-In the render function return 
-### `<ManagerPages <br> myComponentApp={this} <br> //onChangePage={(nowPage) => { ... }} <br>   homePageKey={"home"}>
-        <MyHomePage key="home" levelPage={0} />
-        <AboutPage key="about" levelPage={1} />
+In the render function return
+
+### `<ManagerPages <br> myComponentApp={this} <br>
+  //onChangePage={(nowPage) => { ... }} <br>
+    homePageKey={"home"}><br>
+        <MyHomePage key="home" levelPage={0} /><br>
+        <AboutPage key="about" levelPage={1} /><br>
       </ManagerPages>`
 
 <br>
