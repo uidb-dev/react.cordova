@@ -7,6 +7,7 @@ export default class Navigator extends React.Component {
     super(props);
     this.state = {
       historyPages: [this.props.homePageKey]
+      ,nowPage:this.props.homePageKey
     }
     this.myComponentApp = this.props.myComponentApp;
 
@@ -66,6 +67,9 @@ export default class Navigator extends React.Component {
     $('#' + fromPage).removeClass('scrollPage');
     $('#' + fromPage).addClass('hiddenPage');
     this.bezy = false;
+    
+    if (this.props.onChangePage !== undefined)
+    this.props.onChangePage(this.state.historyPages[this.state.historyPages.length - 1]);
   }
 
   funAnimationOut1(goToPage, fromPage) {
@@ -89,6 +93,9 @@ export default class Navigator extends React.Component {
     $('#' + fromPage).removeClass('scrollPage');
     $('#' + fromPage).addClass('hiddenPage');
     this.bezy = false;
+
+    if (this.props.onChangePage !== undefined)
+    this.props.onChangePage(this.state.historyPages[this.state.historyPages.length - 1]);
   }
 
 
@@ -162,8 +169,7 @@ export default class Navigator extends React.Component {
         //     $('#navigatorBack').css('display', "flex");
         // }
 
-        if (this.props.onchangePage !== undefined)
-          this.props.onchangePage(this.state.historyPages[this.state.historyPages.length - 1]);
+     
 
         if (callbackFun !== undefined)
           callbackFun();
@@ -192,10 +198,11 @@ export default class Navigator extends React.Component {
     const fthis = this;
 
     const nowPage = this.state.historyPages[this.state.historyPages.length - 1];
+   
 
     this.historyPages = this.state.historyPages.slice();
     return this.props.children.map(child => {
-      return <div style={{ backgroundColor: "#fff" }} id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
+      return <div style={{ backgroundColor: "#fff" ,height:fthis.props.height}} id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
         {nowPage === child.key || fthis.state.historyPages.includes(child.key)
           ? child
           : <div />}

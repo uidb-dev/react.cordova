@@ -1,3 +1,4 @@
+echo off
 if "%~1" == "init" goto init
 if "%~1" == "build" goto build
 if "%~1" == "react" goto react

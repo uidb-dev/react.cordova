@@ -5,16 +5,11 @@
   "homepage": "./",
   "dependencies": {
     "cheeseburger-menu": "0.0.13",
-    "dateformat": "^3.0.3",
     "jquery": "^3.3.1",
     "navigator-cordova-reactjs": "^1.0.6",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-hamburger-menu": "^1.1.1",
-    "react-scripts": "2.1.1",
-    "sweetalert2": "^8.7.0",
-    "sweetalert2-react": "^0.8.1",
-    "sweetalert2-react-content": "^1.1.0"
+    "react-scripts": "2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

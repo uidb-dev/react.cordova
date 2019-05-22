@@ -4,7 +4,7 @@ import App from './App'
 import * as serviceWorker from './serviceWorker';
 
 
-window.appVersion = "0.0.1";
+//window.appVersion = "0.0.1";
 
 
 const startApp = (cordovaWork) => {

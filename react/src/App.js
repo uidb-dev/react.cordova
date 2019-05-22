@@ -23,7 +23,7 @@ export default class App extends React.Component {
     this.myRef = React.createRef();
 
     this.state = {
-    //
+      nowPage: "home"
     }
 
     // this.nowPage=""; //it's will fill from NavigatorPages
@@ -65,24 +65,31 @@ export default class App extends React.Component {
 
   render() {
 
+    const fthis = this;
+
+    //const full_Height = window.innerHeight;
+
     return (
       [<ManagerPages
-        myApp={this}
-        //onChangePage={(nowPage) => { this.setState({ nowPage: nowPage }); }}
+        height="92%"
+        myComponentApp={this}
+        onChangePage={(nowPageKey) => { this.setState({ nowPage: nowPageKey }); }}
         homePageKey={"home"}>
         <Home key="home" levelPage={0} />
         <About key="about" levelPage={1} />
       </ManagerPages>
 
-        , <div style={{
-          position: "fixed"
-          , bottom: 0
-          ,zIndex: 10
-        }}>
-        <button style={{ width: "100px", height: "80px", backgroundColor: "bisque" }}
-          onClick={() => { this.managerPages.changePage("about"); }}> go to about</button>
-        <button style={{ width: "100px", height: "80px", backgroundColor: "aliceblue" }}
-          onClick={() => { this.managerPages.changePage("home"); }}> go to home</button>
+
+        , <div style={{ height: "8%" }} className="navbar" id="myNavbar">
+
+        <div style={{ width: "50%" }}
+          onClick={() => { this.managerPages.changePage("home") }}
+          className={this.state.nowPage === "home" ? "active" : ""}>Home</div>
+
+        <div style={{ width: "50%" }}
+          onClick={() => {
+            this.managerPages.changePage("about");}}
+            className = {this.state.nowPage === "about" ? "active" : "" }>About</div>
 
       </div>
       ]
