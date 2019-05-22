@@ -21,15 +21,14 @@ on Windows:
 ## Init new project
 ### `reco init myAppName com.myapp_id`
 **Note: It's create cordova app and merge bundle with react**<br>
-**!!! in this version it's work only from the cmd!!!**
+***!!!in this version it's work only from the cmd windows pc !!!**
 
 ## Build native app
 ### `reco build`
-**Note: On Windows it's create .apk file to install in android**
-**Note: On Mac We have not yet built a caption script in one cmd line, but it will come soon.**
-**Anyone who knows cordova knew to compile to IOS**
-
-**!!! in this version it's work only from the cmd!!!**
+**Note: On Windows it's create .apk file to install in android**<br>
+**Note: On Mac We have not yet built a caption script in one cmd line, but it will come soon.**<br>
+**Anyone who knows cordova knew to compile to IOS**<br>
+***!!!in this version it's work only from the cmd windows pc !!!**<br>
 
 <br>
 
