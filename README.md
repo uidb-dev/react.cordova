@@ -92,21 +92,11 @@ it's important to manage your pages like Mobile App.
 <br>
 In the render function return
 
-### `<ManagerPages <br> myComponentApp={this} <br>
-  //onChangePage={(nowPage) => { ... }} <br>
-    homePageKey={"home"}><br>
-        <MyHomePage key="home" levelPage={0} /><br>
-        <AboutPage key="about" levelPage={1} /><br>
-      </ManagerPages>`
+### `<ManagerPages <br> myComponentApp={this} <br>//onChangePage={(nowPage) => { ... }} <br>    homePageKey={"home"}><br>        <MyHomePage key="home" levelPage={0} /><br>        <AboutPage key="about" levelPage={1} /><br>      </ManagerPages>`
 
 <br>
 
 To change page you need get the component that you send in 'myComponentApp' and do:
 ### `this.managerPages.changePage("about");` 
 the option to changePage it's:
-### `.managerPages.changePage(
-  goToPage //it's must
-  , animation // the name of the animated from https://daneden.github.io/animate.css/  //--(c) Daniel Eden (c)--//  ///Have defult
-  , timeAnimationInMS // defult=250//ms
-  , callbackFun
-  );`
+### `.managerPages.changePage(<br>   goToPage //it's must<br>   , animation // the name of the animated from https://daneden.github.io/animate.css/  //--(c) Daniel Eden (c)--//  ///Have defult<br>   , timeAnimationInMS // defult=250//ms<br>   , callbackFun<br>   );`
