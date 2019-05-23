@@ -45,9 +45,10 @@ var Navigator = function (_React$Component) {
     _this.listLevelPages = [];
 
     var listLevelPages = _this.listLevelPages;
-    _this.props.children.map(function (child) {
+
+    Array.isArray(_this.props.children) ? _this.props.children.forEach(function (child) {
       listLevelPages[child.key] = child.props.levelPage === undefined ? child.key === _this.props.homePageKey ? 0 : 99 : child.props.levelPage;
-    });
+    }) : listLevelPages[_this.props.children.key] = _this.props.children.props.levelPage === undefined ? _this.props.children.key === _this.props.homePageKey ? 0 : 99 : _this.props.children.props.levelPage;
 
     // const childrenWithProps = React.Children.map(this.props.children, child =>
     //   React.cloneElement(child, { doSomething: this.doSomething })
@@ -223,13 +224,17 @@ var Navigator = function (_React$Component) {
       var nowPage = this.state.historyPages[this.state.historyPages.length - 1];
 
       this.historyPages = this.state.historyPages.slice();
-      return this.props.children.map(function (child) {
+      return Array.isArray(this.props.children) ? this.props.children.map(function (child) {
         return _react2.default.createElement(
           'div',
           { style: { backgroundColor: "#fff", height: fthis.props.height }, id: child.key, className: fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage" },
           nowPage === child.key || fthis.state.historyPages.includes(child.key) ? child : _react2.default.createElement('div', null)
         );
-      });
+      }) : _react2.default.createElement(
+        'div',
+        { style: { backgroundColor: "#fff", height: fthis.props.height }, id: this.props.children.key, className: fthis.props.homePageKey === this.props.children.key ? "showPage scrollPage" : "hiddenPage" },
+        nowPage === this.props.children.key || fthis.state.historyPages.includes(this.props.children.key) ? this.props.children : _react2.default.createElement('div', null)
+      );
     }
   }]);
 

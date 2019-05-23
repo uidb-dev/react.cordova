@@ -7,7 +7,7 @@ export default class Navigator extends React.Component {
     super(props);
     this.state = {
       historyPages: [this.props.homePageKey]
-      ,nowPage:this.props.homePageKey
+      , nowPage: this.props.homePageKey
     }
     this.myComponentApp = this.props.myComponentApp;
 
@@ -17,13 +17,20 @@ export default class Navigator extends React.Component {
     this.listLevelPages = [];
 
     let listLevelPages = this.listLevelPages;
-    this.props.children.map((child) => {
-      listLevelPages[child.key] =
-        child.props.levelPage === undefined
-          ? child.key === this.props.homePageKey
-            ? 0 : 99
-          : child.props.levelPage
-    });
+
+    Array.isArray(this.props.children) ?
+      this.props.children.forEach((child) => {
+        listLevelPages[child.key] =
+          child.props.levelPage === undefined
+            ? child.key === this.props.homePageKey
+              ? 0 : 99
+            : child.props.levelPage
+      })
+      : listLevelPages[this.props.children.key] =
+      this.props.children.props.levelPage === undefined
+        ? this.props.children.key === this.props.homePageKey
+          ? 0 : 99
+        : this.props.children.props.levelPage;
 
 
     // const childrenWithProps = React.Children.map(this.props.children, child =>
@@ -34,7 +41,7 @@ export default class Navigator extends React.Component {
     this.bezy = false;
 
 
-    this.props.myComponentApp.managerPages = this;
+    this.props.myComponentApp.navigator = this;
 
     this.changePage = this.changePage.bind(this);
   }
@@ -67,9 +74,9 @@ export default class Navigator extends React.Component {
     $('#' + fromPage).removeClass('scrollPage');
     $('#' + fromPage).addClass('hiddenPage');
     this.bezy = false;
-    
+
     if (this.props.onChangePage !== undefined)
-    this.props.onChangePage(this.state.historyPages[this.state.historyPages.length - 1]);
+      this.props.onChangePage(this.state.historyPages[this.state.historyPages.length - 1]);
   }
 
   funAnimationOut1(goToPage, fromPage) {
@@ -95,11 +102,11 @@ export default class Navigator extends React.Component {
     this.bezy = false;
 
     if (this.props.onChangePage !== undefined)
-    this.props.onChangePage(this.state.historyPages[this.state.historyPages.length - 1]);
+      this.props.onChangePage(this.state.historyPages[this.state.historyPages.length - 1]);
   }
 
 
-  changePage(goToPage, animationIn,animationOut, timeAnimationInMS, callbackFun) {
+  changePage(goToPage, animationIn, animationOut, timeAnimationInMS, callbackFun) {
     //debugger
     if (!this.bezy) {
       const fthis = this;
@@ -169,7 +176,7 @@ export default class Navigator extends React.Component {
         //     $('#navigatorBack').css('display', "flex");
         // }
 
-     
+
 
         if (callbackFun !== undefined)
           callbackFun();
@@ -198,16 +205,23 @@ export default class Navigator extends React.Component {
     const fthis = this;
 
     const nowPage = this.state.historyPages[this.state.historyPages.length - 1];
-   
+
 
     this.historyPages = this.state.historyPages.slice();
-    return this.props.children.map(child => {
-      return <div style={{ backgroundColor: "#fff" ,height:fthis.props.height}} id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
-        {nowPage === child.key || fthis.state.historyPages.includes(child.key)
-          ? child
+    return Array.isArray(this.props.children)
+      ? this.props.children.map(child => {
+        return <div style={{ backgroundColor: "#fff", height: fthis.props.height }} id={child.key} className={fthis.props.homePageKey === child.key ? "showPage scrollPage" : "hiddenPage"}>
+          {nowPage === child.key || fthis.state.historyPages.includes(child.key)
+            ? child
+            : <div />}
+        </div>
+      })
+      : <div style={{ backgroundColor: "#fff", height: fthis.props.height }} id={this.props.children.key} className={fthis.props.homePageKey === this.props.children.key ? "showPage scrollPage" : "hiddenPage"}>
+        {nowPage === this.props.children.key || fthis.state.historyPages.includes(this.props.children.key)
+          ? this.props.children
           : <div />}
-      </div>
-    });
+      </div>;
+
   }
 
   setAnimateCSS() {

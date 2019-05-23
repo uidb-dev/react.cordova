@@ -9,7 +9,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
-    "react.cordova-navigation_controller": "^1.0.2"
+    "react.cordova-navigation_controller": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

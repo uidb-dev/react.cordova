@@ -86,8 +86,9 @@ export default class App extends React.Component {
 
         <div style={{ width: "50%" }}
           onClick={() => {
-            this.navigator.changePage("about");}}
-            className = {this.state.nowPage === "about" ? "active" : "" }>About</div>
+            this.navigator.changePage("about");
+          }}
+          className={this.state.nowPage === "about" ? "active" : ""}>About</div>
 
       </div>
       ]
