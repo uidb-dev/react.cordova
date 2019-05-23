@@ -1,7 +1,5 @@
 import React from 'react';
-//import NavigatorPages from 'navigator-cordova-reactjs';
-import ManagerPages from './managerPages';
-import ReactDOM from 'react-dom';
+import Navigator from 'react.cordova-navigation_controller';
 
 //----Pages----//
 import Home from "./pages/home";
@@ -70,25 +68,25 @@ export default class App extends React.Component {
     //const full_Height = window.innerHeight;
 
     return (
-      [<ManagerPages
+      [<Navigator
         height="92%"
         myComponentApp={this}
         onChangePage={(nowPageKey) => { this.setState({ nowPage: nowPageKey }); }}
         homePageKey={"home"}>
         <Home key="home" levelPage={0} />
         <About key="about" levelPage={1} />
-      </ManagerPages>
+      </Navigator>
 
 
         , <div style={{ height: "8%" }} className="navbar" id="myNavbar">
 
         <div style={{ width: "50%" }}
-          onClick={() => { this.managerPages.changePage("home") }}
+          onClick={() => { this.navigator.changePage("home") }}
           className={this.state.nowPage === "home" ? "active" : ""}>Home</div>
 
         <div style={{ width: "50%" }}
           onClick={() => {
-            this.managerPages.changePage("about");}}
+            this.navigator.changePage("about");}}
             className = {this.state.nowPage === "about" ? "active" : "" }>About</div>
 
       </div>

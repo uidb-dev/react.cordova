@@ -6,10 +6,10 @@
   "dependencies": {
     "cheeseburger-menu": "0.0.13",
     "jquery": "^3.3.1",
-    "navigator-cordova-reactjs": "^1.0.6",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "react.cordova-navigation_controller": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
