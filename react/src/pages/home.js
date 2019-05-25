@@ -17,10 +17,38 @@ export default class Home extends React.Component {
   render() {
     const fthis = this;
     return (
-      <div>
+    <div>  <h1>
         home page
+      </h1>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
+      <h2>hghgfhfg</h2>
+      <br/>
       </div>
-
     );
   }
 

@@ -26,6 +26,39 @@ export default class About extends React.Component {
 
   //      const fthis = this;
 
-        return (<h1>About</h1>)
+        return (
+            <div>  <h1>
+            About page
+          </h1>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          <h2>hghgfhfg</h2>
+          <br/>
+          </div>
+            )
     }
 }

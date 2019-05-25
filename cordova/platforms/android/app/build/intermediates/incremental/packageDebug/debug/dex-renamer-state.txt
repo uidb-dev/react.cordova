@@ -1,0 +1,4 @@
+#Sat May 25 17:46:13 IDT 2019
+base.0=C\:\\Users\\User\\Desktop\\react.cordova\\cordova\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
