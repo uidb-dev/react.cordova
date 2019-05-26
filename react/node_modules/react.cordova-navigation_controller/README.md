@@ -48,11 +48,11 @@ const listLevelPages= myComponentApp.navigator.listLevelPages();
 ```
 
 
-### Check if the mangerPages is bezy
+### Check if the mangerPages is busy
 ```
-const navigator_bezy= myComponentApp.nvigator.bezy;
+const navigator_busy= myComponentApp.nvigator.busy;
 ```
-*bezy return boolean  
+*busy return boolean  
 <br><br><br>
 
 

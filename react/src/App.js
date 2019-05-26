@@ -24,7 +24,7 @@ export default class App extends React.Component {
       nowPage: "home"
     }
 
-    // this.nowPage=""; //it's will fill from NavigatorPages
+    this.cordovaWork = this.props.cordovaWork;//bool
 
     this.full_Height = window.innerHeight;
 
@@ -51,13 +51,6 @@ export default class App extends React.Component {
 
       // //---lock portrait
       // window.screen.orientation.lock('portrait');
-
-      //--back button in android
-      document.addEventListener("backbutton"
-        , (e) => {
-          window.closeOrBack();
-        }
-        , false);
     }
   }
 
