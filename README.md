@@ -62,6 +62,8 @@ In the project directory, you can run react-js
 #### `react test`
 #### `react run build`
 #### `npm run eject`
+#### `react install <folder>`
+
 <br>
 Or You can insert to the folder and after run react
 
