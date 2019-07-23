@@ -14,11 +14,12 @@ REM    See the License for the specific language governing permissions and
 REM    limitations under the License.
 
 
-echo off
+REM echo off
 if "%~1" == "init" goto init
 if "%~1" == "build" goto build
 if "%~1" == "react" goto react
 if "%~1" == "cordova" goto cordovaRun
+if "%~1" == "info" echo info=> #####Created by Or Chuban#####
 
 :react
 cd react
