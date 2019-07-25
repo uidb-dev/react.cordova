@@ -1,3 +1,4 @@
+#reco
 # react.cordova
 # this is the best bundle to webApp mobile
 
@@ -17,37 +18,38 @@ on OS X and Linux:
 on Windows:
  ####  `C:\>npm install -g cordova`
 
+ ### rect.js 
+on OS X and Linux:
+  #### `$ sudo npm install -g create-react-app`
+
+on Windows:
+ ####  `C:\>npm install -g create-react-app`
+
+
 <br>
 
 ## Init new project
-### `reco init myAppName com.myapp_id`
-**Note: It's create cordova app and merge bundle with react**<br>
-**!!In this version it's work only from the cmd windows pc!!**
+### `reco init com.yourAppId yourAppName`
+**Note: It's create cordova app and merge bundle with react**
+<br>
 
-## Build native app
+## Build native (cordova mobile and mor platforms) app
 ### `reco build`
-**Note: On Windows it's create .apk file to install in android**<br>
-**Note: On Mac We have not yet built a caption script in one cmd line, but it will come soon.**<br>
-**Anyone who knows cordova knew to compile to IOS**<br>
-**!!In this version it's work only from the cmd windows pc!!**<br>
+**Note: It's create .apk file to install in android devices**<br>
+**Note: On It's create .ipa file to install in apple devices**<br>
+<br>
 
 <br>
 
 ## Available Scripts cordova
 how can write cordova comand line.
 <br>
-start the line with cordo instead of cordova 
+start the line with `reco cordova ...`  
 <br>
 **Example:** 
-#### `cordo plugin add cordova-plugin-media`
+#### `reco cordova platform add browser`
 <br>
-Or You can insert to the folder and after run cordova
 
-#### `cd cordova`
-
-and after
-
-#### `cordova plugin add cordova-plugin-media`
 
 #### Learn More about Cordova
 
@@ -59,20 +61,13 @@ You can learn more in the [Cordova Get Started](https://cordova.apache.org/#gets
 
 In the project directory, you can run react-js
 
-#### `react start`
-#### `react test`
-#### `react run build`
-#### `npm run eject`
-#### `react install <folder>`
+#### `reco start`
+#### `reco test`
+#### `reco install <npm packages for react>` //or i
+#### `reco react <any react scripts run>`
 
 <br>
-Or You can insert to the folder and after run react
 
-#### `cd react`
-
-and after
-
-#### `npm start`
 
 #### Learn More about React
 
