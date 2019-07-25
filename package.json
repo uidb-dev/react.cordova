@@ -1,5 +1,5 @@
 {
-  "name": "react.cordova",
+  "name": "reco",
   "version": "1.0.0",
   "description": "This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).",
   "main": "index.js",
@@ -14,7 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/orchoban/react.cordova.git"
   },
-  "keywords": [],
+  "keywords": [
+    "reco"
+    ,"react.cordova"
+    ,"react cordova bundle"
+  ],
   "author": "Or Chuban. github=>orchoban, npm orcho",
   "license": "ISC",
   "bugs": {

@@ -1,6 +1,6 @@
-#reco
+# reco
 # react.cordova
-# this is the best bundle to webApp mobile
+# this is the best bundle to hybrid webApp mobile
 
 This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
 
