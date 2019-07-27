@@ -49,7 +49,7 @@ In the project directory, you can run react-js
 #### `reco start`
 #### `reco test`
 #### `reco install <npm packages for react>`
-#### `reco react <any react scripts run>`
+#### `react <any react scripts run>`
 
 <br>
 
