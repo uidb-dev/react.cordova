@@ -13,15 +13,15 @@ This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-cho
 
 ## Init new project
 ### `reco init com.yourAppId yourAppName`
-**Note: It's create first react-app and after cordova-app and merge bundle together**
+**Note: will create both react-app and cordova-app and then will merge one into the other**
 <br>
 
 ## Build 
 ### `reco build`
 ### 1. build react-app to publish (in: ./react/build).
-### 2. build cordova-app, mobile and mor platforms.
-**Note: It's ready to create .apk file to install in android devices**<br>
-**Note: On It's ready to create .ipa file to install in apple devices**<br>
+### 2. build cordova-app, for mobile and other platforms.
+**Note: will generate APK installable package for Android devices**<br>
+**Note:will generate IPA installable package for iOS devices if you run it in mac**<br>
 <br>
 
 <br>
