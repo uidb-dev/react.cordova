@@ -36,7 +36,9 @@
     "react native",
     "reactjs",
     "react.js",
-    "react-js"
+    "react-js",
+    "phonegap",
+    "ionic"
   ],
   "author": "Or Chuban. github => orchoban, npm => orcho",
   "license": "ISC",
