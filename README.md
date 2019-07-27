@@ -17,9 +17,9 @@ This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-cho
 <br>
 
 ## Build 
+### `reco build`
 ### 1. react-app to publish (in: react/build).
 ### 2. cordova-app, mobile and mor platforms.
-### `reco build`
 **Note: It's ready to create .apk file to install in android devices**<br>
 **Note: On It's ready to create .ipa file to install in apple devices**<br>
 <br>
