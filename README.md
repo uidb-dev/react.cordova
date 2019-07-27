@@ -6,8 +6,6 @@
 
 ## first install the cli:<br> `npm install -g react.cordova`
 
-This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
-
 
 <br>
 
@@ -84,3 +82,9 @@ on OS X and Linux:
 
 on Windows:
 ####  `C:\>npm install -g create-react-app`
+
+
+
+<br>
+<br>
+This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
