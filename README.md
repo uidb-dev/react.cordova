@@ -3,8 +3,8 @@
 ## this is the best bundle to build hybrid webApp mobile
 
 <br>
-## first install the cli:
-## `npm install -g react.cordova`
+
+## first install the cli: `npm install -g react.cordova`
 
 This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
 
