@@ -1,6 +1,6 @@
 # reco
 # react.cordova
-## this is the best bundle to build hybrid webApp mobile
+## Best bundle for your hybrid mobile app and your website.
 
 <br>
 
