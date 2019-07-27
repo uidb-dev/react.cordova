@@ -1,42 +1,27 @@
 # reco
 # react.cordova
-# this is the best bundle to hybrid webApp mobile
+## this is the best bundle to build hybrid webApp mobile
+
+<br>
+## first install the cli:
+## `npm install -g react.cordova`
 
 This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
-
-## To run it you need:
-### npm
-[get-npm](https://www.npmjs.com/get-npm)
-
-### Java 
-recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-
-### cordova 
-on OS X and Linux:
-  #### `$ sudo npm install -g cordova`
-
-on Windows:
- ####  `C:\>npm install -g cordova`
-
- ### rect.js 
-on OS X and Linux:
-  #### `$ sudo npm install -g create-react-app`
-
-on Windows:
- ####  `C:\>npm install -g create-react-app`
 
 
 <br>
 
 ## Init new project
 ### `reco init com.yourAppId yourAppName`
-**Note: It's create cordova app and merge bundle with react**
+**Note: It's create first react-app and after cordova-app and merge bundle together**
 <br>
 
-## Build native (cordova mobile and mor platforms) app
+## Build 
+### 1. react-app to publish (in: react/build).
+### 2. cordova-app, mobile and mor platforms.
 ### `reco build`
-**Note: It's create .apk file to install in android devices**<br>
-**Note: On It's create .ipa file to install in apple devices**<br>
+**Note: It's ready to create .apk file to install in android devices**<br>
+**Note: On It's ready to create .ipa file to install in apple devices**<br>
 <br>
 
 <br>
@@ -63,7 +48,7 @@ In the project directory, you can run react-js
 
 #### `reco start`
 #### `reco test`
-#### `reco install <npm packages for react>` //or i
+#### `reco install <npm packages for react>`
 #### `reco react <any react scripts run>`
 
 <br>
@@ -78,3 +63,24 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 <br>
 <br>
+
+## To run it you need:
+### npm
+[get-npm](https://www.npmjs.com/get-npm)
+
+### Java 
+recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+### cordova 
+on OS X and Linux:
+#### `$ sudo npm install -g cordova`
+
+on Windows:
+#### `C:\>npm install -g cordova`
+
+### rect.js 
+on OS X and Linux:
+#### `$ sudo npm install -g create-react-app`
+
+on Windows:
+####  `C:\>npm install -g create-react-app`

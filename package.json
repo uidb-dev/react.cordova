@@ -1,15 +1,21 @@
 {
-  "name": "reco",
-  "version": "1.0.0",
+  "name": "react.cordova",
+  "version": "1.1.5",
   "description": "This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "bin": {
     "reco": ".bin/reco",
-    "react.cordova": ".bin/reco"
+    "react-cordova": ".bin/reco"
   },
+  "files": [
+    "bin/",
+    ".bin/",
+    "node_modules/",
+    "package-lock.json",
+    "package.json",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/orchoban/react.cordova.git"
@@ -19,16 +25,21 @@
     "react.cordova",
     "react cordova bundle"
   ],
-  "author": "Or Chuban. github=>orchoban, npm orcho",
+  "author": "Or Chuban. github => orchoban, npm => orcho",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/orchoban/react.cordova/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/orchoban/react.cordova#readme",
   "dependencies": {
     "arg": "^4.1.1",
+    "download-file": "^0.1.5",
     "esm": "^3.2.25",
     "inquirer": "^6.5.0",
+    "jsonfile": "^5.0.0",
     "ncp": "^2.0.0",
     "npm": "^6.10.1"
   }
