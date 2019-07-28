@@ -75,7 +75,7 @@ let reco = {
         console.log();
         reco.state.child_process.exec(
             'npm run build'
-            , { cwd: 'react' }
+            , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
                     console.error('reco-react-cli ERROR : ' + error);
@@ -122,10 +122,16 @@ let reco = {
         // const rootDir = path.join(__dirname, '..');
         // ${rootDir}
 
+        if (fs.existsSync("./react-js") || fs.existsSync("./cordova")) {
+            console.log("exists reco project.");
+            console.log('if you wont to start a new project delete all folders in this directory and run agin:   reco init <com.myAppId> <"my app name">');
+            return;
+        }
+
         console.log();
         console.log('---------reco start to build react-app---------');
         reco.state.child_process.exec(
-            'npx create-react-app reco'
+            'npx create-react-app react-js'
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -133,31 +139,31 @@ let reco = {
                     return;
                 }
                 if (stdout)
-                    console.log(stdout.toString().replace("reco", "react"));
+                    console.log(stdout.toString());
                 if (stderr)
-                    console.log(stderr.toString().replace("reco", "react"));
+                    console.log(stderr.toString());
 
             }).stdout.on('data', (data) => {
-                console.log(data.toString().replace("reco", "react"));
+                console.log(data.toString());
             })
             .on('close', function () {
 
 
-                fs.renameSync(`./reco`, `./react`
-                    , function (error, stdout, stderr) {
-                        if (error) {
-                            reco.setState({ error: true });
-                            console.error('reco-cli-init-renameReactFolder ERROR : ' + error);
-                            return;
-                        }
-                        console.log(stdout);
+                // fs.renameSync(`./reco`, `./react`
+                //     , function (error, stdout, stderr) {
+                //         if (error) {
+                //             reco.setState({ error: true });
+                //             console.error('reco-cli-init-renameReactFolder ERROR : ' + error);
+                //             return;
+                //         }
+                //         console.log(stdout);
 
-                    }
-                );
+                //     }
+                // );
 
                 reco.state.child_process.exec(
                     'npm i react.cordova-navigation_controller'
-                    , { cwd: 'react' }
+                    , { cwd: 'react-js' }
                     , function (error, stdout, stderr) {
                         if (error) {
                             reco.setState({ error: true });
@@ -235,7 +241,7 @@ let reco = {
 
                                                         reco.state.child_process.exec(
                                                             'npm run build'
-                                                            , { cwd: 'react' }
+                                                            , { cwd: 'react-js' }
                                                             , function (error, stdout, stderr) {
                                                                 if (error) {
                                                                     reco.setState({ error: true });
@@ -268,7 +274,7 @@ let reco = {
     react: () => {
         reco.state.child_process.exec(
             'npm ' + reco.state.clientArgsAfter
-            , { cwd: 'react' }
+            , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -286,7 +292,7 @@ let reco = {
     reactStart: () => {
         reco.state.child_process.exec(
             'npm start'
-            , { cwd: 'react' }
+            , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -304,7 +310,7 @@ let reco = {
     reactTest: () => {
         reco.state.child_process.exec(
             'npm test'
-            , { cwd: 'react' }
+            , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -322,7 +328,7 @@ let reco = {
     reactInstall: () => {
         reco.state.child_process.exec(
             'npm i ' + reco.state.clientArgsAfter
-            , { cwd: 'react' }
+            , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -548,8 +554,20 @@ let reco = {
 
 export function cli(args) {
 
+    if (fs.existsSync("./react"))
+        fs.renameSync(`./react`, `./react-js`
+            , function (error, stdout, stderr) {
+                if (error) {
+                    reco.setState({ error: true });
+                    console.error('reco-cli-init-renameReactFolder ERROR : ' + error);
+                    return;
+                }
+                console.log(stdout);
 
-    if ((fs.existsSync("./cordova") && fs.existsSync("./react")) || args.slice(2)[0] === "init") {
+            }
+        );
+
+    if ((fs.existsSync("./cordova") && fs.existsSync("./react-js")) || args.slice(2)[0] === "init") {
         reco.constructor(args);
     } else {
 
@@ -558,7 +576,7 @@ export function cli(args) {
         console.log("");
         console.log("it is not reco based project");
         console.log("");
-        console.log("try to run =>  reco init <com.yourAppId> <yourAppName>");
+        console.log('try to run =>  reco init <com.myAppId> <"my app name">');
         console.log("");
     }
 }
