@@ -19,7 +19,7 @@
 ### 1. build react-app to publish (in: ./react/build).
 ### 2. build cordova-app, for mobile and other platforms.
 **Note: will generate APK installable package for Android devices**<br>
-**Note:will generate IPA installable package for iOS devices (if you run it on a mac)**<br>
+**Note:will generate IPA installable package for iOS devices (when running on a mac)**<br>
 <br>
 
 <br>
