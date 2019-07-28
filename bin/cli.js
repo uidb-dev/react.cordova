@@ -119,10 +119,21 @@ let reco = {
     //------------------------------------init------------------------------------//
     init: () => {
 
-        // const rootDir = path.join(__dirname, '..');
-        // ${rootDir}
+        let folderName = reco.state.args.slice(2)[2];
+        while (folderName.indexOf(" ") >= 0) {
+            folderName = folderName.replace(" ", "_");
 
-        if (fs.existsSync("./react-js") || fs.existsSync("./cordova")) {
+        }
+
+        const dir = "./" + folderName;
+
+        if (fs.existsSync(dir)) {
+            return
+        } else {
+            fs.mkdirSync(dir);
+        }
+
+        if (fs.existsSync(dir + "/react-js") || fs.existsSync(dir + "/cordova")) {
             console.log("exists reco project.");
             console.log('if you wont to start a new project delete all folders in this directory and run agin:   reco init <com.myAppId> <"my app name">');
             return;
@@ -132,6 +143,7 @@ let reco = {
         console.log('---------reco start to build react-app---------');
         reco.state.child_process.exec(
             'npx create-react-app react-js'
+            , { cwd: dir }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -163,7 +175,7 @@ let reco = {
 
                 reco.state.child_process.exec(
                     'npm i react.cordova-navigation_controller'
-                    , { cwd: 'react-js' }
+                    , { cwd: dir + '/react-js' }
                     , function (error, stdout, stderr) {
                         if (error) {
                             reco.setState({ error: true });
@@ -185,6 +197,7 @@ let reco = {
                         console.log();
                         reco.state.child_process.exec(
                             'cordova create cordova ' + reco.state.clientArgsAfter
+                            , { cwd: dir }
                             , function (error, stdout, stderr) {
                                 if (error) {
                                     reco.setState({ error: true });
@@ -199,7 +212,7 @@ let reco = {
 
                                 reco.state.child_process.exec(
                                     'cordova platform add android'
-                                    , { cwd: 'cordova' }
+                                    , { cwd: dir + '/cordova' }
                                     , function (error, stdout, stderr) {
                                         if (error) {
                                             reco.setState({ error: true });
@@ -213,7 +226,7 @@ let reco = {
 
                                         reco.state.child_process.exec(
                                             'cordova platform add ios'
-                                            , { cwd: 'cordova' }
+                                            , { cwd: dir + '/cordova' }
                                             , function (error, stdout, stderr) {
                                                 if (error) {
                                                     reco.setState({ error: true });
@@ -227,7 +240,7 @@ let reco = {
 
                                                 reco.state.child_process.exec(
                                                     'cordova platform ls'
-                                                    , { cwd: 'cordova' }
+                                                    , { cwd: dir + '/cordova' }
                                                     , function (error, stdout, stderr) {
                                                         if (error) {
                                                             reco.setState({ error: true });
@@ -241,7 +254,7 @@ let reco = {
 
                                                         reco.state.child_process.exec(
                                                             'npm run build'
-                                                            , { cwd: 'react-js' }
+                                                            , { cwd: dir + '/react-js' }
                                                             , function (error, stdout, stderr) {
                                                                 if (error) {
                                                                     reco.setState({ error: true });
@@ -251,10 +264,13 @@ let reco = {
                                                                 console.log(stdout);
                                                             }).on('close', function () {
                                                                 reco.state.callBack_replaceWwwRootDir = function () {
-                                                                    if (!reco.state.error)
+                                                                    if (!reco.state.error) {
                                                                         reco.succeeded();
+                                                                        console.log("run 'cd " + dir.replace("./", "") + "'")
+                                                                    }
+
                                                                 };
-                                                                reco.recoFiles(() => { reco.replaceWwwRootDir(); });
+                                                                reco.recoFiles(dir);
                                                             });
                                                     });
                                             });
@@ -432,69 +448,81 @@ let reco = {
     },
 
     //-------------------------remove all files and folders in =>./cordova/www--------------------------//
-    replaceWwwRootDir:
-        async (dirPath = './cordova/www', options = {}) => {
-            const
-                { removeContentOnly = false, drillDownSymlinks = false } = options,
-                { promisify } = require('util'),
-                readdirAsync = promisify(fs.readdir),
-                unlinkAsync = promisify(fs.unlink),
-                rmdirAsync = promisify(fs.rmdir),
-                lstatAsync = promisify(fs.lstat) // fs.lstat can detect symlinks, fs.stat can't
-            let
-                files
+    replaceWwwRootDir: (dirPath1 = './cordova/www') => {
+        if (fs.existsSync("./cordova/www")) {
+            async function rmWwwRootDir(dirPath, options = {}) {
+                const
+                    { removeContentOnly = false, drillDownSymlinks = false } = options,
+                    { promisify } = require('util'),
+                    readdirAsync = promisify(fs.readdir),
+                    unlinkAsync = promisify(fs.unlink),
+                    rmdirAsync = promisify(fs.rmdir),
+                    lstatAsync = promisify(fs.lstat) // fs.lstat can detect symlinks, fs.stat can't
+                let
+                    files
 
-            try {
-                files = await readdirAsync(dirPath)
-            } catch (e) {
-                reco.setState({ error: true });
-                throw new Error(e)
-            }
+                try {
+                    files = await readdirAsync(dirPath)
+                } catch (e) {
+                    reco.setState({ error: true });
+                    throw new Error(e)
+                }
 
-            if (files.length) {
-                for (let fileName of files) {
-                    let
-                        filePath = path.join(dirPath, fileName),
-                        fileStat = await lstatAsync(filePath),
-                        isSymlink = fileStat.isSymbolicLink(),
-                        isDir = fileStat.isDirectory()
+                if (files.length) {
+                    for (let fileName of files) {
+                        let
+                            filePath = path.join(dirPath, fileName),
+                            fileStat = await lstatAsync(filePath),
+                            isSymlink = fileStat.isSymbolicLink(),
+                            isDir = fileStat.isDirectory()
 
-                    if (isDir || (isSymlink && drillDownSymlinks)) {
-                        await reco.replaceWwwRootDir(filePath)
-                    } else {
-                        await unlinkAsync(filePath)
+                        if (isDir || (isSymlink && drillDownSymlinks)) {
+                            await reco.replaceWwwRootDir(filePath)
+                        } else {
+                            await unlinkAsync(filePath)
+                        }
                     }
                 }
+
+                if (!removeContentOnly)
+                    await rmdirAsync(dirPath);
+
+
+                if (!fs.existsSync('cordova/www')) {
+                    var ncp = require('ncp').ncp;
+
+                    ncp.limit = 9999999999999;
+
+                    ncp("./react-js/build", "./cordova/www", function (err) {
+                        if (err) {
+                            reco.setState({ error: true });
+                            return console.error(err);
+                        }
+                        reco.state.callBack_replaceWwwRootDir(); // callBack();
+                    });
+                }
+                rmWwwRootDir(dirPath1);
             }
+        } else {
+            ncp("./react-js/build", "./cordova/www", function (err) {
+                if (err) {
+                    reco.setState({ error: true });
+                    return console.error(err);
+                }
+                reco.state.callBack_replaceWwwRootDir(); // callBack();
+            });
+        }
 
-            if (!removeContentOnly)
-                await rmdirAsync(dirPath);
-
-
-            if (!fs.existsSync('cordova/www')) {
-                var ncp = require('ncp').ncp;
-
-                ncp.limit = 9999999999999;
-
-                ncp("./react/build", "./cordova/www", function (err) {
-                    if (err) {
-                        reco.setState({ error: true });
-                        return console.error(err);
-                    }
-                    reco.state.callBack_replaceWwwRootDir(); // callBack();
-                });
-            }
-
-        },
+    },
 
 
     //------------------------------------recoFiles------------------------------------//
-    recoFiles: (callBack = () => console.log("reco!!!")) => {
+    recoFiles: (dir) => {
 
 
 
         //-- ./react/public/index.html --//
-        fs.readFile('./react/public/index.html', function (err, data) {
+        fs.readFile(dir + "/react-js/public/index.html", function (err, data) {
             // res.writeHead(200, {'Content-Type': 'text/html'});
             // res.write(data);
             // res.end();
@@ -510,15 +538,15 @@ let reco = {
             <meta name="viewport" content="user-scalable=no, initial-scale=1,
                   maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
             `)
-            fs.writeFile("./react/public/index.html", dataString, function (err) {
+            fs.writeFile(dir + "/react-js/public/index.html", dataString, function (err) {
                 if (err) {
                     return console.log(err);
                 } else {
-                    console.log("./react/public/index.html ready to by mobile app with cordova");
+                    console.log(dir + "/react-js/public/index.html ready to by mobile app with cordova");
 
                     //-- react package.json --//
                     const jsonfile = require('jsonfile');
-                    const file = './react/package.json';
+                    const file = dir + '/react-js/package.json';
                     jsonfile.readFile(file)
                         .then(obj => {
 
@@ -528,8 +556,8 @@ let reco = {
                                     console.error("ERROR: add homepage to react package.json . ", err);
                                     return;
                                 } else {
-                                    console.log("updete homepage in react package.json , now it's ready to by mobile app with cordova.");
-                                    callBack();
+                                    console.log("updete homepage in react-js package.json , now it's ready to by mobile app with cordova.");
+                                    reco.replaceWwwRootDir(dir + '/cordova/www');
                                 }
                             })
                         })
@@ -554,6 +582,7 @@ let reco = {
 
 export function cli(args) {
 
+    //fix to the new virsion (after v1.2.0 the react folder name it's "react-js")
     if (fs.existsSync("./react"))
         fs.renameSync(`./react`, `./react-js`
             , function (error, stdout, stderr) {
