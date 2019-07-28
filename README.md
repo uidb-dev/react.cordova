@@ -10,7 +10,7 @@
 <br>
 
 ## Init new project
-### `reco init com.yourAppId yourAppName`
+### `reco init com.example.hello "Hello World"`
 **Note: will create both react-app and cordova-app and then will merge one into the other**
 <br>
 
