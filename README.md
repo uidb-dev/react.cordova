@@ -10,7 +10,7 @@
 <br>
 
 ## Init new project
-### `reco init com.yourAppId yourAppName`
+### `reco init com.example.hello "Hello World"`
 **Note: will create both react-app and cordova-app and then will merge one into the other**
 <br>
 
@@ -19,7 +19,7 @@
 ### 1. build react-app to publish (in: ./react/build).
 ### 2. build cordova-app, for mobile and other platforms.
 **Note: will generate APK installable package for Android devices**<br>
-**Note:will generate IPA installable package for iOS devices if you run it in mac**<br>
+**Note:will generate IPA installable package for iOS devices (when running on a mac)**<br>
 <br>
 
 <br>
@@ -82,12 +82,12 @@ on OS X and Linux:
 
 on Windows:
 ####  `C:\>npm install -g create-react-app`
-
-
-
 <br>
 <br>
+
+
+
 This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
 
-<br>
+
 credit: Arik Wald.
