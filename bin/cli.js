@@ -488,8 +488,8 @@ let reco = {
                     await rmdirAsync(dirPath);
 
 
-                if (!fs.existsSync('cordova/www')) {
-                    var ncp = require('ncp').ncp;
+                if (!fs.existsSync(dirPath1)) {
+                    const ncp = require('ncp').ncp;
 
                     ncp.limit = 9999999999999;
 
@@ -501,8 +501,9 @@ let reco = {
                         reco.state.callBack_replaceWwwRootDir(); // callBack();
                     });
                 }
-                rmWwwRootDir(dirPath1);
+
             }
+            rmWwwRootDir(dirPath1);
         } else {
             ncp("./react-js/build", "./cordova/www", function (err) {
                 if (err) {
