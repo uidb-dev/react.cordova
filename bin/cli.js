@@ -449,6 +449,9 @@ let reco = {
 
     //-------------------------remove all files and folders in =>./cordova/www--------------------------//
     replaceWwwRootDir: (dirPath1 = './cordova/www') => {
+
+        const ncp = require('ncp').ncp;
+
         if (fs.existsSync("./cordova/www")) {
             async function rmWwwRootDir(dirPath, options = {}) {
                 const
@@ -489,14 +492,14 @@ let reco = {
 
 
                 if (!fs.existsSync(dirPath1)) {
-                    const ncp = require('ncp').ncp;
 
-                    ncp.limit = 9999999999999;
+                    //ncp.limit = 9999999999999999999;
 
-                    ncp("./react-js/build", "./cordova/www", function (err) {
+                    let parentDir = dirPath1.startsWith("./cordova") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/"
+                    ncp(parentDir + "react-js/build", parentDir + "cordova/www", function (err) {
                         if (err) {
                             reco.setState({ error: true });
-                            return console.error(err);
+                            return console.error("ERROR ncp1, copy react-js/build tocordova/www :   "+err);
                         }
                         reco.state.callBack_replaceWwwRootDir(); // callBack();
                     });
@@ -505,10 +508,11 @@ let reco = {
             }
             rmWwwRootDir(dirPath1);
         } else {
-            ncp("./react-js/build", "./cordova/www", function (err) {
+            let parentDir = dirPath1.startsWith("./cordova") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/";
+            ncp(parentDir + "react-js/build", parentDir + "cordova/www", function (err) {
                 if (err) {
                     reco.setState({ error: true });
-                    return console.error(err);
+                    return console.error("ERROR ncp2, copy react-js/build tocordova/www :   "+err);
                 }
                 reco.state.callBack_replaceWwwRootDir(); // callBack();
             });
@@ -582,6 +586,7 @@ let reco = {
 
 
 export function cli(args) {
+
 
     //fix to the new virsion (after v1.2.0 the react folder name it's "react-js")
     if (fs.existsSync("./react"))
