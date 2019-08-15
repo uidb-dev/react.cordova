@@ -58,13 +58,13 @@ let reco = {
                 reco.map();
                 break;
             default:
-                () => {
                     console.log();
                     console.log(args.slice(2)[0], "it is not exec in reco cli");
                     console.log('try => ');
                     reco.map();
-                }
+                break;
         }
+       
 
     },
 
@@ -316,9 +316,14 @@ let reco = {
                     return;
                 }
                 console.log(stdout);
-            }).on('data', (data) => {
+            }).stdout.on('data', (data) => {
                 console.log(data.toString());
+                return;
             });
+            // .on('data', (data) => {
+            //     console.log(data.toString());
+            //     return;
+            // });
     },
 
 
@@ -402,16 +407,53 @@ let reco = {
 
     //------------------------------------map------------------------------------//
     map: () => {
-        console.log('init');
-        console.log('build');
-        console.log('build <cordova-platform>');
-        console.log('react');
-        console.log('start');
-        console.log('test');
-        console.log('install || i');
-        console.log('');
-        console.log('cordova');
-        console.log('-info');
+        console.log('--------init--------');
+        console.log('  create new project.  both react-app and cordova-app and then will merge one into the other: ');
+        console.log('reco init com.example.hello "Hello World"');
+        console.log('--------------------');
+       
+        console.log('-------build--------');
+        console.log(`  build react-app and cordova-app: `);
+        console.log('reco build');
+        console.log('reco build <cordova-platform>');
+        console.log('--------------------');
+       
+        console.log('-------react--------');
+        console.log(`  to run any react command: `);
+        console.log('reco react <command>');
+        console.log('--------------------');
+      
+        console.log('-------start--------');
+        console.log(` start react server live in the browser: `);
+        console.log('reco start');
+        console.log('--------------------');
+      
+        console.log('-------test--------');
+        console.log(` react test: `);
+        console.log('reco test');
+        console.log('--------------------');
+      
+        console.log('-------install--------');
+        console.log(` install react package npm: `);
+        console.log('reco install   ||   reco i ');
+        console.log('--------------------');
+      
+        console.log('-------plugin--------');
+        console.log(` add cordova plugin: `);
+        console.log('reco plugin add <cordova-plugin>');
+        console.log('--------------------');
+      
+        console.log('-------remove--------');
+        console.log(` remove cordova plugin: `);
+        console.log('reco plugin remove <cordova-plugin>    ||    reco plugin rm <cordova-plugin>');
+        console.log('--------------------');
+        
+        console.log('-------cordova--------');
+        console.log(` to run any cordova command: `);
+        console.log('reco cordova');
+        console.log('--------------------');
+      
+        console.log('reco -info');
 
 
     },
