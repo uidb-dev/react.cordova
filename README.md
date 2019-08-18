@@ -7,7 +7,7 @@ coding and development experience using Reco!
 <br><br>
 Installing Reco CLI **`npm install -g react.cordova`**
 <br><br>
-### Initialize a new bundle project
+### Initialize a new bundle project<br>
 **`reco init com.example.hello "Hello World"`**<br><br>
 *Note: creates both react-app and cordova-app and then will merge one into the other*
 <br>
@@ -62,6 +62,7 @@ On OS X and Linux:
 
 On Windows:
 **`C:\>npm install -g create-react-app`**
+<br>
 <br>
 <br>
 Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
