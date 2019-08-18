@@ -25,7 +25,7 @@ let reco = {
         //--
         let clientArgsAfter_Space = "";
         for (let index = 1; index < args.slice(2).length; index++)
-        clientArgsAfter_Space += ('"'+args.slice(2)[index] +'"'+ ' ');
+            clientArgsAfter_Space += ('"' + args.slice(2)[index] + '"' + ' ');
         reco.setState({ clientArgsAfter_Space: clientArgsAfter_Space });
 
 
@@ -124,12 +124,28 @@ let reco = {
     },
 
     //------------------------------------init------------------------------------//
-    init: () => {
+    init: async () => {
+
+        const choicesOptions = ['Reco template', 'Empty'];
+        const defaultTemplate = choicesOptions[0];
+
+        const inquirer = require('inquirer');
+        const questions = [];
+        questions.push({
+            type: 'list',
+            name: 'template',
+            message: 'Please select project template',
+            choices: choicesOptions,
+            default: defaultTemplate,
+        });
+
+        const answers = await inquirer.prompt(questions);
+        const withTemplate = answers.template === choicesOptions[0];
+
 
         let folderName = reco.state.args.slice(2)[2];
         while (folderName.indexOf(" ") >= 0) {
             folderName = folderName.replace(" ", "_");
-
         }
 
         const dir = "./" + folderName;
@@ -244,12 +260,12 @@ let reco = {
                                             }).on('close', function () {
 
                                                 reco.state.child_process.exec(
-                                                    'cordova platform ls'
+                                                    'cordova platform add browser'
                                                     , { cwd: dir + '/cordova' }
                                                     , function (error, stdout, stderr) {
                                                         if (error) {
                                                             reco.setState({ error: true });
-                                                            console.error('reco-cli-init-cordova--(cordova platform ls) ERROR :' + error);
+                                                            console.error('reco-cli-init-cordova--(cordova platform add browser) ERROR :' + error);
                                                             return;
                                                         }
                                                         console.log(stdout);
@@ -257,27 +273,48 @@ let reco = {
                                                         console.log(data.toString());
                                                     }).on('close', function () {
 
+
+
                                                         reco.state.child_process.exec(
-                                                            'npm run build'
-                                                            , { cwd: dir + '/react-js' }
+                                                            'cordova platform ls'
+                                                            , { cwd: dir + '/cordova' }
                                                             , function (error, stdout, stderr) {
                                                                 if (error) {
                                                                     reco.setState({ error: true });
-                                                                    console.error('reco-react-cli ERROR : ' + error);
+                                                                    console.error('reco-cli-init-cordova--(cordova platform ls) ERROR :' + error);
                                                                     return;
                                                                 }
                                                                 console.log(stdout);
+                                                            }).on('data', (data) => {
+                                                                console.log(data.toString());
                                                             }).on('close', function () {
-                                                                reco.state.callBack_replaceWwwRootDir = function () {
-                                                                    if (!reco.state.error) {
-                                                                        reco.succeeded();
-                                                                        console.log("run 'cd " + dir.replace("./", "") + "'")
-                                                                    }
 
-                                                                };
-                                                                reco.recoFiles(dir);
+                                                                reco.state.child_process.exec(
+                                                                    'npm run build'
+                                                                    , { cwd: dir + '/react-js' }
+                                                                    , function (error, stdout, stderr) {
+                                                                        if (error) {
+                                                                            reco.setState({ error: true });
+                                                                            console.error('reco-react-cli ERROR : ' + error);
+                                                                            return;
+                                                                        }
+                                                                        console.log(stdout);
+                                                                    }).on('close', function () {
+                                                                        reco.state.callBack_replaceWwwRootDir = function () {
+                                                                            if (!reco.state.error) {
+                                                                                reco.succeeded();
+                                                                                console.log();
+                                                                                console.log("run 'cd " + dir.replace("./", "") + "'")
+                                                                            }
+
+                                                                        };
+                                                                        reco.recoFiles(dir);
+                                                                    });
                                                             });
+
                                                     });
+
+
                                             });
                                     });
 
@@ -495,7 +532,7 @@ let reco = {
     },
 
     //-------------------------remove all files and folders in =>./cordova/www--------------------------//
-    replaceWwwRootDir: (dirPath1 = './cordova/www') => {
+    replaceWwwRootDir: () => {
 
         const ncp = require('ncp').ncp;
 
@@ -527,7 +564,7 @@ let reco = {
                             isDir = fileStat.isDirectory()
 
                         if (isDir || (isSymlink && drillDownSymlinks)) {
-                            await reco.replaceWwwRootDir(filePath)
+                            await rmWwwRootDir(filePath)
                         } else {
                             await unlinkAsync(filePath)
                         }
@@ -538,12 +575,14 @@ let reco = {
                     await rmdirAsync(dirPath);
 
 
-                if (!fs.existsSync(dirPath1)) {
+                if (!fs.existsSync(dirPath)) {
 
-                    //ncp.limit = 9999999999999999999;
+                    ncp.limit = 9999999999999999999;
 
-                    let parentDir = dirPath1.startsWith("./cordova") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/"
-                    ncp(parentDir + "react-js/build", parentDir + "cordova/www", function (err) {
+                    // let parentDir = dirPath.startsWith("./cordova") 
+                    // ? "./" : dirPath.substring(0, dirPath.indexOf("/cordova")) + "/"
+                    
+                    ncp( "./react-js/build",  "./cordova/www", function (err) {
                         if (err) {
                             reco.setState({ error: true });
                             return console.error("ERROR ncp1, copy react-js/build tocordova/www :   " + err);
@@ -553,10 +592,10 @@ let reco = {
                 }
 
             }
-            rmWwwRootDir(dirPath1);
+            rmWwwRootDir("./cordova/www");
         } else {
-            let parentDir = dirPath1.startsWith("./cordova") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/";
-            ncp(parentDir + "react-js/build", parentDir + "cordova/www", function (err) {
+          //  let parentDir = dirPath1.startsWith("./cordova") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/";
+            ncp( "react-js/build",  "cordova/www", function (err) {
                 if (err) {
                     reco.setState({ error: true });
                     return console.error("ERROR ncp2, copy react-js/build tocordova/www :   " + err);
@@ -609,7 +648,9 @@ let reco = {
                                     return;
                                 } else {
                                     console.log("updete homepage in react-js package.json , now it's ready to by mobile app with cordova.");
-                                    reco.replaceWwwRootDir(dir + '/cordova/www');
+                                    console.log();
+                                    reco.state.callBack_replaceWwwRootDir();
+                                    //reco.replaceWwwRootDir(dir + '/cordova/www');
                                 }
                             })
                         })
