@@ -35,6 +35,8 @@ Learn more about Cordova: **[Cordova Get Started](https://cordova.apache.org/#ge
 
 You can run React.js CLI from within the project's directory
 
+**For example:**
+
 **`reco start`**<br>
 **`reco test`**<br>
 **`reco install <npm packages for react>`**<br>
