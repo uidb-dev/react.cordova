@@ -17,6 +17,7 @@ Installing Reco CLI **`npm install -g react.cordova`**
 1. Build react-app to publish (in: ./react/build).
 2. Build cordova-app, for mobile and other platforms.
 <br>
+<br>
 *Note: will generate an APK installable package for Android devices*
 *Note: will generate an IPA installable package for iOS devices (when running on a mac)*
 <br>
