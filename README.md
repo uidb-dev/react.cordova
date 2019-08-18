@@ -29,9 +29,7 @@ To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line comm
 <br>
 
 
-#### Learn more about cordova
-
-Learn more: [Cordova Get Started](https://cordova.apache.org/#getstarted).
+#### Learn more about cordova: [Cordova Get Started](https://cordova.apache.org/#getstarted).
 
 
 
