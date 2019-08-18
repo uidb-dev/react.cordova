@@ -39,13 +39,8 @@ In the project directory, you can run react-js
 **`reco install <npm packages for react>`**
 **`react <any react scripts run>`**
 
-<br>
-
-
 **Learn More about React Apps: [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
 **Learn programming in React.js: [React documentation](https://reactjs.org/)**
-
-<br>
 
 ### Prerequisites:
 #### npm
