@@ -35,7 +35,7 @@ Learn more: [Cordova Get Started](https://cordova.apache.org/#getstarted).
 
 
 
-### Integrated React.ja  CLI
+### Integrated React.js  CLI
 
 In the project directory, you can run react-js
 
