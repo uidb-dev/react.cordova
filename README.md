@@ -23,8 +23,6 @@
 ** Note: will generate an IPA installable package for iOS devices (when running on a mac) **<br>
 <br>
 
-<br>
-
 ## Available cordova scripts
 Integrating cordova comand line.
 <br>
@@ -59,11 +57,9 @@ Learn more: [Create React App documentation](https://facebook.github.io/create-r
 
 Learn programming with react.js: [React documentation](https://reactjs.org/).
 
-
-<br>
 <br>
 
-## To run it you need:
+## To run it you'll need:
 ### npm
 [get-npm](https://www.npmjs.com/get-npm)
 
@@ -84,7 +80,7 @@ On OS X and Linux:
 On Windows:
 ####  `C:\>npm install -g create-react-app`
 <br>
-<br>
+
 
 
 
