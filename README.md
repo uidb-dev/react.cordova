@@ -25,8 +25,8 @@
 
 <br>
 
-## Available Scripts cordova
-how can write cordova comand line.
+## Available cordova scripts
+Integrating cordova comand line.
 <br>
 start the line with `reco cordova ...`  
 <br>
