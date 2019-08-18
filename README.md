@@ -34,9 +34,9 @@ To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line comm
 
 In the project directory, you can run react-js
 
-**`reco start`**
-**`reco test`**
-**`reco install <npm packages for react>`**
+**`reco start`**<br>
+**`reco test`**<br>
+**`reco install <npm packages for react>`**<br>
 **`react <any react scripts run>`**
 
 **Learn More about React Apps: [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
