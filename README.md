@@ -1,93 +1,73 @@
-# reco
-# react.cordova
-## Best bundle for your hybrid mobile app and your website.
+# Reco (react.cordova)
+Welcome to `Reco` (React+Cordova). Reco unifies React.js and Cordova into one CLI which
+bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform 
+applications built in React.js. This bundled platform facilitates and automates project initialization, 
+compilation and build actions for React.js developers who wish to build web/mobile/desktop applications using the powerfull and most vast Cordova environment. Reco is the bundle where both Cordova and React.js platforms merge and work together as one. Enjoy your
+coding and development experience using Reco!
+<br><br>
+Installing Reco CLI **`npm install -g react.cordova`**
+<br><br>
+### Initialize a new bundle project
 
+**`reco init com.example.hello "Hello World"`**<br>
+*Note: creates both react-app and cordova-app and then will merge one into the other*
+
+
+### Project build
+**`reco build`**
+1. Builds **`react-app`** to publish (in: ./react/build).
+2. Builds **`cordova-app`** for mobile and other platforms.
+
+*Note: will generate an APK installable package for Android devices*<br>
+*Note: will generate an IPA installable package for iOS devices (when running on a mac)*
 <br>
 
-## first install the cli:<br> `npm install -g react.cordova`
+### Integrated Cordova CLI 
+To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line command
 
+**For example:**
 
-<br>
+**`reco cordova platform add browser`**
 
-## Init new project
-### `reco init com.example.hello "Hello World"`
-**Note: will create both react-app and cordova-app and then will merge one into the other**
-<br>
+Learn more about Cordova: **[Cordova Get Started](https://cordova.apache.org/#getstarted).**
 
-## Build 
-### `reco build`
-### 1. build react-app to publish (in: ./react/build).
-### 2. build cordova-app, for mobile and other platforms.
-**Note: will generate APK installable package for Android devices**<br>
-**Note:will generate IPA installable package for iOS devices (when running on a mac)**<br>
-<br>
+### Integrated React.js  CLI
 
-<br>
+You can run React.js CLI from within the project's directory
 
-## Available Scripts cordova
-how can write cordova comand line.
-<br>
-start the line with `reco cordova ...`  
-<br>
-**Example:** 
-#### `reco cordova platform add browser`
-<br>
+**For example:**
 
+**`reco start`**<br>
+**`reco test`**<br>
+**`reco install <npm packages for react>`**<br>
+**`reco react <any react scripts to run>`**
 
-#### Learn More about Cordova
+Learn More about React Apps: **[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
+Learn programming in React.js: **[React documentation](https://reactjs.org/)**
 
-You can learn more in the [Cordova Get Started](https://cordova.apache.org/#getstarted).
-
-
-
-## Available Scripts react-js
-
-In the project directory, you can run react-js
-
-#### `reco start`
-#### `reco test`
-#### `reco install <npm packages for react>`
-#### `react <any react scripts run>`
-
-<br>
-
-
-#### Learn More about React
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-
-<br>
-<br>
-
-## To run it you need:
-### npm
+### Prerequisites
+#### npm
 [get-npm](https://www.npmjs.com/get-npm)
 
-### Java 
-recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+#### Java 
+Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-### cordova 
-on OS X and Linux:
-#### `$ sudo npm install -g cordova`
+#### Cordova 
+On OS X and Linux:
+**`$ sudo npm install -g cordova`**
 
-on Windows:
-#### `C:\>npm install -g cordova`
+On Windows:
+**`C:\>npm install -g cordova`**
 
-### rect.js 
-on OS X and Linux:
-#### `$ sudo npm install -g create-react-app`
+#### React.js 
+On OS X and Linux:
+**`$ sudo npm install -g create-react-app`**
 
-on Windows:
-####  `C:\>npm install -g create-react-app`
+On Windows:
+**`C:\>npm install -g create-react-app`**
 <br>
 <br>
+<br>
+Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
 
-
-
-This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
-
-
-credit: Arik Wald.
+Credits: Arik Wald
