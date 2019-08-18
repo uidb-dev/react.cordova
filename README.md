@@ -8,10 +8,9 @@ development experience using Reco!
 <br>
 <br>
 
-##
-## Installing Reco CLI!
-## `npm install -g react.cordova`
-##
+
+<center>## Installing Reco CLI `npm install -g react.cordova`</center>
+
 
 
 <br>
