@@ -38,7 +38,7 @@ You can run React.js CLI from within the project's directory
 **`reco start`**<br>
 **`reco test`**<br>
 **`reco install <npm packages for react>`**<br>
-**`react <any react scripts to run>`**
+**`reco react <any react scripts to run>`**
 
 Learn More about React Apps: **[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
 Learn programming in React.js: **[React documentation](https://reactjs.org/)**
