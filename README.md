@@ -6,14 +6,14 @@ compilation and build actions for React.js developers who wish to build web/mobi
 development experience using Reco!
 
 
-## Installing Reco CLI `npm install -g react.cordova`
+                                     ## Installing Reco CLI `npm install -g react.cordova`
 
-## Init a new project
+### Init a new project
 #### `reco init com.example.hello "Hello World"`
 ** Note: will create both react-app and cordova-app and then will merge one into the other **
 <br>
 
-## Build 
+### Build 
 #### `reco build`
 #### 1. Build react-app to publish (in: ./react/build).
 #### 2. Build cordova-app, for mobile and other platforms.
@@ -21,7 +21,7 @@ development experience using Reco!
 ** Note: will generate an IPA installable package for iOS devices (when running on a mac) **<br>
 <br>
 
-## Integrated Cordova CLI 
+### Integrated Cordova CLI 
 Integrating cordova comand line.
 <br>
 start the line with `reco cordova ...`  
@@ -37,7 +37,7 @@ Learn more: [Cordova Get Started](https://cordova.apache.org/#getstarted).
 
 
 
-## Integrated React.ja  CLI
+### Integrated React.ja  CLI
 
 In the project directory, you can run react-js
 
@@ -57,7 +57,7 @@ Learn programming with react.js: [React documentation](https://reactjs.org/).
 
 <br>
 
-## Prerequisites:
+### Prerequisites:
 #### npm
 [get-npm](https://www.npmjs.com/get-npm)
 
