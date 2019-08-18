@@ -8,17 +8,17 @@ coding and development experience using Reco!
 
 Installing Reco CLI **`npm install -g react.cordova`**                                              
 
-### Init a new project
-#### `reco init com.example.hello "Hello World"`
-** Note: will create both react-app and cordova-app and then will merge one into the other **
+### Initialize a new bundle project
+**`reco init com.example.hello "Hello World"`**
+**Note: will create both react-app and cordova-app and then will merge one into the other**
 <br>
 
 ### Build 
-#### `reco build`
-#### 1. Build react-app to publish (in: ./react/build).
-#### 2. Build cordova-app, for mobile and other platforms.
-** Note: will generate an APK installable package for Android devices **<br>
-** Note: will generate an IPA installable package for iOS devices (when running on a mac) **<br>
+**`reco build`**
+1. Build react-app to publish (in: ./react/build).
+2. Build cordova-app, for mobile and other platforms.
+**Note: will generate an APK installable package for Android devices**
+** Note: will generate an IPA installable package for iOS devices (when running on a mac)**
 <br>
 
 ### Integrated Cordova CLI 
@@ -41,10 +41,10 @@ Learn more: [Cordova Get Started](https://cordova.apache.org/#getstarted).
 
 In the project directory, you can run react-js
 
-#### `reco start`
-#### `reco test`
-#### `reco install <npm packages for react>`
-#### `react <any react scripts run>`
+**`reco start`**
+**`reco test`**
+**`reco install <npm packages for react>`**
+**`react <any react scripts run>`**
 
 <br>
 
@@ -66,21 +66,18 @@ Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/jav
 
 #### Cordova 
 On OS X and Linux:
-#### `$ sudo npm install -g cordova`
+**`$ sudo npm install -g cordova`**
 
 On Windows:
-##### `C:\>npm install -g cordova`
+**`C:\>npm install -g cordova`**
 
 #### React.js 
 On OS X and Linux:
-##### `$ sudo npm install -g create-react-app`
+**`$ sudo npm install -g create-react-app`**
 
 On Windows:
-#####  `C:\>npm install -g create-react-app`
+**`C:\>npm install -g create-react-app`**
 <br>
-
-
-
 
 Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
 
