@@ -9,16 +9,16 @@ coding and development experience using Reco!
 Installing Reco CLI **`npm install -g react.cordova`**                                              
 
 ### Initialize a new bundle project
-**`reco init com.example.hello "Hello World"`**
-**Note: will create both react-app and cordova-app and then will merge one into the other**
+**`reco init com.example.hello "Hello World"`**<br>
+*Note: will create both react-app and cordova-app and then will merge one into the other*
 <br>
 
 ### Build 
 **`reco build`**
 1. Build react-app to publish (in: ./react/build).
 2. Build cordova-app, for mobile and other platforms.
-**Note: will generate an APK installable package for Android devices**
-** Note: will generate an IPA installable package for iOS devices (when running on a mac)**
+*Note: will generate an APK installable package for Android devices*
+*Note: will generate an IPA installable package for iOS devices (when running on a mac)*
 <br>
 
 ### Integrated Cordova CLI 
