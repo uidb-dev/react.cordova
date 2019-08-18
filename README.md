@@ -28,7 +28,7 @@
 ## Available cordova scripts
 Integrating cordova comand line.
 <br>
-start the line with #### `reco cordova ...`  
+start the line with `reco cordova ...`  
 <br>
 **Example:** 
 #### `reco cordova platform add browser`
