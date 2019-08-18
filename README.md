@@ -82,6 +82,6 @@ On Windows:
 
 
 
-Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
+Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
 
-Credits: Arik Wald.
+Credits: Arik Wald
