@@ -70,14 +70,14 @@ Learn programming with react.js: [React documentation](https://reactjs.org/).
 ### Java 
 recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-### cordova 
+### Cordova 
 on OS X and Linux:
 #### `$ sudo npm install -g cordova`
 
 on Windows:
 #### `C:\>npm install -g cordova`
 
-### rect.js 
+### React.js 
 on OS X and Linux:
 #### `$ sudo npm install -g create-react-app`
 
