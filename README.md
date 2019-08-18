@@ -24,9 +24,10 @@ Installing Reco CLI **`npm install -g react.cordova`**
 ### Integrated Cordova CLI 
 To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line command
 
-|**For example:**|
+**For example:**
 ------------------
 **`reco cordova platform add browser`**
+-----------------
 <br>
 
 
