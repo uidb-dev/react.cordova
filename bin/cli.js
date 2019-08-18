@@ -195,8 +195,6 @@ let reco = {
                     }).on('close', () => {
 
 
-                        //--פה צריך לעשות שינוי בקבצים מסויים 
-
                         //--
                         //---------reco start to build cordova-app---------//
                         console.log();
