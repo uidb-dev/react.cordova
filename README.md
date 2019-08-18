@@ -19,8 +19,8 @@
 ### `reco build`
 ### 1. build react-app to publish (in: ./react/build).
 ### 2. build cordova-app, for mobile and other platforms.
-**Note: will generate APK installable package for Android devices**<br>
-**Note:will generate IPA installable package for iOS devices (when running on a mac)**<br>
+**Note: will generate an APK installable package for Android devices**<br>
+**Note: will generate an IPA installable package for iOS devices (when running on a mac)**<br>
 <br>
 
 <br>
@@ -88,7 +88,6 @@ on Windows:
 
 
 
-This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
+Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).
 
-
-credit: Arik Wald.
+Credits: Arik Wald.
