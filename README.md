@@ -19,8 +19,8 @@
 ### `reco build`
 ### 1. build react-app to publish (in: ./react/build).
 ### 2. build cordova-app, for mobile and other platforms.
-**Note: will generate an APK installable package for Android devices**<br>
-**Note: will generate an IPA installable package for iOS devices (when running on a mac)**<br>
+** Note: will generate an APK installable package for Android devices **<br>
+** Note: will generate an IPA installable package for iOS devices (when running on a mac) **<br>
 <br>
 
 <br>
@@ -68,20 +68,20 @@ Learn programming with react.js: [React documentation](https://reactjs.org/).
 [get-npm](https://www.npmjs.com/get-npm)
 
 ### Java 
-recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 ### Cordova 
-on OS X and Linux:
+On OS X and Linux:
 #### `$ sudo npm install -g cordova`
 
-on Windows:
+On Windows:
 #### `C:\>npm install -g cordova`
 
 ### React.js 
-on OS X and Linux:
+On OS X and Linux:
 #### `$ sudo npm install -g create-react-app`
 
-on Windows:
+On Windows:
 ####  `C:\>npm install -g create-react-app`
 <br>
 <br>
