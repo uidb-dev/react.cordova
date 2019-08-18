@@ -42,11 +42,8 @@ In the project directory, you can run react-js
 <br>
 
 
-#### Learn More about React
-
-Learn more: [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-Learn programming with react.js: [React documentation](https://reactjs.org/).
+**Learn More about React Apps: [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)**
+**Learn programming in React.js: [React documentation](https://reactjs.org/)**
 
 <br>
 
