@@ -6,7 +6,7 @@ compilation and build actions for React.js developers who wish to build web/mobi
 coding and development experience using Reco!
 
 
-###_____________________________________Installing Reco CLI `npm install -g react.cordova`________________________________                                              
+Installing Reco CLI *`npm install -g react.cordova`*                                              
 
 ### Init a new project
 #### `reco init com.example.hello "Hello World"`
