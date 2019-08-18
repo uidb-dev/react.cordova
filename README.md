@@ -1,6 +1,7 @@
 # reco
 # react.cordova
-## Best bundle for your hybrid mobile app and your website.
+## Best cli bundle react.js and cordova.
+## hybrid mobile app and website with one code.
 
 <br>
 
