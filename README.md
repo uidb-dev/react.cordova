@@ -5,7 +5,7 @@
 
 <br>
 
-### first install the cli:<br> `npm install -g react.cordova`
+## first install the cli:<br> `npm install -g react.cordova`
 
 
 <br>
