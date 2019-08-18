@@ -28,20 +28,20 @@
 ## Available cordova scripts
 Integrating cordova comand line.
 <br>
-start the line with `reco cordova ...`  
+start the line with #### `reco cordova ...`  
 <br>
 **Example:** 
 #### `reco cordova platform add browser`
 <br>
 
 
-#### Learn More about Cordova
+#### Learn more about cordova
 
-You can learn more in the [Cordova Get Started](https://cordova.apache.org/#getstarted).
+Learn more: [Cordova Get Started](https://cordova.apache.org/#getstarted).
 
 
 
-## Available Scripts react-js
+## Available react-js scripts
 
 In the project directory, you can run react-js
 
@@ -55,9 +55,9 @@ In the project directory, you can run react-js
 
 #### Learn More about React
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Learn more: [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Learn programming with react.js: [React documentation](https://reactjs.org/).
 
 
 <br>
