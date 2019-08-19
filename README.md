@@ -56,17 +56,17 @@ Learn programming in React.js: **[React.js documentation](https://reactjs.org/)*
 Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 #### Cordova 
-On OS X and Linux:
+macOS and Linux:
 **`$ sudo npm install -g cordova`**
 
-On Windows:
+Windows:
 **`C:\>npm install -g cordova`**
 
 #### React.js 
-On OS X and Linux:
+macOS and Linux:
 **`$ sudo npm install -g create-react-app`**
 
-On Windows:
+Windows:
 **`C:\>npm install -g create-react-app`**
 <br>
 <br>
