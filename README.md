@@ -29,7 +29,7 @@ To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line comm
 
 **`reco cordova <any cordova scripts to run>`**
 
-Learn more about Cordova: **[Cordova Get Started](https://cordova.apache.org/#getstarted).**
+Learn more about Cordova: **[Cordova get started](https://cordova.apache.org/#getstarted).**
 
 ### Integrated React.js  CLI
 
