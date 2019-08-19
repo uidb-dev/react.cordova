@@ -10,7 +10,7 @@ Installing Reco CLI **`npm install -g react.cordova`**
 ### Initialize a new bundle project
 
 **`reco init com.example.hello "Hello World"`**<br><br>
-*Note: creates both react-app and cordova-app and then will merge one into the other*
+*Note: creates both **`react-app`** and **`cordova-app`** and then will merge one into the other*
 
 
 ### Project build
