@@ -26,7 +26,7 @@ Perform a build action for your project using the following command
 <br>
 
 ### Integrated Cordova CLI 
-To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line command
+To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova command line
 
 **For example:**
 
