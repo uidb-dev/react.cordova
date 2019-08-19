@@ -30,7 +30,7 @@ To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line comm
 
 **For example:**
 
-**`reco cordova <any cordova scripts to run>`**
+**`reco cordova <any cordova command line run>`**
 
 Learn more about Cordova: **[Cordova get started](https://cordova.apache.org/#getstarted).**
 
@@ -43,7 +43,7 @@ You can run React.js CLI from within the project's directory
 **`reco start`**<br><br>
 **`reco test`**<br><br>
 **`reco install <npm packages for react>`**<br><br>
-**`reco react <any react scripts to run>`**
+**`reco react <any react command line to run>`**
 
 Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
 Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
