@@ -14,6 +14,9 @@ Installing Reco CLI **`npm install -g react.cordova`**
 
 
 ### Project build
+
+Perform a build action on your project using the following command
+
 **`reco build`**
 1. Builds **`react-app`** to publish (in: ./react/build).<br>
 2. Builds **`cordova-app`** for mobile and other platforms.
