@@ -22,7 +22,7 @@ Perform a build action for your project using the following command
 2. Builds **`cordova-app`** for mobile and other platforms.
 
 *Note: will generate an **apk** installable package for Android devices*<br>
-*Note: will generate an **ipa** installable package for iOS devices (when running on a mac)*
+*Note: will generate an **xcworkspace** XCode project that can be compiled and built for depoyment on iOS devices*
 <br>
 
 ### Integrated Cordova CLI 
