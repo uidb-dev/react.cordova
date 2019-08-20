@@ -6,30 +6,33 @@ compilation and build actions for React.js developers who wish to build web/mobi
 coding and development experience using Reco!
 <br><br>
 Installing Reco CLI **`npm install -g react.cordova`**
-<br><br>
+<br>
 ### Initialize a new bundle project
 
-**`reco init com.example.hello "Hello World"`**<br>
-*Note: creates both react-app and cordova-app and then will merge one into the other*
+**`reco init com.example.hello "Hello World"`**<br><br>
+*Note: creates both **`react-app`** and **`cordova-app`** and then will merge one into the other*
 
 
 ### Project build
+
+Perform a build action for your project using the following command
+
 **`reco build`**
-1. Builds **`react-app`** to publish (in: ./react/build).
+1. Builds **`react-app`** to publish (in: ./react/build).<br>
 2. Builds **`cordova-app`** for mobile and other platforms.
 
-*Note: will generate an APK installable package for Android devices*<br>
-*Note: will generate an IPA installable package for iOS devices (when running on a mac)*
+*Note: will generate an **apk** installable package for Android devices*<br>
+*Note: will generate an **ipa** installable package for iOS devices (when running on a mac)*
 <br>
 
 ### Integrated Cordova CLI 
-To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova line command
+To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova command line
 
 **For example:**
 
-**`reco cordova platform add browser`**
+**`reco cordova <any cordova command line to run>`**
 
-Learn more about Cordova: **[Cordova Get Started](https://cordova.apache.org/#getstarted).**
+Learn more about Cordova: **[Cordova get started](https://cordova.apache.org/#getstarted).**
 
 ### Integrated React.js  CLI
 
@@ -37,13 +40,13 @@ You can run React.js CLI from within the project's directory
 
 **For example:**
 
-**`reco start`**<br>
-**`reco test`**<br>
-**`reco install <npm packages for react>`**<br>
-**`reco react <any react scripts to run>`**
+**`reco start`**<br><br>
+**`reco test`**<br><br>
+**`reco install <npm packages for react>`**<br><br>
+**`reco react <any react command line to run>`**
 
-Learn More about React Apps: **[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
-Learn programming in React.js: **[React documentation](https://reactjs.org/)**
+Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
+Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
 
 ### Prerequisites
 #### npm
@@ -53,17 +56,17 @@ Learn programming in React.js: **[React documentation](https://reactjs.org/)**
 Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 #### Cordova 
-On OS X and Linux:
+macOS / Linux:
 **`$ sudo npm install -g cordova`**
 
-On Windows:
+Windows:
 **`C:\>npm install -g cordova`**
 
 #### React.js 
-On OS X and Linux:
+macOS / Linux:
 **`$ sudo npm install -g create-react-app`**
 
-On Windows:
+Windows:
 **`C:\>npm install -g create-react-app`**
 <br>
 <br>

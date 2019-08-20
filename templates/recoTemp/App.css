@@ -36,7 +36,6 @@
 
 /* menu */
 .footerMenu ul {
-  list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -45,10 +44,11 @@
 }
 
 .footerMenu li {
-  float: left;
+  /* float: left; */
+  display: inline-block;
 }
 
-.footerMenu li a {
+.footerMenu li div {
   display: block;
   color: #666;
   text-align: center;
@@ -56,16 +56,24 @@
   text-decoration: none;
 }
 
-.footerMenu li a:hover:not(.active) {
+.footerMenu li div:hover:not(.active) {
   background-color: #ddd;
 }
 
-.footerMenu li a.active {
+.footerMenu li div.active {
   color: white;
   background-color: #4CAF50;
 }
 
 .footerMenu{
-  position: fixed;
+  position: absolute;
   bottom: 0;
+}
+
+h2,span,p{
+  color: #ddd;
+}
+
+#Notification span{
+  color: blue;
 }

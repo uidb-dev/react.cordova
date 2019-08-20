@@ -12,9 +12,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      nowPage: ""
     }
-
-   // this.navigator = null;
   }
 
   menuClick(e, goToPage) {
@@ -32,24 +31,26 @@ export default class App extends React.Component {
     return (
       [
         <Navigator
+        onRef={ref => (this.navigator = ref)} // Required
           key="Navigator"
           height={navigatorHeight + "px"}
           myComponentApp={this}
           myApp={this}
           homePageKey={"Home"}
+          onChangePage={(page) => {
+            this.setState({ nowPage: page });
+          }}
         >
 
-          <Home key="Home" levelPage={0} myApp={this}/>
-          <Notification key="Notification" backgroundColor={"#e6e6e6"} levelPage={1} myApp={this}/>
+          <Home key="Home" levelPage={0} myApp={this} />
+          <Notification key="Notification" backgroundColor={"#282c34"} levelPage={1} myApp={this} />
 
         </Navigator>,
 
         <div key="footerMenu" className="footerMenu" style={{ height: footerMenuHeight + "px" }}>
           <ul>
-            <li><a onClick={(e) => this.menuClick(e,"Home")} className="active" href="#home">Home</a></li>
-            <li><a onClick={(e) => this.menuClick(e,"Notification")} href="#news">Notification</a></li>
-            <li><a onClick={(e) => this.menuClick(e)} href="#contact">3333</a></li>
-            <li><a onClick={(e) => this.menuClick(e)} href="#about">About</a></li>
+            <li><div onClick={(e) => this.menuClick(e, "Home")} className={this.state.nowPage === "Home" ? "active" : ""} >Home</div></li>
+            <li><div onClick={(e) => this.menuClick(e, "Notification")} className={this.state.nowPage === "Notification" ? "active" : ""}>Notification</div></li>
           </ul>
         </div>
       ]
