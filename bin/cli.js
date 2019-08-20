@@ -126,21 +126,21 @@ let reco = {
     //------------------------------------init------------------------------------//
     init: async () => {
 
-        const choicesOptions = ['Reco template', 'Empty'];
-        const defaultTemplate = choicesOptions[0];
+        // const choicesOptions = ['Reco template', 'Empty'];
+        // const defaultTemplate = choicesOptions[0];
 
-        const inquirer = require('inquirer');
-        const questions = [];
-        questions.push({
-            type: 'list',
-            name: 'template',
-            message: 'Please select project template',
-            choices: choicesOptions,
-            default: defaultTemplate,
-        });
+        // const inquirer = require('inquirer');
+        // const questions = [];
+        // questions.push({
+        //     type: 'list',
+        //     name: 'template',
+        //     message: 'Please select project template',
+        //     choices: choicesOptions,
+        //     default: defaultTemplate,
+        // });
 
-        const answers = await inquirer.prompt(questions);
-        const withTemplate = answers.template === choicesOptions[0];
+        // const answers = await inquirer.prompt(questions);
+        // const withTemplate = answers.template === choicesOptions[0];
 
 
         let folderName = reco.state.args.slice(2)[2];
