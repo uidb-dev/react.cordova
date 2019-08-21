@@ -93,7 +93,7 @@ C:\>npm install -g create-react-app
 ```
 <br>
 <br>
-<br>
+
 Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
 
 Credits: Arik Wald
