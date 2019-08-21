@@ -4,7 +4,7 @@ bundles both platforms together and provides the developer with the ability to g
 applications built in React.js. This bundled platform facilitates and automates project initialization, 
 compilation and build actions for React.js developers who wish to build web/mobile/desktop applications using the powerfull and most vast Cordova environment. Reco is the bundle where both Cordova and React.js platforms merge and work together as one. Enjoy your
 coding and development experience using Reco!
-<br><br>
+<br>
 ### Installing Reco CLI 
 ```cli
 npm install -g react.cordova
@@ -91,7 +91,6 @@ Windows:
 ```cli
 C:\>npm install -g create-react-app
 ```
-<br>
 <br>
 
 Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
