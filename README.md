@@ -6,12 +6,8 @@ compilation and build actions for React.js developers who wish to build web/mobi
 coding and development experience using Reco!
 <br>  
 
-<ul>
-   <li>
 ![alt React.js](https://github.com/orchoban/react.cordova/blob/master/react_logo.png "React.js")
 ![alt Cordova](https://github.com/orchoban/react.cordova/blob/master/cordova_logo.png "Cordova")
-  </li>
-</ul>
 
 ### Installing Reco CLI 
 ```cli
