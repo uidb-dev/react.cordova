@@ -7,9 +7,12 @@ coding and development experience using Reco!
 <br>  
 
 <p align="center">
-   <img src="https://github.com/orchoban/react.cordova/blob/master/react_logo.png" alt="React.js"/>
+   <!-- <img src="https://github.com/orchoban/react.cordova/blob/master/react_logo.png" alt="React.js"/> -->
+   <img src="https://upload.wikimedia.org/wikipedia/he/thumb/a/a7/React-icon.svg/160px-React-icon.svg.png"  height="128px" alt="React.js"/>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://github.com/orchoban/react.cordova/blob/master/cordova_logo.png" alt="Cordova"/>
+  
+   <img src="https://cordova.apache.org/static/img/cordova_bot.png" width="114px" height="128px" alt="Cordova"/>
+  <!-- <img src="https://github.com/orchoban/react.cordova/blob/master/cordova_logo.png" alt="Cordova"/> -->
 </p>
 
 ### Installing Reco CLI 
