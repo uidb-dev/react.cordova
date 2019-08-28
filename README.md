@@ -5,26 +5,7 @@ applications built in React.js. This bundled platform facilitates and automates 
 compilation and build actions for React.js developers who wish to build web/mobile/desktop applications using the powerful and most vast Cordova environment. Reco is the bundle where both Cordova and React.js platforms merge and work together as one. Enjoy your
 coding and development experience using Reco!
 <br>  
-<!--
-<p align="center">
-   <span><img src="https://upload.wikimedia.org/wikipedia/he/thumb/a/a7/React-icon.svg/160px-React-icon.svg.png"  height="128px" alt="React.js"/><br /><b>React.js</b></span>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <img src="https://cordova.apache.org/static/img/cordova_bot.png" width="114px" height="128px" alt="Cordova"/>
-   <br />
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>React.js</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Cordova</b>
-</p>
--->
 
-<span align="center">
-   <img src="https://upload.wikimedia.org/wikipedia/he/thumb/a/a7/React-icon.svg/160px-React-icon.svg.png"  height="128px" alt="React.js"/></span>
-<span align="center">
-   <img src="https://cordova.apache.org/static/img/cordova_bot.png" width="114px" height="128px" alt="Cordova"/></span>
-<!--
-<br />
-<span align="center"><b width="128px;">React.js</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Cordova</b></span>
--->
-
-<!--
 <p align="center">
    <img src="https://upload.wikimedia.org/wikipedia/he/thumb/a/a7/React-icon.svg/160px-React-icon.svg.png"  height="128px" alt="React.js"/>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -32,7 +13,7 @@ coding and development experience using Reco!
    <br />
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>React.js</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Cordova</b>
 </p>
--->
+
 
 ### Installing Reco CLI 
 ```cli
