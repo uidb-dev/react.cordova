@@ -52,6 +52,9 @@ let reco = {
             case "i":
                 reco.reactInstall();
                 break;
+            case "uninstall":
+                reco.reactUninstall();
+                break;
             case "cordova":
                 reco.cordova();
                 break;
@@ -394,6 +397,24 @@ let reco = {
     reactInstall: () => {
         reco.state.child_process.exec(
             'npm i ' + reco.state.clientArgsAfter
+            , { cwd: 'react-js' }
+            , function (error, stdout, stderr) {
+                if (error) {
+                    reco.setState({ error: true });
+                    console.error('reco-cli-reactInstall ERROR : ' + error);
+                    return;
+                }
+                console.log(stdout);
+            }).on('data', (data) => {
+                console.log(data.toString());
+            });
+
+    },
+
+      //------------------------------------react uninstall------------------------------------//
+      reactUninstall: () => {
+        reco.state.child_process.exec(
+            'npm uninstall ' + reco.state.clientArgsAfter
             , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
