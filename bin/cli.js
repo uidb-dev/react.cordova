@@ -455,6 +455,8 @@ let reco = {
                 }
             }).stdout.on('data', (data) => {
                 console.log(data.toString());
+            }).on('data', (data) => {
+                console.log(data.toString());
             });
     },
 
