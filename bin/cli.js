@@ -217,60 +217,43 @@ let reco = {
 
                         if (!withTemplate) {
 
-                            fs.readFile(dir + "/react-js/public/index.html", function (err, data) {
-                                // res.writeHead(200, {'Content-Type': 'text/html'});
-                                // res.write(data);
-                                // res.end();
+                            fs.readFile(args[1].substring(0, args[1].lastIndexOf(".bin")) + "templates\\empty\\index.js", function (err, data) {
+
                                 if (err) {
                                     reco.setState({ error: true });
                                     console.log("error: ", err);
                                 }
 
-                                const dataString = data.toString().replace("<head>", ``);
-
-                                fs.writeFile(dir + "/react-js/src/index.js", dataString, function (err) {
+                                fs.writeFile("./react-js/src/index.js", data.toString(), function (err) {
                                     if (err) {
-                                        return console.log(err);
+                                        return console.log("fs.writeFile: ", err);
                                     } else {
-                                        console.log(dir + "/react-js/public/index.html ready to by mobile app with cordova");
-
-                                        //-- react package.json --//
-                                        const jsonfile = require('jsonfile');
-                                        const file = dir + '/react-js/package.json';
-                                        jsonfile.readFile(file)
-                                            .then(obj => {
-
-                                                obj.homepage = "./";
-                                                jsonfile.writeFile(file, obj, function (err) {
-                                                    if (err) {
-                                                        console.error("ERROR: add homepage to react package.json . ", err);
-                                                        return;
-                                                    } else {
-                                                        console.log("updete homepage in react-js package.json , now it's ready to by mobile app with cordova.");
-                                                        reco.replaceWwwRootDir(dir + '/cordova/www');
-                                                    }
-                                                })
-                                            })
-                                            .catch(error => {
-                                                reco.setState({ error: true });
-                                                console.error("reco-cli-recoFiles=> ERROR: ", error);
-                                            })
+                                        console.log("...");
                                     }
                                 });
+
                             });
 
+                        } else {
 
+                            fs.readFile(args[1].substring(0, args[1].lastIndexOf(".bin")) + "templates\\recoTemp\\index.js", function (err, data) {
 
+                                if (err) {
+                                    reco.setState({ error: true });
+                                    console.log("error: ", err);
+                                }
 
-                            const http = require('http');
-                            const fs = require('fs');
+                                fs.writeFile("./react-js/src/index.js", data.toString(), function (err) {
+                                    if (err) {
+                                        return console.log("fs.writeFile: ", err);
+                                    } else {
+                                        console.log("...");
+                                    }
+                                });
 
-                            const file = fs.createWriteStream("file.jpg");
-                            const request = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function (response) {
-                                response.pipe(file);
                             });
+
                         }
-                        return
 
                         //--
                         //---------reco start to build cordova-app---------//
@@ -767,51 +750,7 @@ let reco = {
 export function cli(args) {
 
 
-     var download = require('download-git-repo')
 
-    download("https://github.com/orchoban/react.cordova/blob/master/templates/empty/index.js", './', function (err) {
-        console.log(err ? 'Error' : 'Success')
-      });
-
-//     var download = require('download-file')
- 
-// var url = "https://github.com/orchoban/react.cordova/blob/master/templates/empty/index.js"
- 
-// var options = {
-//     directory: "./",
-//     filename: "index.js"
-// }
- 
-// download(url, options, function(err){
-//     if (err) throw err
-//     console.log(err)
-// }) 
-
-    // const https = require("https");
-    // const file = fs.createWriteStream("index.js");
-
-    // https.get("https://github.com/orchoban/react.cordova/blob/master/templates/empty/index.js", response => {
-    //     response.pipe(file);
-
-    //     file.on('finish', function () {
-         
-          
-    //         console.log( file);
-    //         file.close();
-    //         console.log("DONE LOADING");
-       
-    //     }).on('error', function (err) {
-
-    //         console.log("ERROR " + err.message);
-    //         fs.unlink(downloadPath);
-    //     });
-
-    //     //   
-    // });
-
-
-
-    return
 
     //--react cmd
     if (args[1].includes(".bin\\react") || args[1].includes(".bin/react")) {
