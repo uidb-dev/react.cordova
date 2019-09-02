@@ -3,7 +3,9 @@
   "version": "1.2.5",
   "description": "This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start":"reco start"
+  },
   "bin": {
     "reco": ".bin/reco",
     "react-cordova": ".bin/reco",
@@ -24,6 +26,8 @@
   "keywords": [
     "reco",
     "reco cli",
+    "react cordova",
+    "react-app cordova",
     "npm react.cordova",
     "cli react.cordova",
     "react.cordova",

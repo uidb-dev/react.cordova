@@ -130,21 +130,21 @@ let reco = {
     //------------------------------------init------------------------------------//
     init: async () => {
 
-        // const choicesOptions = ['Reco template', 'Empty'];
-        // const defaultTemplate = choicesOptions[0];
+        const choicesOptions = ['Reco template', 'Empty'];
+        const defaultTemplate = choicesOptions[0];
 
-        // const inquirer = require('inquirer');
-        // const questions = [];
-        // questions.push({
-        //     type: 'list',
-        //     name: 'template',
-        //     message: 'Please select project template',
-        //     choices: choicesOptions,
-        //     default: defaultTemplate,
-        // });
+        const inquirer = require('inquirer');
+        const questions = [];
+        questions.push({
+            type: 'list',
+            name: 'template',
+            message: 'Please select project template',
+            choices: choicesOptions,
+            default: defaultTemplate,
+        });
 
-        // const answers = await inquirer.prompt(questions);
-        // const withTemplate = answers.template === choicesOptions[0];
+        const answer = await inquirer.prompt(questions);
+        const withTemplate = answer.template === choicesOptions[0];
 
 
         let folderName = reco.state.args.slice(2)[2];
@@ -214,6 +214,63 @@ let reco = {
                         console.log(data.toString());
                     }).on('close', () => {
 
+
+                        if (!withTemplate) {
+
+                            fs.readFile(dir + "/react-js/public/index.html", function (err, data) {
+                                // res.writeHead(200, {'Content-Type': 'text/html'});
+                                // res.write(data);
+                                // res.end();
+                                if (err) {
+                                    reco.setState({ error: true });
+                                    console.log("error: ", err);
+                                }
+
+                                const dataString = data.toString().replace("<head>", ``);
+
+                                fs.writeFile(dir + "/react-js/src/index.js", dataString, function (err) {
+                                    if (err) {
+                                        return console.log(err);
+                                    } else {
+                                        console.log(dir + "/react-js/public/index.html ready to by mobile app with cordova");
+
+                                        //-- react package.json --//
+                                        const jsonfile = require('jsonfile');
+                                        const file = dir + '/react-js/package.json';
+                                        jsonfile.readFile(file)
+                                            .then(obj => {
+
+                                                obj.homepage = "./";
+                                                jsonfile.writeFile(file, obj, function (err) {
+                                                    if (err) {
+                                                        console.error("ERROR: add homepage to react package.json . ", err);
+                                                        return;
+                                                    } else {
+                                                        console.log("updete homepage in react-js package.json , now it's ready to by mobile app with cordova.");
+                                                        reco.replaceWwwRootDir(dir + '/cordova/www');
+                                                    }
+                                                })
+                                            })
+                                            .catch(error => {
+                                                reco.setState({ error: true });
+                                                console.error("reco-cli-recoFiles=> ERROR: ", error);
+                                            })
+                                    }
+                                });
+                            });
+
+
+
+
+                            const http = require('http');
+                            const fs = require('fs');
+
+                            const file = fs.createWriteStream("file.jpg");
+                            const request = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function (response) {
+                                response.pipe(file);
+                            });
+                        }
+                        return
 
                         //--
                         //---------reco start to build cordova-app---------//
@@ -709,7 +766,54 @@ let reco = {
 
 export function cli(args) {
 
-   //--react cmd
+
+     var download = require('download-git-repo')
+
+    download("https://github.com/orchoban/react.cordova/blob/master/templates/empty/index.js", './', function (err) {
+        console.log(err ? 'Error' : 'Success')
+      });
+
+//     var download = require('download-file')
+ 
+// var url = "https://github.com/orchoban/react.cordova/blob/master/templates/empty/index.js"
+ 
+// var options = {
+//     directory: "./",
+//     filename: "index.js"
+// }
+ 
+// download(url, options, function(err){
+//     if (err) throw err
+//     console.log(err)
+// }) 
+
+    // const https = require("https");
+    // const file = fs.createWriteStream("index.js");
+
+    // https.get("https://github.com/orchoban/react.cordova/blob/master/templates/empty/index.js", response => {
+    //     response.pipe(file);
+
+    //     file.on('finish', function () {
+         
+          
+    //         console.log( file);
+    //         file.close();
+    //         console.log("DONE LOADING");
+       
+    //     }).on('error', function (err) {
+
+    //         console.log("ERROR " + err.message);
+    //         fs.unlink(downloadPath);
+    //     });
+
+    //     //   
+    // });
+
+
+
+    return
+
+    //--react cmd
     if (args[1].includes(".bin\\react") || args[1].includes(".bin/react")) {
 
         let new_args = [];
