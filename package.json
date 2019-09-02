@@ -1,6 +1,6 @@
 {
   "name": "react.cordova",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "This project Creacted by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125).",
   "main": "index.js",
   "scripts": {},
@@ -27,6 +27,9 @@
     "npm react.cordova",
     "cli react.cordova",
     "react.cordova",
+    "npm react.cordova",
+    "npm react cordova",
+    "npm react-cordova",
     "reco react.cordova",
     "react cordova bundle",
     "bundle react cordova",

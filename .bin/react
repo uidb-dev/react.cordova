@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 require = require('esm')(module /*, options*/);
-require('../bin/react-cli').cli(process.argv);
+require('../bin/cli').cli(process.argv);
