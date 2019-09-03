@@ -145,7 +145,7 @@ let reco = {
 
         const answer = await inquirer.prompt(questions);
         const withTemplate = answer.template === choicesOptions[0];
-
+        const template = withTemplate ? "recoTemp" : "empty";
 
         let folderName = reco.state.args.slice(2)[2];
         while (folderName.indexOf(" ") >= 0) {
@@ -214,46 +214,22 @@ let reco = {
                         console.log(data.toString());
                     }).on('close', () => {
 
+                        const copydir = require("copy-dir");
 
-                        if (!withTemplate) {
-
-                            fs.readFile(args[1].substring(0, args[1].lastIndexOf(".bin")) + "templates\\empty\\index.js", function (err, data) {
-
-                                if (err) {
-                                    reco.setState({ error: true });
-                                    console.log("error: ", err);
-                                }
-
-                                fs.writeFile("./react-js/src/index.js", data.toString(), function (err) {
-                                    if (err) {
-                                        return console.log("fs.writeFile: ", err);
-                                    } else {
-                                        console.log("...");
-                                    }
+                        fs.readdir(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template, (err, files) => {
+                            if (err) console.log(err);
+                            else files.forEach(file => {
+                                if (fs.existsSync(dir + "/react-js/src/" + file))
+                                    fs.unlink(dir + "/react-js/src/" + file, (err) => {
+                                        if (err) console.log("ERROR: reco can't copy template files.(unlink) :" + err);
+                                    });
+                                copydir.sync(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template + "\\" + file, dir + "/react-js/src/" + file, {}, () => {
+                                    if (err) console.log("ERROR: reco can't copy template files :" + err);
                                 });
-
                             });
+                        });
 
-                        } else {
 
-                            fs.readFile(args[1].substring(0, args[1].lastIndexOf(".bin")) + "templates\\recoTemp\\index.js", function (err, data) {
-
-                                if (err) {
-                                    reco.setState({ error: true });
-                                    console.log("error: ", err);
-                                }
-
-                                fs.writeFile("./react-js/src/index.js", data.toString(), function (err) {
-                                    if (err) {
-                                        return console.log("fs.writeFile: ", err);
-                                    } else {
-                                        console.log("...");
-                                    }
-                                });
-
-                            });
-
-                        }
 
                         //--
                         //---------reco start to build cordova-app---------//
@@ -748,9 +724,6 @@ let reco = {
 
 
 export function cli(args) {
-
-
-
 
     //--react cmd
     if (args[1].includes(".bin\\react") || args[1].includes(".bin/react")) {
