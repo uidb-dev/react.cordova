@@ -201,7 +201,7 @@ let reco = {
                 // );
 
                 reco.state.child_process.exec(
-                    'npm i react.cordova-navigation_controller'
+                    withTemplate ? 'npm i react.cordova-navigation_controller react-browser-notifications' : 'npm i react.cordova-navigation_controller'
                     , { cwd: dir + '/react-js' }
                     , function (error, stdout, stderr) {
                         if (error) {
