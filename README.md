@@ -50,6 +50,12 @@ To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova command l
 
 ```cli
 reco cordova <any cordova command line to run>
+
+reco platform
+
+reco platform <add/rm> <cordova platform>
+
+reco plugin <add/rm> <cordova plugin>
 ```
 
 Learn more about Cordova: **[Cordova get started](https://cordova.apache.org/#getstarted).**
@@ -67,11 +73,20 @@ reco test
 
 reco install <npm packages for react>
 
+reco uninstall <npm packages for react>
+
 reco react <any react command line to run>
+
+react <any react command line to run>
 ```
 
 Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
 Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
+
+
+### For more information
+**`reco -info`**
+
 
 ### Prerequisites
 #### npm

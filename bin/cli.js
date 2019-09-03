@@ -3,7 +3,6 @@ const path = require("path");
 //import path from "path";
 
 
-
 let reco = {
 
     constructor: (args) => {
@@ -28,9 +27,8 @@ let reco = {
             clientArgsAfter_Space += ('"' + args.slice(2)[index] + '"' + ' ');
         reco.setState({ clientArgsAfter_Space: clientArgsAfter_Space });
 
-
         ///------////
-        switch (args.slice(2)[0]) {
+        switch (args[2].split(2)[0]) {
             case "init":
                 reco.init();
                 break;
@@ -51,6 +49,9 @@ let reco = {
                 break;
             case "i":
                 reco.reactInstall();
+                break;
+            case "uninstall":
+                reco.reactUninstall();
                 break;
             case "cordova":
                 reco.cordova();
@@ -129,21 +130,21 @@ let reco = {
     //------------------------------------init------------------------------------//
     init: async () => {
 
-        // const choicesOptions = ['Reco template', 'Empty'];
-        // const defaultTemplate = choicesOptions[0];
+        const choicesOptions = ['Reco template', 'Empty'];
+        const defaultTemplate = choicesOptions[0];
 
-        // const inquirer = require('inquirer');
-        // const questions = [];
-        // questions.push({
-        //     type: 'list',
-        //     name: 'template',
-        //     message: 'Please select project template',
-        //     choices: choicesOptions,
-        //     default: defaultTemplate,
-        // });
+        const inquirer = require('inquirer');
+        const questions = [];
+        questions.push({
+            type: 'list',
+            name: 'template',
+            message: 'Please select project template',
+            choices: choicesOptions,
+            default: defaultTemplate,
+        });
 
-        // const answers = await inquirer.prompt(questions);
-        // const withTemplate = answers.template === choicesOptions[0];
+        const answer = await inquirer.prompt(questions);
+        const withTemplate = answer.template === choicesOptions[0];
 
 
         let folderName = reco.state.args.slice(2)[2];
@@ -213,6 +214,46 @@ let reco = {
                         console.log(data.toString());
                     }).on('close', () => {
 
+
+                        if (!withTemplate) {
+
+                            fs.readFile(args[1].substring(0, args[1].lastIndexOf(".bin")) + "templates\\empty\\index.js", function (err, data) {
+
+                                if (err) {
+                                    reco.setState({ error: true });
+                                    console.log("error: ", err);
+                                }
+
+                                fs.writeFile("./react-js/src/index.js", data.toString(), function (err) {
+                                    if (err) {
+                                        return console.log("fs.writeFile: ", err);
+                                    } else {
+                                        console.log("...");
+                                    }
+                                });
+
+                            });
+
+                        } else {
+
+                            fs.readFile(args[1].substring(0, args[1].lastIndexOf(".bin")) + "templates\\recoTemp\\index.js", function (err, data) {
+
+                                if (err) {
+                                    reco.setState({ error: true });
+                                    console.log("error: ", err);
+                                }
+
+                                fs.writeFile("./react-js/src/index.js", data.toString(), function (err) {
+                                    if (err) {
+                                        return console.log("fs.writeFile: ", err);
+                                    } else {
+                                        console.log("...");
+                                    }
+                                });
+
+                            });
+
+                        }
 
                         //--
                         //---------reco start to build cordova-app---------//
@@ -343,7 +384,7 @@ let reco = {
                     return;
                 }
                 console.log(stdout);
-            }).on('data', (data) => {
+            }).stdout.on('data', (data) => {
                 console.log(data.toString());
             });
 
@@ -365,10 +406,6 @@ let reco = {
                 console.log(data.toString());
                 return;
             });
-        // .on('data', (data) => {
-        //     console.log(data.toString());
-        //     return;
-        // });
     },
 
 
@@ -394,6 +431,24 @@ let reco = {
     reactInstall: () => {
         reco.state.child_process.exec(
             'npm i ' + reco.state.clientArgsAfter
+            , { cwd: 'react-js' }
+            , function (error, stdout, stderr) {
+                if (error) {
+                    reco.setState({ error: true });
+                    console.error('reco-cli-reactInstall ERROR : ' + error);
+                    return;
+                }
+                console.log(stdout);
+            }).on('data', (data) => {
+                console.log(data.toString());
+            });
+
+    },
+
+    //------------------------------------react uninstall------------------------------------//
+    reactUninstall: () => {
+        reco.state.child_process.exec(
+            'npm uninstall ' + reco.state.clientArgsAfter
             , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
@@ -454,6 +509,8 @@ let reco = {
                     return;
                 }
             }).stdout.on('data', (data) => {
+                console.log(data.toString());
+            }).on('data', (data) => {
                 console.log(data.toString());
             });
     },
@@ -691,6 +748,24 @@ let reco = {
 
 
 export function cli(args) {
+
+
+
+
+    //--react cmd
+    if (args[1].includes(".bin\\react") || args[1].includes(".bin/react")) {
+
+        let new_args = [];
+        new_args.push(args[0]);
+        new_args.push(args[1]);
+        new_args.push("react");
+        args.slice(2).forEach(arg => {
+            new_args.push(arg);
+        });
+
+        args = new_args;
+    }
+
 
 
     //fix to the new virsion (after v1.2.0 the react folder name it's "react-js")
