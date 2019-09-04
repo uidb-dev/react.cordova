@@ -84,7 +84,10 @@ Learn more about React.js apps: **[create React.js app documentation](https://fa
 Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
 
 
-### For more information
+### Explore Reco CLI
+
+To get full CLI reference of all commands and features currently available type the following command
+
 **`reco -info`**
 
 
