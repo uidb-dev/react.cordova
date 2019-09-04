@@ -86,7 +86,7 @@ Learn programming in React.js: **[React.js documentation](https://reactjs.org/)*
 
 ### Explore Reco CLI
 
-To get full CLI reference of all commands and features currently available type the following command
+To get full CLI reference of all commands and features currently available run the following command
 
 **`reco -info`**
 
