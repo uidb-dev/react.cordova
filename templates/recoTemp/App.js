@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigator from 'react.cordova-navigation_controller';
 
-import './App.css';
+import './app.css';
 
 //--pages--//
 import Home from './pages/index';
@@ -37,6 +37,7 @@ export default class App extends React.Component {
           myComponentApp={this}
           myApp={this}
           homePageKey={"Home"}
+         
           onChangePage={(page) => {
             this.setState({ nowPage: page });
           }}
