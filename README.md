@@ -103,25 +103,13 @@ _______________________________________________________________________
 Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 #### Cordova 
-macOS / Linux:
 ```cli
-$ sudo npm install -g cordova
-```
-
-Windows:
-```cli
-C:\>npm install -g cordova
+npm install -g cordova
 ```
 
 #### React.js 
-macOS / Linux:
 ```cli
-$ sudo npm install -g create-react-app
-```
-
-Windows:
-```cli
-C:\>npm install -g create-react-app
+npm install -g create-react-app
 ```
 <br>
 
