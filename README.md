@@ -107,10 +107,6 @@ Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/jav
 npm install -g cordova
 ```
 
-#### React.js 
-```cli
-npm install -g create-react-app
-```
 <br>
 
 Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
