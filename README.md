@@ -36,7 +36,7 @@ Perform a build action for your project using the following command
 reco build
 ```
 
-1. Builds **`react-app`** to publish (in: ./react/build).<br>
+1. Builds **`react-app`** to publish (in: ./react-js/build).<br>
 2. Builds **`cordova-app`** for mobile and other platforms.
 
 *Note: will generate an **apk** installable package for Android devices*<br>
