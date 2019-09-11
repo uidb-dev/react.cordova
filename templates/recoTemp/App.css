@@ -82,10 +82,8 @@ h2, span, p {
 }
 
 .notification_content {
-  padding: 20px;
+  margin: 5%;
 }
-
-
 
 .navbar_button {
   width: 64px;
@@ -96,5 +94,29 @@ h2, span, p {
 }
 
 .navbar {
-   height: 52px;
+  height: 52px;
+}
+
+/* input, button{
+ margin-left: 5%;
+  margin-right: 5%;
+} */
+
+input {
+  height: 23px;
+  width: 70%;
+  border-radius: 3px;
+}
+
+button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.App-logo-cordova {
+  height: 38vmin;
+  pointer-events: none;
 }

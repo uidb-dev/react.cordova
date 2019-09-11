@@ -34,17 +34,16 @@ export default class App extends React.Component {
         onRef={ref => (this.navigator = ref)} // Required
           key="Navigator"
           height={navigatorHeight + "px"}
-          myComponentApp={this}
           myApp={this}
-          homePageKey={"Home"}
+          // homePageKey={"Home"}
          
           onChangePage={(page) => {
             this.setState({ nowPage: page });
           }}
         >
 
-          <Home key="Home" levelPage={0} myApp={this} />
-          <Notification key="Notification" backgroundColor={"#282c34"} levelPage={1} myApp={this} />
+          <Home key="Home" levelPage={0}/>
+          <Notification key="Notification" backgroundColor={"#282c34"} levelPage={1} />
 
         </Navigator>,
 

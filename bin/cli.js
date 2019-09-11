@@ -704,9 +704,9 @@ let reco = {
             let dataString = data.toString();
 
             dataString = dataString.replace(dataString.substr(
-                dataString.indexOf("<meta")
-                , dataString.substr(dataString.indexOf("<meta")).indexOf("/>") + 2
-            ), ` <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no">
+                dataString.indexOf(`<meta name="viewport"`)
+                , dataString.substr(dataString.indexOf(`<meta name="viewport"`)).indexOf("/>") + 2
+            ), ` <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />
                  <script type="text/javascript" src="./cordova.js"></script>`);
 
 

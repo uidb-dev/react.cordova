@@ -35,14 +35,14 @@ export default class Notification extends React.Component {
     render() {
         const this_ = this;
         return <div className="notification_content">
-            <h2>title</h2>  <input onKeyUp={(e) => { this_.setState({ notificationTitle: e.currentTarget.value }); }} type="text" />
-            <h2>text</h2>  <input onKeyUp={(e) => { this_.setState({ notificationText: e.currentTarget.value }); }} type="text" />
+            <h2>Title</h2>  <input onKeyUp={(e) => { this_.setState({ notificationTitle: e.currentTarget.value }); }} type="text" />
+            <h2>Text</h2>  <input onKeyUp={(e) => { this_.setState({ notificationText: e.currentTarget.value }); }} type="text" />
             <br />
             <br />
             <button onClick={() => this.notification()}>Notification</button>
 
 <br/>
-<p>* it's only work from <span>reco start</span> (local server on localhost), <span>mobile device</span> or <span>https url</span></p>
+<p>* It's will work only from <span>reco start</span> (local server on localhost), <span>mobile device</span> or <span>https url</span></p>
 
             {/* https://www.npmjs.com/package/react-browser-notifications */}
             <BrowserNotifications
