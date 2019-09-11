@@ -92,7 +92,9 @@ To get full CLI reference of all commands and features currently available, run 
 reco -info
 ```
 
+<br>
 
+_______________________________________________________________________
 ### Prerequisites
 #### npm
 [get-npm](https://www.npmjs.com/get-npm)
