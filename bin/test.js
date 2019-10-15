@@ -3,7 +3,7 @@ const child_process = require('child_process');
 export function cli(args) {
 
     child_process.exec(
-        'npm i react.cordova-navigation_controller react-browser-notifications'
+        'npm i react.cordova-navigation_controller'
         , { cwd: './react-js' }
         , function (error, stdout, stderr) {
             if (error) {
