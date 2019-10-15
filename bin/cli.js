@@ -28,6 +28,8 @@ let reco = {
         reco.setState({ clientArgsAfter_Space: clientArgsAfter_Space });
 
         ///------////
+        console.log(args[2].split(2)[0]);
+        
         switch (args[2].split(2)[0]) {
             case "init":
                 reco.init();
