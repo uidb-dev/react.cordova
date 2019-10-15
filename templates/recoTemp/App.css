@@ -32,19 +32,20 @@
   }
 }
 
-
-
 /* menu */
+
 .footerMenu ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
+  width: 100%;
 }
 
 .footerMenu li {
   /* float: left; */
+  width: 50%;
   display: inline-block;
 }
 
@@ -65,15 +66,57 @@
   background-color: #4CAF50;
 }
 
-.footerMenu{
+.footerMenu {
   position: absolute;
   bottom: 0;
+  z-index: 9;
+  width: 100%;
 }
 
-h2,span,p{
+h2, span, p {
   color: #ddd;
 }
 
-#Notification span{
-  color: blue;
+#Notification span {
+  color: #93d395;
+}
+
+.notification_content {
+  margin: 5%;
+}
+
+.navbar_button {
+  width: 64px;
+  height: 52px;
+  max-height: 52px;
+  min-height: 52px;
+  background-size: 36px;
+}
+
+.navbar {
+  height: 52px;
+}
+
+/* input, button{
+ margin-left: 5%;
+  margin-right: 5%;
+} */
+
+input {
+  height: 23px;
+  width: 70%;
+  border-radius: 3px;
+}
+
+button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.App-logo-cordova {
+  height: 38vmin;
+  pointer-events: none;
 }

@@ -36,7 +36,7 @@ Perform a build action for your project using the following command
 reco build
 ```
 
-1. Builds **`react-app`** to publish (in: ./react/build).<br>
+1. Builds **`react-app`** to publish (in: ./react-js/build).<br>
 2. Builds **`cordova-app`** for mobile and other platforms.
 
 *Note: will generate an **apk** installable package for Android devices*<br>
@@ -84,10 +84,17 @@ Learn more about React.js apps: **[create React.js app documentation](https://fa
 Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
 
 
-### For more information
-**`reco -info`**
+### Explore Reco CLI
 
+To get full CLI reference of all commands and features currently available, run the following command
 
+```cli
+reco -info
+```
+
+<br>
+
+_______________________________________________________________________
 ### Prerequisites
 #### npm
 [get-npm](https://www.npmjs.com/get-npm)
@@ -96,26 +103,10 @@ Learn programming in React.js: **[React.js documentation](https://reactjs.org/)*
 Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 #### Cordova 
-macOS / Linux:
 ```cli
-$ sudo npm install -g cordova
+npm install -g cordova
 ```
 
-Windows:
-```cli
-C:\>npm install -g cordova
-```
-
-#### React.js 
-macOS / Linux:
-```cli
-$ sudo npm install -g create-react-app
-```
-
-Windows:
-```cli
-C:\>npm install -g create-react-app
-```
 <br>
 
 
