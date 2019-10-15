@@ -7,76 +7,83 @@ let reco = {
 
     constructor: (args) => {
 
-        reco.state = {
-            args: args,
-            clientArgsAfter: "",
-            clientArgsAfter_Space: "",
-            callBack_replaceWwwRootDir: () => { },
-            child_process: require('child_process'),
-            error: false
+
+        try {
+
+            reco.state = {
+                args: args,
+                clientArgsAfter: "",
+                clientArgsAfter_Space: "",
+                callBack_replaceWwwRootDir: () => { },
+                child_process: require('child_process'),
+                error: false
+            }
+
+            //----- save the args after index 
+            var clientArgsAfter = "";
+            for (let index = 1; index < args.slice(2).length; index++)
+                clientArgsAfter += (args.slice(2)[index] + " ");
+            reco.setState({ clientArgsAfter: clientArgsAfter });
+            //--
+            let clientArgsAfter_Space = "";
+            for (let index = 1; index < args.slice(2).length; index++)
+                clientArgsAfter_Space += ('"' + args.slice(2)[index] + '"' + ' ');
+            reco.setState({ clientArgsAfter_Space: clientArgsAfter_Space });
+
+            ///------////
+
+            switch (args[2].split(2)[0]) {
+                case "init":
+                    reco.init();
+                    break;
+                case "build":
+                    reco.build();
+                    break;
+                case "react":
+                    reco.react();
+                    break;
+                case "start":
+                    reco.reactStart();
+                    break;
+                case "test":
+                    reco.reactTest();
+                    break;
+                case "install":
+                    reco.reactInstall();
+                    break;
+                case "i":
+                    reco.reactInstall();
+                    break;
+                case "uninstall":
+                    reco.reactUninstall();
+                    break;
+                case "cordova":
+                    reco.cordova();
+                    break;
+                case "plugin":
+                    reco.cordovaPlugin();
+                    break;
+                case "platform":
+                    reco.cordovaPlatform();
+                    break;
+                case "-info":
+                    reco.info();
+                    break;
+                case "":
+                    reco.map();
+                    break;
+                default:
+                    console.log();
+                    console.log(args.slice(2)[0], "it is not exec in reco cli");
+                    console.log('try => ');
+                    reco.map();
+                    break;
+            }
+
+        } catch (error) {
+            reco.map();
         }
 
-        //----- save the args after index 
-        var clientArgsAfter = "";
-        for (let index = 1; index < args.slice(2).length; index++)
-            clientArgsAfter += (args.slice(2)[index] + " ");
-        reco.setState({ clientArgsAfter: clientArgsAfter });
-        //--
-        let clientArgsAfter_Space = "";
-        for (let index = 1; index < args.slice(2).length; index++)
-            clientArgsAfter_Space += ('"' + args.slice(2)[index] + '"' + ' ');
-        reco.setState({ clientArgsAfter_Space: clientArgsAfter_Space });
-
-        ///------////
-        console.log(args[2].split(2)[0]);
-        
-        switch (args[2].split(2)[0]) {
-            case "init":
-                reco.init();
-                break;
-            case "build":
-                reco.build();
-                break;
-            case "react":
-                reco.react();
-                break;
-            case "start":
-                reco.reactStart();
-                break;
-            case "test":
-                reco.reactTest();
-                break;
-            case "install":
-                reco.reactInstall();
-                break;
-            case "i":
-                reco.reactInstall();
-                break;
-            case "uninstall":
-                reco.reactUninstall();
-                break;
-            case "cordova":
-                reco.cordova();
-                break;
-            case "plugin":
-                reco.cordovaPlugin();
-                break;
-            case "platform":
-                reco.cordovaPlatform();
-                break;
-            case "-info":
-                reco.info();
-                break;
-            case "":
-                reco.map();
-                break;
-            default:
-                console.log();
-                console.log(args.slice(2)[0], "it is not exec in reco cli");
-                console.log('try => ');
-                reco.map();
-                break;
-        }
 
 
     },
