@@ -118,6 +118,13 @@ C:\>npm install -g create-react-app
 ```
 <br>
 
+
+## If you have any problem, please let us know [here](https://github.com/orchoban/react.cordova/issues), and we will make an effort to resolve it soon
+## Feel free to editing the code yourself: go to [bin/cli.js](https://github.com/orchoban/react.cordova/blob/master/bin/cli.js)
+
+
+
+
 Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
 
 Credits: Arik Wald
