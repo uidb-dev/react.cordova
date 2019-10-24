@@ -537,50 +537,54 @@ let reco = {
 
     //------------------------------------map------------------------------------//
     map: () => {
-        console.log('--------init--------');
-        console.log('  create new project.  both react-app and cordova-app and then will merge one into the other: ');
-        console.log('reco init com.example.hello "Hello World"');
-        console.log('--------------------');
+        console.log('init');
+        console.log('  create new project.  both react-app and cordova-app and then will merge one into the other. ');
+        console.log('   example command: reco init com.example.hello "Hello World"');
+        console.log();
 
-        console.log('-------build--------');
-        console.log(`  build react-app and cordova-app: `);
-        console.log('reco build');
-        console.log('reco build <cordova-platform>');
-        console.log('--------------------');
+        console.log('build');
+        console.log(`  build react-app and cordova-app. `);
+        console.log('   command: reco build');
+        console.log('   command: reco build <cordova-platform>');
+        console.log();
 
-        console.log('-------react--------');
-        console.log(`  to run any react command: `);
-        console.log('reco react <command>');
-        console.log('--------------------');
+        console.log('react');
+        console.log(`  to run any react command. `);
+        console.log('   command: reco react <command>');
+        console.log();
 
-        console.log('-------start--------');
-        console.log(` start react server live in the browser: `);
-        console.log('reco start');
-        console.log('--------------------');
+        console.log('start');
+        console.log(`  start react server live in the browser. `);
+        console.log('   command: reco start');
+        console.log();
 
-        console.log('-------test--------');
-        console.log(` react test: `);
-        console.log('reco test');
-        console.log('--------------------');
+        console.log('test');
+        console.log(`  react test. `);
+        console.log('   command: reco test');
+        console.log();
 
-        console.log('-------install--------');
-        console.log(` install react package npm: `);
-        console.log('reco install   ||   reco i ');
-        console.log('--------------------');
+        console.log('install');
+        console.log(`  install react package npm. `);
+        console.log('   command: reco install   ||   reco i ');
+        console.log();
 
-        console.log('-------plugin--------');
-        console.log(` add cordova plugin: `);
-        console.log('reco plugin add <cordova-plugin>');
-        console.log('--------------------');
+        console.log('plugin');
+        console.log(`  add cordova plugin. `);
+        console.log('   command: reco plugin add <cordova-plugin>');
+        console.log();
 
-        console.log('-------remove--------');
-        console.log(` remove cordova plugin: `);
-        console.log('reco plugin remove <cordova-plugin>    ||    reco plugin rm <cordova-plugin>');
-        console.log('--------------------');
+        console.log('remove');
+        console.log(`  remove cordova plugin. `);
+        console.log('   command: reco plugin remove <cordova-plugin>');
+        console.log('   command: reco plugin rm <cordova-plugin>');
+             
+        console.log();
 
-        console.log('-------cordova--------');
-        console.log(` to run any cordova command: `);
-        console.log('reco cordova');
+        console.log('cordova');
+        console.log(` to run any cordova command. `);
+        console.log('  command: reco cordova');
+        console.log();
+        
         console.log('--------------------');
 
         console.log('reco -info');
