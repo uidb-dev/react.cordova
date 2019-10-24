@@ -537,54 +537,62 @@ let reco = {
 
     //------------------------------------map------------------------------------//
     map: () => {
-        console.log('init');
-        console.log('  create new project.  both react-app and cordova-app and then will merge one into the other. ');
-        console.log('   example command: reco init com.example.hello "Hello World"');
+        var colors = require('colors');
+
+        console.log(colors.yellow.underline.bold('-info:') + "");
         console.log();
 
-        console.log('build');
-        console.log(`  build react-app and cordova-app. `);
-        console.log('   command: reco build');
-        console.log('   command: reco build <cordova-platform>');
+
+        console.log(" " + colors.underline.bold('init'));
+        console.log("  " + colors.bold('create new project.  both react-app and cordova-app and then will merge one into the other. '));
+        console.log('   example command: ' + colors.green('reco init com.example.hello "Hello World"'));
         console.log();
 
-        console.log('react');
-        console.log(`  to run any react command. `);
-        console.log('   command: reco react <command>');
+        console.log(" " + colors.underline('build'));
+        console.log("  " + colors.bold(`build react-app and cordova-app. `));
+        console.log('   command: ' + colors.green('reco build'));
+        console.log('   command: ' + colors.green('reco build <cordova-platform>'));
         console.log();
 
-        console.log('start');
-        console.log(`  start react server live in the browser. `);
-        console.log('   command: reco start');
+        console.log(" " + colors.underline('react'));
+        console.log("  " + colors.bold(`to run any react command. `));
+        console.log('   command: ' + colors.green('reco react <command>'));
         console.log();
 
-        console.log('test');
-        console.log(`  react test. `);
-        console.log('   command: reco test');
+        console.log(" " + colors.underline('start'));
+        console.log("  " + colors.bold(`start react server live in the browser. `));
+        console.log('   command: ' + colors.green('reco start'));
         console.log();
 
-        console.log('install');
-        console.log(`  install react package npm. `);
-        console.log('   command: reco install   ||   reco i ');
+        console.log(" " + colors.underline('test'));
+        console.log("  " + colors.bold(`react test. `));
+        console.log('   command: ' + colors.green('reco test'));
         console.log();
 
-        console.log('plugin');
-        console.log(`  add cordova plugin. `);
-        console.log('   command: reco plugin add <cordova-plugin>');
+        console.log(" " + colors.underline('install/uninstall'));
+        console.log("  " + colors.bold(`install react package from npm. `));
+        console.log('   command: ' + colors.green('reco install <npm-package>'));
+        console.log('   command: ' + colors.green('reco i <npm-package>'));
+        console.log('   command: ' + colors.green('reco uninstall  <npm-package>'));
         console.log();
 
-        console.log('remove');
-        console.log(`  remove cordova plugin. `);
-        console.log('   command: reco plugin remove <cordova-plugin>');
-        console.log('   command: reco plugin rm <cordova-plugin>');
-             
+        console.log(" " + colors.underline('plugin'));
+        console.log("  " + colors.bold(`add cordova plugin. `));
+        console.log('   command: ' + colors.green('reco plugin add <cordova-plugin>'));
         console.log();
 
-        console.log('cordova');
-        console.log(` to run any cordova command. `);
-        console.log('  command: reco cordova');
+        console.log(" " + colors.underline('remove'));
+        console.log("  " + colors.bold(`remove cordova plugin. `));
+        console.log('   command: ' + colors.green('reco plugin remove <cordova-plugin>'));
+        console.log('   command: ' + colors.green('reco plugin rm <cordova-plugin>'));
+
         console.log();
-        
+
+        console.log(" " + colors.underline('cordova'));
+        console.log("  " + colors.bold(`to run any cordova command. `));
+        console.log('   command: ' + colors.green('reco cordova'));
+        console.log();
+
         console.log('--------------------');
 
         console.log('reco -info');
