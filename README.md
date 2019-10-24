@@ -27,6 +27,13 @@ reco init com.example.hello "Hello World"
 ```
 *Note: creates both **`react-app`** and **`cordova-app`** and then will merge one into the other*
 
+### Explore Reco CLI
+
+To get full CLI reference of all commands and features currently available, run the following command
+
+```cli
+reco -info
+```
 
 ### Project build
 
@@ -84,13 +91,7 @@ Learn more about React.js apps: **[create React.js app documentation](https://fa
 Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
 
 
-### Explore Reco CLI
 
-To get full CLI reference of all commands and features currently available, run the following command
-
-```cli
-reco -info
-```
 
 <br>
 
