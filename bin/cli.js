@@ -604,7 +604,7 @@ let reco = {
     credit: () => {
         console.log(`
        #####Created by Or Chuban (Choban)#####
-        info=> https://github.com/orchoban/react.cordova`);
+        info => https://github.com/orchoban/react.cordova`);
     },
 
     //------------------------------------succeeded------------------------------------//
