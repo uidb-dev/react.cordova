@@ -1,6 +1,6 @@
 {
   "name": "react.cordova",
-  "version": "1.5.1",
+  "version": "1.5.5",
   "description": "Reco unifies React.js and Cordova into one CLI which bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform applications built in React .",
   "main": "index.js",
   "scripts": {
