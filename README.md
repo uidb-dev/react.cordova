@@ -42,10 +42,7 @@ To run a React or Cordova simulation
 ```cli
 reco start
 ```
-or 
-```cli
-reco serve
-```
+*You can choose one of two methods to serve.
 
 ### Project build
 
