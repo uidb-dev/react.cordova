@@ -570,17 +570,6 @@ let reco = {
 
         const { readdirSync } = require('fs');
 
-        const getDirectories = source =>
-            readdirSync(source, { withFileTypes: true })
-                .filter(dirent => dirent.isDirectory())
-                .map(dirent => "/" + dirent.name);
-
-
-        let listDirectories = [];
-        listDirectories.push(getDirectories('react-js/src'));
-        listDirectories.push("/");
-
-
         //-whenChanges
         const whenChanges = () => {
             reco.setState({ emulatorBusy: true });
@@ -621,7 +610,7 @@ let reco = {
                                         console.log();
                                         console.log(colors.blue('Emulator ready!'));
                                         // console.log("please reload the browser.");
-                                        
+
                                         console.log();
                                     }
                                     reco.setState({ emulatorRunning: true });
@@ -660,20 +649,35 @@ let reco = {
                 });
         }
 
+        const watch = (dirName) => fs.watch(dirName, function (event, filename) {
+            if (reco.state.emulatorRunning && !reco.state.emulatorBusy)
+                whenChanges();
+        });
+
+        watch("react-js/src");
+
+        let allFiles = readdirSync('react-js/src', { withFileTypes: true });
+        // console.log(allFiles);
+        allFiles.forEach(element => {
+            fs.stat('react-js/src/' + element, function (err, stats) {
+                if (err) {
+                    console.log(err);
+                    return; // exit here since stats will be undefined
+                }
+                if (stats.isDirectory())
+                    watch('react-js/src/' + element);
+                // console.log(stats);
+            });
+        });
+
 
         //---run
 
 
         whenChanges();
 
-        for (let index = 0; index < listDirectories.length; index++) {
 
-            fs.watch('react-js/src' + listDirectories[index], function (event, filename) {
-                if (reco.state.emulatorRunning && !reco.state.emulatorBusy)
-                    whenChanges();
-            });
 
-        }
 
 
     },
