@@ -35,6 +35,15 @@ To get full CLI reference of all commands and features currently available, run 
 reco -info
 ```
 
+### Serve debug mode
+
+To run a React or Cordova simulation
+
+```cli
+reco start
+```
+*You can choose one of two methods to serve.
+
 ### Project build
 
 Perform a build action for your project using the following command
@@ -74,7 +83,7 @@ You can run React.js CLI from within the project's directory
 **For example:**
 
 ```cli
-reco start
+reco start (Choose the first option)
 
 reco test
 
