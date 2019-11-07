@@ -656,27 +656,37 @@ let reco = {
 
         watch("react-js/src");
 
+        const watchFolders = (allFiles, parentDir) => {
+            allFiles.forEach(item => {
+                fs.stat(parentDir + item, function (err, stats) {
+                    if (err) {
+                        console.log(err);
+                        return; // exit here since stats will be undefined
+                    }
+                    if (stats.isDirectory()) {
+                        console.log();
+                        console.log("item: ", item, "isDirectory: ", stats.isDirectory());
+
+
+                        watchFolders(readdirSync(parentDir + item, { withFileTypes: true }), parentDir + item)
+                        // watch(parentDir + item);
+                    }
+                    // console.log(stats);
+                });
+            });
+        }
+
         let allFiles = readdirSync('react-js/src', { withFileTypes: true });
         // console.log(allFiles);
-        allFiles.forEach(element => {
-            fs.stat('react-js/src/' + element, function (err, stats) {
-                if (err) {
-                    console.log(err);
-                    return; // exit here since stats will be undefined
-                }
-                if (stats.isDirectory())
-                    watch('react-js/src/' + element);
-                // console.log(stats);
-            });
-        });
+        watchFolders(allFiles, 'react-js/src/');
+
+
 
 
         //---run
 
 
         whenChanges();
-
-
 
 
 
