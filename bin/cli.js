@@ -575,6 +575,7 @@ let reco = {
             reco.setState({ emulatorBusy: true });
             console.log();
             console.log(colors.blue('Emulator running...'));
+            console.log('please waiting!');
             console.log();
             reco.state.child_process.exec(
                 'npm run build'
@@ -658,15 +659,25 @@ let reco = {
 
         const watchFolders = (allFiles, parentDir) => {
             allFiles.forEach(item => {
+                // console.log(item);
+
+                if (typeof (item) === "object")
+                    if (item.name) {
+                        item = item.name;
+                    } else {
+                        throw "ERROR RECO SERVE!";// exit here since item is object and item.name will be undefined
+                    }
+
                 fs.stat(parentDir + "/" + item, function (err, stats) {
+
                     if (err) {
                         console.log(err);
                         return; // exit here since stats will be undefined
                     }
                     if (stats.isDirectory()) {
-        
+                        watch(parentDir + "/" + item);
                         watchFolders(readdirSync(parentDir + "/" + item, { withFileTypes: true }), parentDir + "/" + item)
-                        // watch(parentDir + item);
+
                     }
                     // console.log(stats);
                 });
@@ -699,7 +710,6 @@ let reco = {
 
     //------------------------------------map------------------------------------//
     map: () => {
-
 
         console.log(colors.yellow.underline.bold('-info:') + "");
         console.log();
