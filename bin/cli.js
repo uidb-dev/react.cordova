@@ -658,17 +658,14 @@ let reco = {
 
         const watchFolders = (allFiles, parentDir) => {
             allFiles.forEach(item => {
-                fs.stat(parentDir + item, function (err, stats) {
+                fs.stat(parentDir + "/" + item, function (err, stats) {
                     if (err) {
                         console.log(err);
                         return; // exit here since stats will be undefined
                     }
                     if (stats.isDirectory()) {
-                        console.log();
-                        console.log("item: ", item, "isDirectory: ", stats.isDirectory());
-
-
-                        watchFolders(readdirSync(parentDir + item, { withFileTypes: true }), parentDir + item)
+        
+                        watchFolders(readdirSync(parentDir + "/" + item, { withFileTypes: true }), parentDir + "/" + item)
                         // watch(parentDir + item);
                     }
                     // console.log(stats);
@@ -678,7 +675,7 @@ let reco = {
 
         let allFiles = readdirSync('react-js/src', { withFileTypes: true });
         // console.log(allFiles);
-        watchFolders(allFiles, 'react-js/src/');
+        watchFolders(allFiles, 'react-js/src');
 
 
 
