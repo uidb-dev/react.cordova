@@ -610,7 +610,7 @@ let reco = {
             reco.setState({ emulatorBusy: true });
             console.log();
             console.log(colors.blue('Emulator running...'));
-            console.log('please waiting!');
+            console.log('please wait, processing...');
             console.log();
             reco.state.child_process.exec(
                 'npm run build'
