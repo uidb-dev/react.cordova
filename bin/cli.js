@@ -40,7 +40,7 @@ let reco = {
                     reco.init();
                     break;
                 case "serve":
-                    reco.startOrServe();
+                    reco.bundleServe();
                     break;
                 case "build":
                     reco.build();
@@ -49,7 +49,7 @@ let reco = {
                     reco.react();
                     break;
                 case "start":
-                    reco.startOrServe();
+                    reco.bundleServe();
                     break;
                 case "test":
                     reco.reactTest();
@@ -95,33 +95,33 @@ let reco = {
     },
 
     //------------------------------------startOrServe------------------------------------//
-    startOrServe: async () => {
-        const choicesOptions = [`react serve: without cordova script, Fast and automatic reload (react start).`
-            , `bundle serve : with cordova script, slow updates on save changes and not automatic reload.`];
-        const defaultTemplate = choicesOptions[0];
+    // startOrServe: async () => {
+    //     const choicesOptions = [`react serve: without cordova script, Fast and automatic reload (react start).`
+    //         , `bundle serve : with cordova script, slow updates on save changes and not automatic reload.`];
+    //     const defaultTemplate = choicesOptions[0];
 
-        const inquirer = require('inquirer');
-        const questions = [];
-        questions.push({
-            type: 'list',
-            name: 'serve',
-            message: 'Please select a method to serve debug',
-            choices: choicesOptions,
-            default: defaultTemplate,
-        });
+    //     const inquirer = require('inquirer');
+    //     const questions = [];
+    //     questions.push({
+    //         type: 'list',
+    //         name: 'serve',
+    //         message: 'Please select a method to serve debug',
+    //         choices: choicesOptions,
+    //         default: defaultTemplate,
+    //     });
 
-        const answer = await inquirer.prompt(questions);
+    //     const answer = await inquirer.prompt(questions);
 
-        if (answer.serve === choicesOptions[0]) {
-            reco.reactStart();
-        } else {
-            reco.serve();
-        }
-
-
+    //     if (answer.serve === choicesOptions[0]) {
+    //         reco.reactStart();
+    //     } else {
+    //         reco.serve();
+    //     }
 
 
-    },
+
+
+    // },
 
     //------------------------------------build------------------------------------//
     build: () => {
@@ -559,6 +559,41 @@ let reco = {
                 console.log(data.toString());
             }).on('data', (data) => {
                 console.log(data.toString());
+            });
+    },
+
+    //------------------------------------bundleServe------------------------------------//
+    bundleServe: () => {
+
+        reco.state.child_process.exec(
+            'cordova run'
+            , { cwd: 'cordova' }
+            , function (error) {
+
+                if (error) {
+                    reco.setState({ error: true });
+                    console.error('reco-cli-bundleServe ERROR :' + error);
+                    return;
+                }
+
+            }).stdout.on('data', (data) => {
+                if (!reco.state.emulatorRunning) {
+
+                    // open(data.slice(data.indexOf("http"), data.indexOf("http") + 21));
+                    // open(data.slice(data.indexOf("http"), data.indexOf("http") + 21) + '/browser/www/');
+                    reco.setState({ emulatorBusy: false });
+                    console.log();
+                    console.log(colors.blue('Emulator ready!'));
+                    // console.log("please reload the browser.");
+
+                    console.log();
+                }
+                reco.setState({ emulatorRunning: true });
+                if (data.includes("localhost")) {
+                    console.log(colors.green(data.toString()));
+                } else {
+                    // console.log(data.toString());
+                }
             });
     },
 
