@@ -37,12 +37,11 @@ reco -info
 
 ### Serve debug mode
 
-To run a React or Cordova simulation
+To run a bundle serve React and Cordova simulation
 
 ```cli
 reco start
 ```
-*You can choose one of two methods to serve.
 
 ### Project build
 

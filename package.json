@@ -12,7 +12,7 @@
     "reco-test": ".bin/test"
   },
   "files": [
-    "bin/",
+    "bin/cli.js",
     "templates/",
     ".bin/",
     "node_modules/",
