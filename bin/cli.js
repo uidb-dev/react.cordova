@@ -97,6 +97,7 @@ let reco = {
 
     //------------------------------------build------------------------------------//
     build: () => {
+
         console.log();
         console.log('start build react');
         console.log();
@@ -119,6 +120,7 @@ let reco = {
 
                     reco.state.child_process.exec(
                         'cordova build ' + reco.state.clientArgsAfter
+                        , { maxBuffer: 9999 * 9999 }
                         , { cwd: 'cordova' }
                         , function (error, stdout, stderr) {
                             if (error) {
@@ -132,6 +134,7 @@ let reco = {
                         }).on('close', function () {
                             if (!reco.state.error) reco.succeeded();
                         }).stdout.on('data', (data) => {
+                            data = data + data + data + data
                             console.log(data.toString().replace("reco", "react"));
                         });
 
@@ -219,7 +222,7 @@ let reco = {
 
                 reco.state.child_process.exec(
                     withTemplate ? 'npm i react.cordova-navigation_controller cordova_script react-browser-notifications' : 'npm i react.cordova-navigation_controller cordova_script'
-                    , { cwd: dir + '/react-js' }
+                    , { cwd: dir }
                     , function (error, stdout, stderr) {
                         if (error) {
                             reco.setState({ error: true });
@@ -231,6 +234,19 @@ let reco = {
                         console.log(data.toString());
                     }).on('close', () => {
 
+
+
+                        // destination.txt will be created or overwritten by default.
+                        fs.copyFile(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + "package.json"
+                            , dir + '/package.json', (err) => {
+                                if (err) {
+                                    console.log('package.json of reco not copy');
+                                    console.log('ERROR: ', err)
+                                }
+
+                            });
+
+
                         const copydir = require("copy-dir");
 
                         fs.readdir(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template, (err, files) => {
@@ -240,9 +256,11 @@ let reco = {
                                     fs.unlink(dir + "/react-js/src/" + file, (err) => {
                                         if (err) console.log("ERROR: reco can't copy template files.(unlink) :" + err);
                                     });
-                                copydir.sync(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template + "\\" + file, dir + "/react-js/src/" + file, {}, () => {
-                                    if (err) console.log("ERROR: reco can't copy template files :" + err);
-                                });
+                                copydir.sync(reco.state.args[1].substring(0
+                                    , reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template + "\\" + file
+                                    , dir + "/react-js/src/" + file, {}, () => {
+                                        if (err) console.log("ERROR: reco can't copy template files :" + err);
+                                    });
                             });
                         });
 
@@ -450,7 +468,7 @@ let reco = {
     reactInstall: () => {
         reco.state.child_process.exec(
             'npm i ' + reco.state.clientArgsAfter
-            , { cwd: 'react-js' }
+            , { cwd: '' }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });

@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 require = require('esm')(module /*, options*/);
-require('../bin/test').cli(process.argv);
+require('../bin/cordovaPlugins').plugin(process.argv);

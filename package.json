@@ -1,6 +1,6 @@
 {
   "name": "react.cordova",
-  "version": "1.7.0",
+  "version": "1.7.4",
   "description": "Reco unifies React.js and Cordova into one CLI which bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform applications built in React .",
   "scripts": {
     "start": "reco start"
@@ -8,11 +8,10 @@
   "bin": {
     "reco": ".bin/reco",
     "react-cordova": ".bin/reco",
-    "react": ".bin/react",
-    "reco-test": ".bin/test"
+    "react": ".bin/react"
   },
   "files": [
-    "bin/cli.js",
+    "bin/",
     "templates/",
     ".bin/",
     "node_modules/",

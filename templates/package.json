@@ -1,0 +1,11 @@
+{
+  "name": "react.cordova",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+  },
+  "scripts": {
+    "start": "reco start",
+    "build": "reco build"
+  }
+}
