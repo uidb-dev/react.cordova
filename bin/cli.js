@@ -1,7 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 var colors = require('colors');
+var os = require('os');
 //import path from "path";
+
 
 
 let reco = {
@@ -118,25 +120,37 @@ let reco = {
 
                 reco.state.callBack_replaceWwwRootDir = function () {
 
-                    reco.state.child_process.exec(
-                        'cordova build ' + reco.state.clientArgsAfter
-                        , { maxBuffer: 9999 * 9999 }
-                        , { cwd: 'cordova' }
-                        , function (error, stdout, stderr) {
-                            if (error) {
-                                console.error('reco-cli-build-cordova ERROR : ' + error);
-                                reco.setState({ error: true });
-                                return;
-                            }
-                            if (stdout) console.log(stdout);
-                            if (stderr) console.log(stderr);
+                    function execCB(error, stdout, stderr) {
+                        if (error) {
+                            console.error('reco-cli-build-cordova ERROR : ' + error);
+                            reco.setState({ error: true });
+                            return;
+                        }
+                        // if (stdout) console.log(stdout);
+                        // if (stderr) console.log(stderr);
+                    }
 
-                        }).on('close', function () {
-                            if (!reco.state.error) reco.succeeded();
-                        }).stdout.on('data', (data) => {
-                            data = data + data + data + data
-                            console.log(data.toString().replace("reco", "react"));
-                        });
+                    if (os.platform() === "darwin") {
+
+                        reco.state.child_process.exec(
+                            'cordova build ' + reco.state.clientArgsAfter
+                            , { maxBuffer: 9999 * 9999 }
+                            , { cwd: 'cordova' }
+                            , execCB).on('close', function () {
+                                if (!reco.state.error) reco.succeeded();
+                            }).stdout.on('data', (data) => {
+                                console.log(data.toString().replace("reco", "react"));
+                            });
+                    } else {
+                        reco.state.child_process.exec(
+                            'cordova build ' + reco.state.clientArgsAfter
+                            , { cwd: 'cordova' }
+                            , execCB).on('close', function () {
+                                if (!reco.state.error) reco.succeeded();
+                            }).stdout.on('data', (data) => {
+                                console.log(data.toString().replace("reco", "react"));
+                            });
+                    }
 
                 };
 
