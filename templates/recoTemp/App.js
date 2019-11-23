@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigator from 'react.cordova-navigation_controller';
 
-import './app.css';
+import './App.css';
 
 //--pages--//
 import Home from './pages/index';
