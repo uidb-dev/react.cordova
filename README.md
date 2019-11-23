@@ -37,23 +37,30 @@ reco -info
 
 ### Serve debug mode
 
-To run a React or Cordova simulation
+To run a bundle serve React and Cordova simulation
 
 ```cli
 reco start
 ```
-*You can choose one of two methods to serve.
+or
+```cli
+npm start
+```
 
 ### Project build
 
 Perform a build action for your project using the following command
 
 ```cli
-reco build
+reco build <cordova platform>
 ```
+or
+```cli
+npm run build <cordova platform>
+```
+*Node: `<cordova platform>` is not requred.
 
-1. Builds **`react-app`** to publish (in: ./react-js/build).<br>
-2. Builds **`cordova-app`** for mobile and other platforms.
+Builds **`cordova-app`** for browser, mobile and other platforms.
 
 *Note: will generate an **apk** installable package for Android devices*<br>
 *Note: will generate an **xcworkspace** XCode project that can be compiled and built for deployment on iOS devices*

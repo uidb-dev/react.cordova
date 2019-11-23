@@ -3,24 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'cordova_script';
 
 
-const startApp = (cordovaWork) => {
+document.addEventListener('deviceready', () => {
+
     ReactDOM.render(
         <div>
-            <App cordovaWork={cordovaWork} />
+            <App cordovaWork={true} />
         </div>,
         document.getElementById('root')
     );
-}
+}, false);
 
-if (!window.cordova) {
-    startApp(false)
-} else {
-    document.addEventListener('deviceready', () => {
-        startApp(true);
-    }, false);
-}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

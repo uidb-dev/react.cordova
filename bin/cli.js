@@ -18,8 +18,8 @@ let reco = {
                 callBack_replaceWwwRootDir: () => { },
                 child_process: require('child_process'),
                 error: false,
-                emulatorRunning: false,
-                emulatorBusy: false,
+                // emulatorRunning: false,
+                // emulatorBusy: false,
             }
 
             //----- save the args after index 
@@ -40,7 +40,7 @@ let reco = {
                     reco.init();
                     break;
                 case "serve":
-                    reco.startOrServe();
+                    reco.bundleServe();
                     break;
                 case "build":
                     reco.build();
@@ -49,7 +49,7 @@ let reco = {
                     reco.react();
                     break;
                 case "start":
-                    reco.startOrServe();
+                    reco.bundleServe();
                     break;
                 case "test":
                     reco.reactTest();
@@ -94,37 +94,10 @@ let reco = {
 
     },
 
-    //------------------------------------startOrServe------------------------------------//
-    startOrServe: async () => {
-        const choicesOptions = [`react serve: without cordova script, Fast and automatic reload (react start).`
-            , `bundle serve : with cordova script, slow updates on save changes and not automatic reload.`];
-        const defaultTemplate = choicesOptions[0];
-
-        const inquirer = require('inquirer');
-        const questions = [];
-        questions.push({
-            type: 'list',
-            name: 'serve',
-            message: 'Please select a method to serve debug',
-            choices: choicesOptions,
-            default: defaultTemplate,
-        });
-
-        const answer = await inquirer.prompt(questions);
-
-        if (answer.serve === choicesOptions[0]) {
-            reco.reactStart();
-        } else {
-            reco.serve();
-        }
-
-
-
-
-    },
 
     //------------------------------------build------------------------------------//
     build: () => {
+
         console.log();
         console.log('start build react');
         console.log();
@@ -147,6 +120,7 @@ let reco = {
 
                     reco.state.child_process.exec(
                         'cordova build ' + reco.state.clientArgsAfter
+                        , { maxBuffer: 9999 * 9999 }
                         , { cwd: 'cordova' }
                         , function (error, stdout, stderr) {
                             if (error) {
@@ -160,6 +134,7 @@ let reco = {
                         }).on('close', function () {
                             if (!reco.state.error) reco.succeeded();
                         }).stdout.on('data', (data) => {
+                            data = data + data + data + data
                             console.log(data.toString().replace("reco", "react"));
                         });
 
@@ -246,8 +221,8 @@ let reco = {
                 // );
 
                 reco.state.child_process.exec(
-                    withTemplate ? 'npm i react.cordova-navigation_controller react-browser-notifications' : 'npm i react.cordova-navigation_controller'
-                    , { cwd: dir + '/react-js' }
+                    withTemplate ? 'npm i react.cordova-navigation_controller cordova_script react-browser-notifications' : 'npm i react.cordova-navigation_controller cordova_script'
+                    , { cwd: dir }
                     , function (error, stdout, stderr) {
                         if (error) {
                             reco.setState({ error: true });
@@ -259,6 +234,19 @@ let reco = {
                         console.log(data.toString());
                     }).on('close', () => {
 
+
+
+                        // destination.txt will be created or overwritten by default.
+                        fs.copyFile(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + "package.json"
+                            , dir + '/package.json', (err) => {
+                                if (err) {
+                                    console.log('package.json of reco not copy');
+                                    console.log('ERROR: ', err)
+                                }
+
+                            });
+
+
                         const copydir = require("copy-dir");
 
                         fs.readdir(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template, (err, files) => {
@@ -268,9 +256,11 @@ let reco = {
                                     fs.unlink(dir + "/react-js/src/" + file, (err) => {
                                         if (err) console.log("ERROR: reco can't copy template files.(unlink) :" + err);
                                     });
-                                copydir.sync(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template + "\\" + file, dir + "/react-js/src/" + file, {}, () => {
-                                    if (err) console.log("ERROR: reco can't copy template files :" + err);
-                                });
+                                copydir.sync(reco.state.args[1].substring(0
+                                    , reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template + "\\" + file
+                                    , dir + "/react-js/src/" + file, {}, () => {
+                                        if (err) console.log("ERROR: reco can't copy template files :" + err);
+                                    });
                             });
                         });
 
@@ -478,7 +468,7 @@ let reco = {
     reactInstall: () => {
         reco.state.child_process.exec(
             'npm i ' + reco.state.clientArgsAfter
-            , { cwd: 'react-js' }
+            , { cwd: '' }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -562,120 +552,50 @@ let reco = {
             });
     },
 
-    //------------------------------------serve------------------------------------//
-    serve: () => {
-        console.log(colors.blue("reco serve start"));
+    //------------------------------------bundleServe------------------------------------//
+    bundleServe: () => {
 
-        //----helpers
+        console.log(colors.blue('Emulator running...'));
+        console.log('please wait, processing...');
 
-        const { readdirSync } = require('fs');
+        reco.state.child_process.exec(
+            'cordova serve 8597'
+            , { cwd: 'cordova' }
+            , function (error) {
 
-        const getDirectories = source =>
-            readdirSync(source, { withFileTypes: true })
-                .filter(dirent => dirent.isDirectory())
-                .map(dirent => "/" + dirent.name);
+                if (error) {
+                    reco.setState({ error: true });
+                    console.error('reco-cli-bundleServe, error at cordova serve-run.');
+                    console.error('ERROR :' + error);
+                    return;
+                }
 
+            }).stdout.on('data', (dataCordo) => {
 
-        let listDirectories = [];
-        listDirectories.push(getDirectories('react-js/src'));
-        listDirectories.push("/");
+                if (dataCordo.includes("localhost")) {
 
+                    reco.state.child_process.exec(
+                        'npm start'
+                        , { cwd: 'react-js' }
+                        , function (error) {
 
-        //-whenChanges
-        const whenChanges = () => {
-            reco.setState({ emulatorBusy: true });
-            console.log();
-            console.log(colors.blue('Emulator running...'));
-            console.log();
-            reco.state.child_process.exec(
-                'npm run build'
-                , { cwd: 'react-js' }
-                , function (error, stdout, stderr) {
-                    if (error) {
-                        console.error('reco-react-cli ERROR : ' + error);
-                        return;
-                    }
-                    // console.log(stdout);
-                }).on('close', function () {
+                            if (error) {
+                                reco.setState({ error: true });
+                                console.error('reco-cli-bundleServe, error at react start serve.');
+                                console.error('ERROR :' + error);
+                                return;
+                            }
 
-                    reco.state.callBack_replaceWwwRootDir = () => {
-                        if (!reco.state.emulatorRunning) {
+                        }).stdout.on('data', (data) => {
+                            if (data.includes("localhost")) {
+                                console.log(colors.blue(data));
+                            }
+                            else { console.log(data); }
 
-                            reco.state.child_process.exec(
-                                'cordova run'
-                                , { cwd: 'cordova' }
-                                , function (error) {
+                        });
 
-                                    if (error) {
-                                        reco.setState({ error: true });
-                                        console.error('reco-cli-serve ERROR : cordova serve error ,' + error);
-                                        return;
-                                    }
-
-                                }).stdout.on('data', (data) => {
-                                    if (!reco.state.emulatorRunning) {
-
-                                        // open(data.slice(data.indexOf("http"), data.indexOf("http") + 21));
-                                        // open(data.slice(data.indexOf("http"), data.indexOf("http") + 21) + '/browser/www/');
-                                        reco.setState({ emulatorBusy: false });
-                                        console.log();
-                                        console.log(colors.blue('Emulator ready!'));
-                                        // console.log("please reload the browser.");
-                                        
-                                        console.log();
-                                    }
-                                    reco.setState({ emulatorRunning: true });
-                                    if (data.includes("localhost")) {
-                                        console.log(colors.green(data.toString()));
-                                    } else {
-                                        // console.log(data.toString());
-                                    }
-                                });
-                        } else {
-                            reco.state.child_process.exec(
-                                'cordova build browser'
-                                , { cwd: 'cordova' }
-                                , function (error) {
-
-                                    if (error) {
-                                        reco.setState({ error: true });
-                                        console.error('reco-cli-serve ERROR : cordova build browser ,' + error);
-                                        return;
-                                    } else {
-                                        reco.setState({ emulatorBusy: false });
-                                        console.log();
-                                        console.log(colors.blue('Emulator ready!'));
-                                        console.log("please reload the browser.");
-                                        console.log();
-                                    }
-
-                                });
-                        }
-
-
-
-                    };
-                    reco.replaceWwwRootDir();
-
-                });
-        }
-
-
-        //---run
-
-
-        whenChanges();
-
-        for (let index = 0; index < listDirectories.length; index++) {
-
-            fs.watch('react-js/src' + listDirectories[index], function (event, filename) {
-                if (reco.state.emulatorRunning && !reco.state.emulatorBusy)
-                    whenChanges();
+                }
             });
-
-        }
-
-
     },
 
     //------------------------------------info------------------------------------//
@@ -688,7 +608,6 @@ let reco = {
 
     //------------------------------------map------------------------------------//
     map: () => {
-
 
         console.log(colors.yellow.underline.bold('-info:') + "");
         console.log();
@@ -878,8 +797,7 @@ let reco = {
             dataString = dataString.replace(dataString.substr(
                 dataString.indexOf(`<meta name="viewport"`)
                 , dataString.substr(dataString.indexOf(`<meta name="viewport"`)).indexOf("/>") + 2
-            ), ` <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />
-                 <script type="text/javascript" src="./cordova.js"></script>`);
+            ), ` <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />`);
 
 
             fs.writeFile(dir + "/react-js/public/index.html", dataString, function (err) {
