@@ -234,7 +234,23 @@ let reco = {
                 // );
 
                 reco.state.child_process.exec(
-                    withTemplate ? 'npm i react.cordova-navigation_controller cordova_script react-browser-notifications' : 'npm i react.cordova-navigation_controller cordova_script'
+                    withTemplate ? 'npm i react.cordova-navigation_controller react-browser-notifications'
+                        : 'npm i react.cordova-navigation_controller'
+                    , { cwd: dir + "/react-js" }
+                    , function (error, stdout, stderr) {
+                        if (error) {
+                            reco.setState({ error: true });
+                            console.error('reco-cli-init--install-react.cordova-navigation_controller ERROR : ' + error);
+                            return;
+                        }
+                        console.log(stdout);
+                    }).on('data', (data) => {
+                        console.log(data.toString());
+                    }).on('close', () => {
+                    })
+
+                reco.state.child_process.exec(
+                    'npm i cordova_script'
                     , { cwd: dir }
                     , function (error, stdout, stderr) {
                         if (error) {
