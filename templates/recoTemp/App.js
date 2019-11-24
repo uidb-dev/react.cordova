@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigator from 'react.cordova-navigation_controller';
+// Learn more about the Navigator: https://www.npmjs.com/package/react.cordova-navigation_controller
 
 import './app.css';
 
