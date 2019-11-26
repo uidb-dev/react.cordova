@@ -38,6 +38,9 @@ let reco = {
             ///------////
 
             switch (args[2].split(2)[0]) {
+                case "version":
+                    reco.version();
+                    break;
                 case "init":
                     reco.init();
                     break;
@@ -87,6 +90,7 @@ let reco = {
                     reco.map();
                     break;
             }
+
 
         } catch (error) {
             reco.map();
@@ -497,7 +501,7 @@ let reco = {
     reactInstall: () => {
         reco.state.child_process.exec(
             'npm i ' + reco.state.clientArgsAfter
-            , { cwd: '' }
+            , { cwd: 'react-js' }
             , function (error, stdout, stderr) {
                 if (error) {
                     reco.setState({ error: true });
@@ -714,6 +718,8 @@ let reco = {
         console.log("----------------------------------------------");
         console.log();
         reco.credit();
+
+        reco.version(true);
     },
 
 
@@ -861,6 +867,65 @@ let reco = {
         });
 
     },
+
+    version: (automatic) => {
+
+        reco.state.child_process.exec(
+            'npm view react.cordova --json'
+            // , { cwd: 'react-js' }
+            , function (error, stdout, stderr) {
+                if (error) {
+                    reco.setState({ error: true });
+                    console.error('reco-cli-react ERROR : ' + error);
+                    return;
+                }
+                // console.log(stdout);
+            }).stdout.on('data', (dataView) => {
+                dataView = JSON.parse(dataView);
+
+
+                const jsonfile = require('jsonfile');
+                const file = reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "package.json";
+                jsonfile.readFile(file)
+                    .then(obj => {
+                        const thisVersion = obj.version;
+                        const newVersion = dataView.versions[dataView.versions.length - 1];
+
+                        if (automatic && thisVersion !== newVersion) {
+
+                            console.log();
+                            console.log();
+
+                            console.log(
+                                colors.cyan(`
+        ╭─────────────────────────────────────────────╮
+        │                                             │
+        │   `)
+                                , `Update available ${thisVersion} → `
+                                , colors.green(newVersion)
+                                , colors.cyan(`         │
+        │   `)
+                                , `Run`
+                                , colors.blue(`npm i -g react.cordova`)
+                                , ` to update`
+                                , colors.cyan(`   │
+        │                                             │
+        ╰─────────────────────────────────────────────╯
+        
+        `));
+                        } else if (!automatic) {
+                            console.log(thisVersion);
+
+                        }
+
+                    });
+
+
+
+            });
+
+
+    }
 
 
 
