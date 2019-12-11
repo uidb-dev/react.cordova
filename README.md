@@ -15,6 +15,20 @@ coding and development experience using Reco!
 </p>
 
 
+
+
+<details open>
+<summary>
+<i>New virsion </i>
+</summary>
+</details>
+
+
+<details>
+<summary>
+<i>Old virsion </i>
+</summary>
+
 ### Installing Reco CLI 
 ```cli
 npm install -g react.cordova
@@ -106,7 +120,7 @@ react <any react command line to run>
 Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
 Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
 
-
+</details>
 
 
 <br>

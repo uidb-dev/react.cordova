@@ -3,8 +3,8 @@ const path = require("path");
 var colors = require('colors');
 var os = require('os');
 //import path from "path";
-var reco1 =require('./reco1');
-var reco2 =require('./reco2');
+var reco1 = require('./reco1');
+var reco2 = require('./reco3');
 
 
 
@@ -43,9 +43,9 @@ export function cli(args) {
             }
         );
 
-    if ((fs.existsSync("./cordova") && fs.existsSync("./react-js")) ) {
+    if ((fs.existsSync("./cordova") && fs.existsSync("./react-js"))) {
         reco1.constructor(args);
-    }if(fs.existsSync("package.json")|| args.slice(2)[0] === "init"){
+    } if (fs.existsSync("package.json") || args.slice(2)[0] === "init") {
         reco2.constructor(args);
     } else {
 

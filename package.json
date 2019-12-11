@@ -7,8 +7,7 @@
   },
   "bin": {
     "reco": ".bin/reco",
-    "react-cordova": ".bin/reco",
-    "react": ".bin/react"
+    "react-cordova": ".bin/reco"
   },
   "files": [
     "bin/",
@@ -74,6 +73,7 @@
     "inquirer": "^6.5.2",
     "jsonfile": "^5.0.0",
     "ncp": "^2.0.0",
-    "node-gyp": "^6.0.0"
+    "node-gyp": "^6.0.0",
+    "promise": "^8.0.3"
   }
 }
