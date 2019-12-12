@@ -16,7 +16,7 @@ const build= async (reco) => {
                 reco.setState({ error: true });
                 return;
             }
-            // if (stdout) console.log(stdout);
+             if (stdout) console.log(stdout);
             // if (stderr) console.log(stderr);
         }
 
@@ -24,7 +24,7 @@ const build= async (reco) => {
 
         reco.state.child_process.exec(
             'cordova build ' + reco.state.clientArgsAfter
-            , { maxBuffer: 5120 * 5120, cwd: 'cordova' }
+            , { maxBuffer: 5120 * 5120 }
             , execCB).on('close', function () {
                 if (!reco.state.error) reco.succeeded();
             }).stdout.on('data', (data) => {

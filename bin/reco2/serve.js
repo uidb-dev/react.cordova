@@ -11,7 +11,7 @@ const bundleServe = async (reco) => {
 
     reco.state.child_process.exec(
         'cordova serve 8597'
-        , { cwd: 'cordova' }
+        // , { cwd: 'cordova' }
         , function (error) {
 
             if (error) {

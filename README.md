@@ -17,14 +17,103 @@ coding and development experience using Reco!
 
 
 
-<details open>
+<details>
 <summary>
-<i>New virsion </i>
+<i>New virsion (>2.0.0-dev)</i>
 </summary>
+
+
+### Installing Reco CLI 
+```cli
+npm install -g react.cordova@2.0.0-dev
+```
+
+### Initialize a new bundle project
+
+```cli
+reco init com.example.hello "Hello World"
+```
+*Note: creates both **`react-app`** and **`cordova-app`** and then will merge one into the other*
+
+### Explore Reco CLI
+
+To get full CLI reference of all commands and features currently available, run the following command
+
+```cli
+reco help
+```
+
+### Serve debug mode
+
+To run a bundle serve React and Cordova simulation
+
+```cli
+npm start
+```
+
+### Project build
+
+Perform a build action for your project using the following command
+
+```cli
+npm run build
+```
+```cli
+npm run build <cordova platform>
+```
+
+Builds **`cordova-app`** for browser, mobile and other platforms.
+
+*Note: will generate an **apk** installable package for Android devices*<br>
+*Note: will generate an **xcworkspace** XCode project that can be compiled and built for deployment on iOS devices*
+<br>
+
+### Integrated Cordova CLI 
+To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova command line
+
+**For example:**
+
+```cli
+cordova <any cordova command line to run>
+
+cordova platform
+
+cordova platform <add/rm> <cordova platform>
+
+cordova plugin <add/rm> <cordova plugin>
+```
+
+Learn more about Cordova: **[Cordova get started](https://cordova.apache.org/#getstarted).**
+
+### Integrated React.js  CLI
+
+You can run React.js CLI from within the project's directory
+
+**For example:**
+
+```cli
+npm start
+
+npm test
+
+npm install <npm packages for react>
+
+npm uninstall <npm packages for react>
+
+react <any react command line to run>
+```
+
+Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
+Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
+
 </details>
 
 
-<details>
+<br>
+
+
+
+<details open>
 <summary>
 <i>Old virsion </i>
 </summary>

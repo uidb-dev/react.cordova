@@ -5,6 +5,8 @@ var colors = require('colors');
 const init = require('./init');
 const build = require('./build');
 const bundleServe = require('./serve');
+const test = require("./test");
+const copy = require('./copyToWww');
 
 
 let reco = {
@@ -14,10 +16,6 @@ let reco = {
 
         try {
 
-            let cordovaCLI = args[1];
-            cordovaCLI = args[1].slice(0, args[1].indexOf("cordova"));
-            cordovaCLI = cordovaCLI.replace("react.cordova", "cordova").replace(".bin", "bin");
-
             reco.state = {
                 args: args,
                 clientArgsAfter: "",
@@ -25,7 +23,6 @@ let reco = {
                 callBack_replaceWwwRootDir: () => { },
                 child_process: require('child_process'),
                 error: false,
-                cordovaCLI=cordovaCLI
                 // emulatorRunning: false,
                 // emulatorBusy: false,
             }
@@ -42,22 +39,32 @@ let reco = {
             reco.setState({ clientArgsAfter_Space: clientArgsAfter_Space });
 
             ///------////
-
             switch (args[2].split(2)[0]) {
                 case "version":
+                case "v":
+                case "-v":
+                case "-version":
+                case "--v":
+                case "--version":
                     reco.version();
                     break;
                 case "init":
-                    reco.init();
+                    reco.init(reco);
                     break;
                 case "serve":
-                    reco.bundleServe();
+                    reco.bundleServe(reco);
                     break;
                 case "build":
-                    reco.build();
+                    reco.build(reco);
                     break;
                 case "-info":
+                case "info":
+                case "help":
+                case "-help":
                     reco.info();
+                    break;
+                case "copy":
+                    copy(reco);
                     break;
                 case "":
                     reco.map();
@@ -81,13 +88,13 @@ let reco = {
 
 
     //------------------------------------build------------------------------------//
-    build: await build(reco),
+    build: (fthis) => build(fthis),
 
     //------------------------------------init------------------------------------//
-    init: await init(reco) ,
+    init: (fthis) => init(fthis),
 
     //------------------------------------bundleServe------------------------------------//
-    bundleServe: await bundleServe(reco),
+    bundleServe: (fthis) => bundleServe(fthis),
 
 
     //------------------------------------info------------------------------------//
@@ -104,61 +111,94 @@ let reco = {
         console.log(colors.yellow.underline.bold('-info:') + "");
         console.log();
 
+        //------reco
+        console.log(colors.underline.green("reco command [options]"))
+        console.log("Cli Commands");
 
-        console.log(" " + colors.underline.bold('init'));
-        console.log("  " + colors.bold('create new project.  both react-app and cordova-app and then will merge one into the other. '));
-        console.log('   example command: ' + colors.green('reco init com.example.hello "Hello World"'));
-        console.log();
+        console.log("    " + colors.bold('init -> create new project.  both react-app and cordova-app and then will merge one into the other'));
 
-        console.log(" " + colors.underline('build'));
-        console.log("  " + colors.bold(`build react-app and cordova-app. `));
-        console.log('   command: ' + colors.green('reco build'));
-        console.log('   command: ' + colors.green('reco build <cordova-platform>'));
-        console.log();
+        console.log(`
+    help ............................... Get help for a command
+    version ............................ Prints out this utility's version
+`);
 
-        console.log(" " + colors.underline('react'));
-        console.log("  " + colors.bold(`to run any react command. `));
-        console.log('   command: ' + colors.green('reco react <command>'));
-        console.log();
-
-        console.log(" " + colors.underline('start/serve'));
-        console.log("  " + colors.bold(`run a React or Cordova simulation`));
-        console.log('   command: ' + colors.green('reco start'));
-        console.log();
-
-        console.log(" " + colors.underline('test'));
-        console.log("  " + colors.bold(`react test. `));
-        console.log('   command: ' + colors.green('reco test'));
-        console.log();
-
-        console.log(" " + colors.underline('install/uninstall'));
-        console.log("  " + colors.bold(`install react package from npm. `));
-        console.log('   command: ' + colors.green('reco install <npm-package>'));
-        console.log('   command: ' + colors.green('reco i <npm-package>'));
-        console.log('   command: ' + colors.green('reco uninstall  <npm-package>'));
-        console.log();
-
-        console.log(" " + colors.underline('plugin'));
-        console.log("  " + colors.bold(`add cordova plugin. `));
-        console.log('   command: ' + colors.green('reco plugin add <cordova-plugin>'));
-        console.log();
-
-        console.log(" " + colors.underline('remove'));
-        console.log("  " + colors.bold(`remove cordova plugin. `));
-        console.log('   command: ' + colors.green('reco plugin remove <cordova-plugin>'));
-        console.log('   command: ' + colors.green('reco plugin rm <cordova-plugin>'));
+        console.log("Examples");
+        console.log('    ' + colors.blue('reco init com.cordova.appid "Hello World"'));
 
         console.log();
-
-        console.log(" " + colors.underline('cordova'));
-        console.log("  " + colors.bold(`to run any cordova command. `));
-        console.log('   command: ' + colors.green('reco cordova'));
         console.log();
 
-        console.log('--------------------');
+        //------npm
+        console.log(colors.underline.green("npm command [options]"))
+        console.log("Bundle Commands");
 
-        console.log('reco -info');
+        // console.log(" " + colors.underline('build'));
+        // console.log("  " + colors.bold(`build react-app and cordova-app. `));
+        console.log("    start -> run React and Cordova bundle simulation on the browser");
+        console.log("    run build -> react build && react.cordova prepare && cordova compile");
+        console.log("    install/uninstall -> react packages from npm");
 
+
+        console.log();
+        console.log("Examples");
+        console.log("    npm start");
+        console.log("    npm run build");
+        console.log("    npm run build browser");
+        console.log("    npm run build android");
+        console.log("    npm run build ios");
+        console.log("    npm install react.cordova-navigation_controller");
+        console.log("    npm uninstall react.cordova-navigation_controller");
+
+
+        // console.log('   command: ' + colors.green('npm run build'));
+        // console.log('   command: ' + colors.green('npm run build <cordova-platform>'));
+        // console.log();
+
+        // console.log(" " + colors.underline('start/serve'));
+        // console.log("  " + colors.bold(`run React and Cordova bundle simulation on the browser`));
+        // console.log('   command: ' + colors.green('npm start'));
+        // console.log();
+
+
+        // console.log(" " + colors.underline('install/uninstall'));
+        // console.log("  " + colors.bold(`react packages from npm. `));
+        // console.log('   command: ' + colors.green('npm install <npm-package-for-react>'));
+        // console.log('   command: ' + colors.green('npm uninstall  <npm-package-for-react>'));
+        // console.log();
+
+        // console.log(" " + colors.underline('plugin'));
+        // console.log("  " + colors.bold(`cordova plugins. `));
+        // console.log('   command: ' + colors.green('cordova plugin add <cordova-plugin>'));
+        // console.log('   command: ' + colors.green('cordova plugin remove <cordova-plugin>'));
+
+        // console.log();
+
+
+
+        console.log();
+        console.log();
+
+        //--cordova
+        console.log("" + colors.underline('cordova'));
+        console.log("  " + colors.bold(`you can run any cordova command. `));
+        // console.log('   command: ' + colors.green('reco cordova'));
+        // console.log();
+        reco.state.child_process.exec(
+            "cordova help", function (error, stdout, stderr) {
+                stdout = stdout.replace(" create ............................. Create a project", "")
+                console.log(stdout.slice(0, stdout.indexOf("cordova command [options]")));
+                console.log(colors.underline.green(
+                    stdout.slice(
+                        stdout.indexOf("cordova command [options]")
+                        , stdout.indexOf("cordova command [options]") + 25)
+                ));
+                console.log(stdout.slice(stdout.indexOf("cordova command [options]") + 25, 9999999));
+                console.log('--------------------');
+
+                console.log('reco -info');
+
+
+            })
 
     },
 
@@ -195,12 +235,12 @@ let reco = {
         }
     },
 
-    //-------------------------remove all files and folders in =>./cordova/www--------------------------//
-    replaceWwwRootDir: (dirPath1 = './cordova/www') => {
+    //-------------------------remove all files and folders in =>./www--------------------------//
+    replaceWwwRootDir: (dirPath1 = './www') => {
 
         const ncp = require('ncp').ncp;
 
-        if (fs.existsSync("./cordova/www")) {
+        if (fs.existsSync("./www")) {
             async function rmWwwRootDir(dirPath, options = {}) {
                 const
                     { removeContentOnly = false, drillDownSymlinks = false } = options,
@@ -239,30 +279,31 @@ let reco = {
                     await rmdirAsync(dirPath);
 
 
-                if (!fs.existsSync(dirPath1)) {
+                if (!fs.existsSync("./www")) {
 
                     ncp.limit = 9999999999999999999;
 
-                    let parentDir = dirPath1.startsWith("./cordova")
-                        ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/"
+                    let parentDir = "./"; //+ "/"; //dirPath1.startsWith("./")
+                    //     ? "./" : dirPath1.substring(0, dirPath1.lastIndexOf("/")) + "/"
 
-                    ncp(parentDir + "build", parentDir + "cordova/www", function (err) {
+
+                    ncp(parentDir + "build", parentDir + "www", function (err) {
                         if (err) {
                             reco.setState({ error: true });
-                            return console.error("ERROR ncp1, copy build tocordova/www :   " + err);
+                            return console.error("ERROR ncp1, copy build to www :   " + err);
                         }
                         reco.state.callBack_replaceWwwRootDir(); // callBack();
                     });
                 }
 
             }
-            rmWwwRootDir(dirPath1);
+            rmWwwRootDir("./www/");
         } else {
-            let parentDir = dirPath1.startsWith("./cordova") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/";
-            ncp(parentDir + "build", parentDir + "cordova/www", function (err) {
+            let parentDir = "./";// dirPath1.startsWith("./") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/")) + "/";
+            ncp(parentDir + "build", parentDir + "www", function (err) {
                 if (err) {
                     reco.setState({ error: true });
-                    return console.error("ERROR ncp2, copy build tocordova/www :   " + err);
+                    return console.error("ERROR ncp2, copy build to www :   " + err);
                 }
                 reco.state.callBack_replaceWwwRootDir(); // callBack();
             });
