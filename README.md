@@ -100,7 +100,7 @@ npm install <npm packages for react>
 
 npm uninstall <npm packages for react>
 
-react <any react command line to run>
+npm <any react command line to run>
 ```
 
 Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
