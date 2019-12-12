@@ -19,7 +19,7 @@ coding and development experience using Reco!
 
 <details>
 <summary>
-<i>New virsion (>2.0.0-dev)</i>
+<i>New version (>2.0.0-dev)</i>
 </summary>
 
 
@@ -115,7 +115,7 @@ Learn programming in React.js: **[React.js documentation](https://reactjs.org/)*
 
 <details open>
 <summary>
-<i>Old virsion </i>
+<i>Old version </i>
 </summary>
 
 ### Installing Reco CLI 
