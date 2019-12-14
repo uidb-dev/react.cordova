@@ -41,6 +41,20 @@ reco help
 <i>New version</i>
 </summary>
 
+```
+project folder
+ |
+ |--src
+ |--public
+ |--platforms
+ |--plugins
+ |--www
+ |--build
+ |--hooks
+ |--package.json
+ |--package-lock.json
+ |-- ... 
+ ```
 
 
 ### Serve debug mode
@@ -117,6 +131,29 @@ Learn programming in React.js: **[React.js documentation](https://reactjs.org/)*
 <summary>
 <i>Old version ( < 2.0.0)</i>
 </summary>
+
+
+```
+project folder
+ |
+ |--cordova
+ |    |
+ |    |--hooks
+ |    |--platforms
+ |    |--plugins
+ |    |--www
+ |    |--package.json
+ |    |--package-lock.json
+ |    |-- ...
+ |
+ |--react-js
+ |    |--src
+ |    |--public
+ |    |--build
+ |    |--package.json
+ |    |--package-lock.json
+ |    |-- ... 
+ ```
 
 ### Serve debug mode
 
