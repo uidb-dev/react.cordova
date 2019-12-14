@@ -15,17 +15,9 @@ coding and development experience using Reco!
 </p>
 
 
-
-
-<details>
-<summary>
-<i>New version (>2.0.0-dev)</i>
-</summary>
-
-
 ### Installing Reco CLI 
 ```cli
-npm install -g react.cordova@2.0.0-dev
+npm install -g react.cordova
 ```
 
 ### Initialize a new bundle project
@@ -42,6 +34,14 @@ To get full CLI reference of all commands and features currently available, run 
 ```cli
 reco help
 ```
+
+
+<details open>
+<summary>
+<i>New version</i>
+</summary>
+
+
 
 ### Serve debug mode
 
@@ -113,30 +113,10 @@ Learn programming in React.js: **[React.js documentation](https://reactjs.org/)*
 
 
 
-<details open>
+<details>
 <summary>
-<i>Old version </i>
+<i>Old version ( < 2.0.0)</i>
 </summary>
-
-### Installing Reco CLI 
-```cli
-npm install -g react.cordova
-```
-
-### Initialize a new bundle project
-
-```cli
-reco init com.example.hello "Hello World"
-```
-*Note: creates both **`react-app`** and **`cordova-app`** and then will merge one into the other*
-
-### Explore Reco CLI
-
-To get full CLI reference of all commands and features currently available, run the following command
-
-```cli
-reco -info
-```
 
 ### Serve debug mode
 

@@ -46,7 +46,7 @@ export function cli(args) {
     if ((fs.existsSync("./cordova") && fs.existsSync("./react-js"))) {
         reco1.constructor(args);
     } if ((fs.existsSync("package.json") && !fs.existsSync("./cordova") && !fs.existsSync("./react-js"))
-        || args.slice(2)[0] === "init") {
+        || args.slice(2)[0] === "init"|| args.slice(2)[0] === "version") {
         reco2.constructor(args);
     } else {
 
