@@ -247,8 +247,8 @@ npm install -g cordova
 <br>
 
 
-## If you have any problem, please let us know [here](https://github.com/orchoban/react.cordova/issues), and we will make an effort to resolve it soon
-## Feel free to editing the code yourself: go to [bin/cli.js](https://github.com/orchoban/react.cordova/blob/master/bin/cli.js)
+## If you have any problems, please let us know [here](https://github.com/orchoban/react.cordova/issues), and we will make our best effort to resolve it soon
+## Feel free to edit the code yourself: go to [bin/cli.js](https://github.com/orchoban/react.cordova/blob/master/bin/cli.js)
 
 
 
