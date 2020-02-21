@@ -1,4 +1,7 @@
 # Reco (react.cordova)
+
+![](https://img.shields.io/npm/dt/react.cordova?label=Total%20of%20developers%20using&style=plastic)
+
 Welcome to `Reco` (React+Cordova). Reco unifies React.js and Cordova into one CLI which
 bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform 
 applications built in React.js. This bundled platform facilitates and automates project initialization, 
