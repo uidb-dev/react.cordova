@@ -36,7 +36,7 @@ reco help
 ```
 
 
-<details open>
+<!-- <details open> -->
 <summary>
 <i>New version</i>
 </summary>
@@ -120,7 +120,7 @@ npm <any react command line to run>
 Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
 Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
 
-</details>
+<!-- </details> -->
 
 
 <br>

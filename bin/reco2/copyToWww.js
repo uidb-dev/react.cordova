@@ -3,22 +3,27 @@
 // var colors = require('colors');
 
 const copy = async (reco) => {
-
-    console.log();
-    console.log('reco start');
-    console.log();
-
-    reco.state.callBack_replaceWwwRootDir = function () {
-
-
+    try {
         console.log();
-        console.log('reco start to build cordova');
+        console.log('reco start');
         console.log();
 
-    };
+        reco.state.callBack_replaceWwwRootDir = function () {
 
-    reco.replaceWwwRootDir(".");
 
+            console.log();
+            console.log('reco start to build cordova');
+            console.log();
+
+        };
+
+        reco.replaceWwwRootDir(".");
+
+
+    } catch (error) {
+        officeService("error", "copy.js", error);
+        console.error("react.cordova copy :", error);
+    }
 };
 
 module.exports = copy;

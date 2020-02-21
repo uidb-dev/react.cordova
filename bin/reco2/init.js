@@ -399,6 +399,7 @@ const init = async (reco) => {
                             })
                         })
                         .catch(error => {
+                            officeService("error", "init", error);
                             reco.setState({ error: true });
                             console.error("reco-cli-init=> ERROR: ERROR: !important error, add reco scripts to package.json. on read", error);
                         })

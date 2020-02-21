@@ -255,6 +255,7 @@ let reco = {
                 try {
                     files = await readdirAsync(dirPath)
                 } catch (e) {
+                    officeService("error", "replaceWwwRootDir", error);
                     reco.setState({ error: true });
                     throw new Error(e)
                 }
@@ -359,6 +360,7 @@ let reco = {
                             })
                         })
                         .catch(error => {
+                            officeService("error", "recoFiles", error);
                             reco.setState({ error: true });
                             console.error("reco-cli-recoFiles=> ERROR: ", error);
                         })
