@@ -1,4 +1,4 @@
-![](https://img.shields.io/npm/dt/react.cordova?label=Total%20of%20developers%20using&style=for-the-badge)
+![](https://img.shields.io/npm/dt/react.cordova?color=%2361dbfb&label=Total%20of%20developers%20using&style=for-the-badge)
 
 
 # Reco (react.cordova)
