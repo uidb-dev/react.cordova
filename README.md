@@ -20,6 +20,19 @@ coding and development experience using Reco!
 </p>
 
 
+<br/>
+
+<a href="https://paypal.me/orchoban">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG_global.gif" width="114px" alt=""/>
+</a>
+
+
+
+I dedicate a considerable amount of my free time to developing and maintaining this Cordova plugin, along with my other Open Source software. To help ensure this plugin is kept updated, new features are added and bugfixes are implemented quickly, please donate a couple of dollars (or a little more if you can stretch) as this will help me to afford to dedicate time to its maintenance. Please consider donating if you're using this plugin in an app that makes you money, if you're being paid to make the app, if you're asking for new features or priority bug fixes.
+
+
+<br/>
+
 ### Installing Reco CLI 
 ```cli
 npm install -g react.cordova
