@@ -99,6 +99,13 @@ const init = async (reco) => {
 
     console.log();
     console.log('---------reco start to build react-app---------');
+
+    let intervalPoint_isWork = setInterval(() => {
+        process.stdout.write(".");
+
+    }, 4000);
+
+
     reco.state.child_process.exec(
         'npx create-react-app ' + rootDir
         , function (error, stdout, stderr) {
@@ -117,6 +124,8 @@ const init = async (reco) => {
         })
         .on('close', function () {
 
+            clearInterval(intervalPoint_isWork);
+
             reco.state.child_process.exec(
                 withTemplate ? 'npm i cordova_script react.cordova-navigation_controller react-browser-notifications'
                     : 'npm i cordova_script react.cordova-navigation_controller'
@@ -132,12 +141,44 @@ const init = async (reco) => {
                     // console.log(data.toString());
                 }).on('close', () => {
 
+                    //-- ./react/public/index.html --//
+                    fs.readFile(rootDir + "/public/index.html", function (err, data) {
+                        // res.writeHead(200, {'Content-Type': 'text/html'});
+                        // res.write(data);
+                        // res.end();
+                        if (err) {
+                            reco.setState({ error: true });
+                            console.log("error: ", err);
+                        }
+
+                        let dataString = data.toString();
+
+                        dataString = dataString.replace(dataString.substr(
+                            dataString.indexOf(`<meta name="viewport"`)
+                            , dataString.substr(dataString.indexOf(`<meta name="viewport"`)).indexOf("/>") + 2
+                        ), ` <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />`);
+
+
+                        fs.writeFile(rootDir + "/public/index.html", dataString, function (err) {
+                            if (err) {
+                                return console.log(err);
+                            } else {
+                                console.log(rootDir + "/public/index.html ready to by mobile app with cordova");
+
+                            }
+                        })
+                    });
+                    //-----------
+
+
+
                     const jsonfile = require('jsonfile');
                     const filePackageJson_Root = "./" + rootDir + '/package.json';
                     let reactPackageJson = "";
                     jsonfile.readFile(filePackageJson_Root)
                         .then(obj => {
 
+                            obj.homepage = "./";
                             obj.scripts.reactstart = obj.scripts.start;
                             obj.scripts.start = "reco serve";
                             obj.scripts.build = "react-scripts build && reco copy && cordova build";

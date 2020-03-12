@@ -12,7 +12,7 @@ const copy = async (reco) => {
 
 
             console.log();
-            console.log('reco start to build cordova');
+            console.log('reco build cordova');
             console.log();
 
         };
