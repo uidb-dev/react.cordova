@@ -20,10 +20,10 @@ coding and development experience using Reco!
 </p>
 
 
-<br/>
+<br/><br/>
 
 <a href="https://paypal.me/orchoban">
-  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG_global.gif" width="114px" alt=""/>
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG_global.gif" width="200px" alt=""/>
 </a>
 
 
