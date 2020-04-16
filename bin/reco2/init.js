@@ -231,6 +231,45 @@ const init = async (reco) => {
                     }
                   );
 
+                  fs.readdir(
+                    reco.state.args[1].substring(
+                      0,
+                      reco.state.args[1].lastIndexOf(".bin")
+                    ),
+                    (err, files) => {
+                      if (err) console.log(err);
+                      else
+                        files.forEach((file) => {
+                          if (fs.existsSync("./" + rootDir + "/./README.md"))
+                            fs.unlink(
+                              "./" + rootDir + "/./README.md",
+                              (err) => {
+                                if (err)
+                                  console.log(
+                                    "ERROR: reco can't copy template files.(unlink) README.md :" +
+                                      err
+                                  );
+                              }
+                            );
+                          copydir.sync(
+                            reco.state.args[1].substring(
+                              0,
+                              reco.state.args[1].lastIndexOf(".bin")
+                            ) + "\\README.md",
+                            "./" + rootDir + "/README.md",
+                            {},
+                            () => {
+                              if (err)
+                                console.log(
+                                  "ERROR: reco can't copy template files :" +
+                                    err
+                                );
+                            }
+                          );
+                        });
+                    }
+                  );
+
                   //---------reco start to build cordova-app---------//
                   console.log();
                   console.log(
