@@ -171,7 +171,7 @@ const init = async (reco) => {
               obj.scripts.reactstart = obj.scripts.start;
               obj.scripts.start = "reco serve";
               obj.scripts.build =
-                "react-scripts build && reco copy && cordova build";
+                "reco checkversion && react-scripts build && reco copy && cordova build";
               reactPackageJson = obj;
               jsonfile.writeFile(filePackageJson_Root, obj, function (err) {
                 if (err) {

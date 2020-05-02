@@ -1,6 +1,6 @@
 {
   "name": "react.cordova",
-  "version": "2.1.2",
+  "version": "2.1.5",
   "description": "Reco unifies React.js and Cordova into one CLI which bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform applications built in React .",
   "scripts": {
     "start": "reco start"
@@ -50,7 +50,8 @@
     "react.js",
     "react-js",
     "phonegap",
-    "ionic"
+    "ionic",
+    "react js with cordova"
   ],
   "author": "Or Chuban. github => orchoban, npm => orcho",
   "license": "ISC",
