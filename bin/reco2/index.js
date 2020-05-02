@@ -44,7 +44,7 @@ let reco = {
           reco.version();
           break;
         case "checkversion":
-          reco.version(true);
+          reco.version(true, true);
           break;
         case "init":
           reco.init(reco);
@@ -367,7 +367,7 @@ let reco = {
     });
   },
 
-  version: (automatic) => {
+  version: (automatic, fromBuild) => {
     reco.state.child_process
       .exec("npm view react.cordova --json", function (error, stdout, stderr) {
         if (error) {
@@ -412,13 +412,17 @@ let reco = {
         
         `)
             );
-            let cuonter = 0;
-            const interval = setInterval(() => {
-              process.stdout.write(".");
-              cuonter++;
-              if (cuonter === 8) clearInterval(interval);
-            }, 500);
-          } else if (!automatic) {
+            if (fromBuild) {
+              let cuonter = 0;
+              const interval = setInterval(() => {
+                process.stdout.write(".");
+                cuonter++;
+                if (cuonter === 8) clearInterval(interval);
+              }, 500);
+            } else if (!automatic) {
+              console.log(thisVersion);
+            }
+          } else {
             console.log(thisVersion);
           }
         });
