@@ -22,13 +22,14 @@ coding and development experience using Reco!
 
 <br/><br/>
 
-<a href="https://paypal.me/orchoban">
-  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG_global.gif" width="200px" alt=""/>
+<p style="color:#000">
+I dedicate a considerable amount of my time to developing and maintaining this Cli, along with my other Open Source software. To help ensure this Cli is kept updated, new features are added and bugfixes are implemented quickly, please donate a couple of dollars (or a little more if you can stretch) as this will help me to afford to dedicate time to its maintenance. Please consider donating if you're using this plugin in an app that makes you money, if you're being paid to make the app, if you're asking for new features or priority bug fixes.
+</p>
+
+<a href="https://paypal.me/orchoban"> 
+   <br/>  <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" alt=""/>
+   <br/> <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG_global.gif" width="200px" alt=""/>   
 </a>
-
-
-
-I dedicate a considerable amount of my free time to developing and maintaining this Cli, along with my other Open Source software. To help ensure this Cli is kept updated, new features are added and bugfixes are implemented quickly, please donate a couple of dollars (or a little more if you can stretch) as this will help me to afford to dedicate time to its maintenance. Please consider donating if you're using this plugin in an app that makes you money, if you're being paid to make the app, if you're asking for new features or priority bug fixes.
 
 
 <br/>
