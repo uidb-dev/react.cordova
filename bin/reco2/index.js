@@ -368,65 +368,91 @@ let reco = {
   },
 
   version: (automatic, fromBuild) => {
-    reco.state.child_process
-      .exec("npm view react.cordova --json", function (error, stdout, stderr) {
-        if (error) {
-          reco.setState({ error: true });
-          console.error("reco-cli-react ERROR : " + error);
-          return;
-        }
-        // console.log(stdout);
-      })
-      .stdout.on("data", (dataView) => {
-        dataView = JSON.parse(dataView);
+    try {
+      reco.state.child_process
+        .exec("npm view react.cordova --json", function (
+          error,
+          stdout,
+          stderr
+        ) {
+          if (error) {
+            reco.setState({ error: true });
+            console.error("reco-cli-react ERROR : " + error);
+            return;
+          }
+          // console.log(stdout);
+        })
+        .stdout.on("data", (dataView) => {
+          if (!dataView) return;
 
-        const jsonfile = require("jsonfile");
-        const file =
-          reco.state.args[1].substring(
-            0,
-            reco.state.args[1].lastIndexOf(".bin")
-          ) + "package.json";
-        jsonfile.readFile(file).then((obj) => {
-          const thisVersion = obj.version;
-          const newVersion = dataView.versions[dataView.versions.length - 1];
+          const IsJsonString = (str) => {
+            try {
+              JSON.parse(str);
+            } catch (e) {
+              return false;
+            }
+            return true;
+          };
 
-          if (automatic && thisVersion !== newVersion) {
-            console.log();
-            console.log();
+          if (IsJsonString(dataView)) {
+            dataView = JSON.parse(dataView);
+          } else {
+            return;
+          }
 
-            console.log(
-              colors.cyan(`
+          const jsonfile = require("jsonfile");
+          const file =
+            reco.state.args[1].substring(
+              0,
+              reco.state.args[1].lastIndexOf(".bin")
+            ) + "package.json";
+          jsonfile.readFile(file).then((obj) => {
+            const thisVersion = obj.version;
+            const newVersion = dataView.versions[dataView.versions.length - 1];
+
+            if (thisVersion !== newVersion) {
+              console.log();
+              console.log();
+
+              console.log(
+                colors.cyan(`
         ╭─────────────────────────────────────────────╮
         │                                             │
         │   `),
-              `Update available ${thisVersion} → `,
-              colors.green(newVersion),
-              colors.cyan(`         │
+                `Update available ${thisVersion} → `,
+                colors.green(newVersion),
+                colors.cyan(`         │
         │   `),
-              `Run`,
-              colors.blue(`npm i -g react.cordova`),
-              ` to update`,
-              colors.cyan(`   │
+                `Run`,
+                colors.blue(`npm i -g react.cordova`),
+                ` to update`,
+                colors.cyan(`   │
         │                                             │
         ╰─────────────────────────────────────────────╯
         
         `)
-            );
-            if (fromBuild) {
-              let cuonter = 0;
-              const interval = setInterval(() => {
-                process.stdout.write(".");
-                cuonter++;
-                if (cuonter === 8) clearInterval(interval);
-              }, 500);
-            } else if (!automatic) {
-              console.log(thisVersion);
+              );
+              if (fromBuild) {
+                let cuonter = 0;
+                const interval = setInterval(() => {
+                  process.stdout.write(".");
+                  cuonter++;
+                  if (cuonter === 8) {
+                    clearInterval(interval);
+                    console.log("");
+                  }
+                }, 500);
+              } else if (!automatic) {
+                console.log(thisVersion);
+              }
+            } else {
+              if (!automatic) console.log(thisVersion);
             }
-          } else {
-            console.log(thisVersion);
-          }
+          });
         });
-      });
+    } catch (error) {
+      console.log("Can't check for a newer version");
+    }
   },
 };
 

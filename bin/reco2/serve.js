@@ -6,7 +6,7 @@ const officeService = require("../office");
 //------------------------------------bundleServe------------------------------------//
 const bundleServe = async (reco) => {
   try {
-    reco.version(true);
+    // reco.version(true);
 
     console.log(colors.blue("Emulator running..."));
     console.log("please wait, processing...");
