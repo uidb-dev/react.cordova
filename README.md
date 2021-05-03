@@ -36,7 +36,7 @@ I dedicate a considerable amount of my time to developing and maintaining this C
 
 ### Installing Reco CLI 
 ```cli
-npm install -g react.cordova
+sudo npm install -g react.cordova
 ```
 
 ### Initialize a new bundle project
