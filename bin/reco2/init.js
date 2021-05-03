@@ -299,7 +299,7 @@ const init = async (reco) => {
                     .on("close", function () {
                       reco.state.child_process
                         .exec(
-                          "cordova platform add android",
+                          "cordova platform",//add android
                           { cwd: "./" + rootDir + "/cordova" },
                           function (error, stdout, stderr) {
                             if (error) {
@@ -319,7 +319,7 @@ const init = async (reco) => {
                         .on("close", function () {
                           reco.state.child_process
                             .exec(
-                              "cordova platform add ios",
+                              "cordova platform",// add ios
                               { cwd: "./" + rootDir + "/cordova" },
                               function (error, stdout, stderr) {
                                 if (error) {
@@ -530,7 +530,7 @@ const init = async (reco) => {
                                                               function () {
                                                                 reco.state.child_process
                                                                   .exec(
-                                                                    "npm run build browser",
+                                                                    "npm run build",
                                                                     {
                                                                       cwd:
                                                                         "./" +

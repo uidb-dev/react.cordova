@@ -29,6 +29,9 @@ const bundleServe = async (reco) => {
       })
       .stdout.on("data", (dataCordo) => {
         if (dataCordo.includes("localhost")) {
+          //
+          let consoleFirst = () => {};
+          //
           console.log("cordova serve.");
           reco.state.child_process
             .exec("npm run-script reactstart", function (error) {
@@ -43,8 +46,12 @@ const bundleServe = async (reco) => {
             })
             .stdout.on("data", (data) => {
               if (data.includes("localhost")) {
-                console.log(colors.blue(data));
+                console.clear();
+                consoleFirst = () => console.log(colors.blue(data));
+                consoleFirst();
               } else {
+                console.clear();
+                consoleFirst();
                 console.log(data);
               }
             });
