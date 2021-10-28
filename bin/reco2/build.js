@@ -47,7 +47,7 @@ const build = async (reco) => {
 
     reco.replaceWwwRootDir();
   } catch (error) {
-    officeService("error", "build.js", error);
+    officeService("error", "build ", error);
     console.error("react.cordova build :", error);
   }
 };

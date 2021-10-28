@@ -6,7 +6,8 @@ const init = require("./init");
 const build = require("./build");
 const bundleServe = require("./serve");
 const test = require("./test");
-const copy = require("./copyToWww");
+const copy = require("./copyToWww_react");
+const copyvue = require("./copyToWww_vue");
 
 let reco = {
   constructor: (args) => {
@@ -63,6 +64,9 @@ let reco = {
           break;
         case "copy":
           copy(reco);
+          break;
+        case "copyvue":
+          copyvue(reco);
           break;
         case "":
           reco.map();
@@ -238,15 +242,13 @@ let reco = {
   },
 
   //-------------------------remove all files and folders in =>./www--------------------------//
-  replaceWwwRootDir: (dirPath1 = "./www") => {
+  replaceWwwRootDir: (dirPath1 = "./www", buildFolderName = "build") => {
     const ncp = require("ncp").ncp;
 
     if (fs.existsSync("./www")) {
       async function rmWwwRootDir(dirPath, options = {}) {
-        const {
-            removeContentOnly = false,
-            drillDownSymlinks = false,
-          } = options,
+        const { removeContentOnly = false, drillDownSymlinks = false } =
+            options,
           { promisify } = require("util"),
           readdirAsync = promisify(fs.readdir),
           unlinkAsync = promisify(fs.unlink),
@@ -285,7 +287,7 @@ let reco = {
           let parentDir = "./"; //+ "/"; //dirPath1.startsWith("./")
           //     ? "./" : dirPath1.substring(0, dirPath1.lastIndexOf("/")) + "/"
 
-          ncp(parentDir + "build", parentDir + "www", function (err) {
+          ncp(parentDir + buildFolderName, parentDir + "www", function (err) {
             if (err) {
               reco.setState({ error: true });
               return console.error("ERROR ncp1, copy build to www :   " + err);
@@ -297,10 +299,12 @@ let reco = {
       rmWwwRootDir("./www/");
     } else {
       let parentDir = "./"; // dirPath1.startsWith("./") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/")) + "/";
-      ncp(parentDir + "build", parentDir + "www", function (err) {
+      ncp(parentDir + buildFolderName, parentDir + "www", function (err) {
         if (err) {
           reco.setState({ error: true });
-          return console.error("ERROR ncp2, copy build to www :   " + err);
+          return console.error(
+            "ERROR ncp2, copy " + buildFolderName + " to www :   " + err
+          );
         }
         reco.state.callBack_replaceWwwRootDir(); // callBack();
       });
@@ -423,11 +427,22 @@ let reco = {
               }
             )
             .stdout.on("data", (obj) => {
+              let newVersion;
+
               const thisVersion = obj.slice(
                 obj.lastIndexOf("react.cordova@") + 14,
                 obj.lastIndexOf("react.cordova@") + 19
               );
-              const newVersion = dataView["dist-tags"].latest; //dataView.latest[dataView.versions.length - 1];
+              if (dataView && dataView.latest && Array.isArray(dataView.latest))
+                newVersion = dataView?.latest[dataView?.versions?.length - 1];
+              //dataView["dist-tags"].latest;
+              else if (
+                dataView &&
+                dataView["dist-tags"] &&
+                dataView["dist-tags"].latest
+              )
+                newVersion = dataView["dist-tags"].latest;
+              else return;
 
               if (thisVersion !== newVersion) {
                 console.log();
@@ -456,7 +471,7 @@ let reco = {
                   const interval = setInterval(() => {
                     process.stdout.write(".");
                     cuonter++;
-                    if (cuonter === 8) {
+                    if (cuonter === 6) {
                       clearInterval(interval);
                       console.log("");
                     }

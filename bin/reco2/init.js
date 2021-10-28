@@ -1,6 +1,8 @@
+const colors = require("colors");
 const fs = require("fs");
 const ncp = require("ncp").ncp;
 const path = require("path");
+const inquirer = require("inquirer");
 // var Promise = require('promise');
 
 const removeDir = async (dirPath1, callback) => {
@@ -47,35 +49,74 @@ const removeDir = async (dirPath1, callback) => {
 
 //------------------------------------init------------------------------------//
 const init = async (reco) => {
-  const choicesOptions = ["Reco template", "Empty"];
-  const defaultTemplate = choicesOptions[0];
+  // welcome message
+  console.log(colors.cyan.bold("Welcome to reco!") + "");
 
-  const inquirer = require("inquirer");
+  // # frameworkQuestion
+  const choicesOptions_framework = ["react.js", "vue.js"];
+  // const default_framework = choicesOptions_framework[0];
+  // # templateQuestion
+  const choicesOptions_template = ["example template", "Empty"];
+  // const default_template = choicesOptions_template[0];
+
+  // # questions
   const questions = [];
+  questions.push({
+    type: "checkbox",
+    name: "framework",
+    message: "Please select framework to use:",
+    choices: choicesOptions_framework,
+    // default:  default_framework,
+  });
   questions.push({
     type: "list",
     name: "template",
     message: "Please select project template",
-    choices: choicesOptions,
-    default: defaultTemplate,
+    choices: choicesOptions_template,
+    // default: default_template,
   });
 
-  const answer = await inquirer.prompt(questions);
-  const withTemplate = answer.template === choicesOptions[0];
-  const template = withTemplate ? "recoTemp" : "empty";
+  const outPath = inquirer
+    .prompt([
+      {
+        name: "user_name",
+        type: "input",
+        message: "What is your name?",
+      }
+    ])
+    .then((answers) => {
+      // Use user feedback for... whatever!!
+      console.log("answer:", answers);
+      // const withTemplate = answer.template === choicesOptions[0];
+      // const template = withTemplate ? "recoTemp" : "empty";
+    })
+    .catch((error) => {
+      if (error.isTtyError) {
+        console.log("error.isTtyError: ", error.isTtyError);
+        // throw error;
+        // Prompt couldn't be rendered in the current environment
+      } else {
+        console.log("error: ", error);
+        // throw error;
+        // Something else went wrong
+      }
+    });
 
+  // buildNewProj(reco, template);
+};
+
+const buildNewProj = (reco, template) => {
   let rootDir = reco.state.args.slice(2)[2];
-
   while (rootDir.indexOf(" ") >= 0) {
     rootDir = rootDir.replace(" ", "_");
   }
   rootDir = rootDir.toLocaleLowerCase();
 
   if (fs.existsSync("package.json")) {
-    console.log("exists reco project.");
     console.log(
       'if you wont to start a new project delete all react.cordova folders and the package.json in this directory and run agin:   reco init <com.myAppId> <"my app name">'
     );
+    console.error("exist project.");
     return;
   }
 
@@ -146,18 +187,20 @@ const init = async (reco) => {
               ` <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />`
             );
 
-            fs.writeFile(rootDir + "/public/index.html", dataString, function (
-              err
-            ) {
-              if (err) {
-                return console.log(err);
-              } else {
-                console.log(
-                  rootDir +
-                    "/public/index.html ready to by mobile app with cordova"
-                );
+            fs.writeFile(
+              rootDir + "/public/index.html",
+              dataString,
+              function (err) {
+                if (err) {
+                  return console.log(err);
+                } else {
+                  console.log(
+                    rootDir +
+                      "/public/index.html ready to by mobile app with cordova"
+                  );
+                }
               }
-            });
+            );
           });
           //-----------
 
@@ -299,7 +342,7 @@ const init = async (reco) => {
                     .on("close", function () {
                       reco.state.child_process
                         .exec(
-                          "cordova platform",//add android
+                          "cordova platform", //add android
                           { cwd: "./" + rootDir + "/cordova" },
                           function (error, stdout, stderr) {
                             if (error) {
@@ -319,7 +362,7 @@ const init = async (reco) => {
                         .on("close", function () {
                           reco.state.child_process
                             .exec(
-                              "cordova platform",// add ios
+                              "cordova platform", // add ios
                               { cwd: "./" + rootDir + "/cordova" },
                               function (error, stdout, stderr) {
                                 if (error) {
@@ -415,12 +458,11 @@ const init = async (reco) => {
                                                     obj2[key] = obj1[key];
                                                   } else {
                                                     if (obj2[key]) {
-                                                      obj2[
-                                                        key
-                                                      ] = packageJsonLoop(
-                                                        obj1[key],
-                                                        obj2[key]
-                                                      );
+                                                      obj2[key] =
+                                                        packageJsonLoop(
+                                                          obj1[key],
+                                                          obj2[key]
+                                                        );
                                                     } else {
                                                       obj2[key] = obj1[key];
                                                     }
