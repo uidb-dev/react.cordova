@@ -79,9 +79,9 @@ const init = async (reco) => {
   const outPath = inquirer
     .prompt([
       {
-        name: "user_name",
+        name: "test",
         type: "input",
-        message: "What is your name?",
+        message: "write your answer",
       }
     ])
     .then((answers) => {
