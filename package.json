@@ -1,6 +1,6 @@
 {
   "name": "react.cordova",
-  "version": "2.4.2-beta.0",
+  "version": "2.4.3",
   "description": "Reco unifies React.js and Cordova into one CLI which bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform applications built in React .",
   "scripts": {
     "start": "reco start"
@@ -53,7 +53,7 @@
     "ionic",
     "react js with cordova"
   ],
-  "author": "Or Chuban. https://ui-db.com",
+  "author": "Or Chuban. https://orchuban.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/orchoban/react.cordova/issues"
@@ -61,7 +61,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/orchoban/react.cordova#readme",
+  "homepage": "https://ui-db.com/open-source/react.cordova",
   "dependencies": {
     "abbrev": "^1.1.1",
     "arg": "^5.0.1",
