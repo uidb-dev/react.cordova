@@ -3,6 +3,7 @@
 
 # Reco (react.cordova)
 
+## [Full documentation](https://ui-db.com/open-source/react.cordova)
 
 Welcome to `Reco` (React+Cordova). Reco unifies React.js and Cordova into one CLI which
 bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform 
@@ -266,13 +267,11 @@ npm install -g cordova
 <br>
 
 
-## If you have any problems, please let us know [here](https://github.com/orchoban/react.cordova/issues), and we will make our best effort to resolve it soon
-## Feel free to edit the code yourself: go to [bin/cli.js](https://github.com/orchoban/react.cordova/blob/master/bin/cli.js)
+## If you have any problems, please let us know [here](https://github.com/uidb-dev/react.cordova/issues), and we will make our best effort to resolve it soon
+## Feel free to edit the code yourself: go to [bin/cli.js](https://github.com/uidb-dev/react.cordova/blob/master/bin/cli.js)
 
 ## If you have any private problems please ask to support [here] (https://www.fiverr.com/share/5bpN56)
 
 
 
-Created by [Or Chuban (Choban)](https://www.linkedin.com/in/or-choban-028280125)
-
-Credits: Arik Wald
+Created by [UIDB](https://ui-db.com)

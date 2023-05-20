@@ -54,41 +54,42 @@ const init = async (reco) => {
 
   // # frameworkQuestion
   const choicesOptions_framework = ["react.js", "vue.js"];
-  // const default_framework = choicesOptions_framework[0];
+  const default_framework = choicesOptions_framework[0];
   // # templateQuestion
   const choicesOptions_template = ["example template", "Empty"];
-  // const default_template = choicesOptions_template[0];
+  const default_template = choicesOptions_template[1];
 
   // # questions
   const questions = [];
-  questions.push({
-    type: "checkbox",
-    name: "framework",
-    message: "Please select framework to use:",
-    choices: choicesOptions_framework,
-    // default:  default_framework,
-  });
+  // questions.push({
+  //   type: "list",
+  //   name: "framework",
+  //   message: "Please select framework to use:",
+  //   choices: choicesOptions_framework,
+  //    default:  default_framework,
+  // });
+  const  isWin = process.platform === "win32";
   questions.push({
     type: "list",
     name: "template",
     message: "Please select project template",
     choices: choicesOptions_template,
-    // default: default_template,
+     default: default_template,
   });
 
+  if(isWin){
+
+ 
   const outPath = inquirer
-    .prompt([
-      {
-        name: "test",
-        type: "input",
-        message: "write your answer",
-      }
-    ])
+    .prompt(questions)
     .then((answers) => {
-      // Use user feedback for... whatever!!
-      console.log("answer:", answers);
-      // const withTemplate = answer.template === choicesOptions[0];
-      // const template = withTemplate ? "recoTemp" : "empty";
+      // Use user feedback
+       const withTemplate = answers.template === choicesOptions_template[0];
+       const template = withTemplate ? "recoTemp" : "empty";
+       //const framework = answers.framework;
+       buildNewProj({reco,template,withTemplate
+        //,framework
+      })
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -102,21 +103,26 @@ const init = async (reco) => {
       }
     });
 
+  }else{
+    // not win
+    buildNewProj({reco,withTemplate:false })
+  }
+
   // buildNewProj(reco, template);
 };
 
-const buildNewProj = (reco, template) => {
+const buildNewProj = ({reco, template,withTemplate,framework}) => {
   let rootDir = reco.state.args.slice(2)[2];
   while (rootDir.indexOf(" ") >= 0) {
     rootDir = rootDir.replace(" ", "_");
   }
   rootDir = rootDir.toLocaleLowerCase();
 
-  if (fs.existsSync("package.json")) {
-    console.log(
+  if (fs.existsSync(`${rootDir}/package.json`)) {
+    console.log( colors.blue.bold(
       'if you wont to start a new project delete all react.cordova folders and the package.json in this directory and run agin:   reco init <com.myAppId> <"my app name">'
-    );
-    console.error("exist project.");
+     ) );
+    console.error(colors.red.bold("exist project."));
     return;
   }
 
@@ -224,9 +230,55 @@ const buildNewProj = (reco, template) => {
                   );
                   return;
                 } else {
-                  console.log("add reco scripts to package.json.");
+                  console.log("done to add reco scripts to package.json");
 
-                  //--
+                 const indexFile=`
+import React from "react";
+import ReactDOM from 'react-dom/client';
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "cordova_script";
+                                  
+                 
+                 
+document.addEventListener(
+"deviceready",
+() => {
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<React.StrictMode>
+<App />
+</React.StrictMode>
+);
+},
+false
+);
+                 
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+                 `
+
+
+                 const  isWin = process.platform === "win32";
+                //  if(!isWin)
+              if(true)
+               {  fs.writeFile(
+                  "./" + rootDir + "/src/index.js",
+                  indexFile,
+                  function (err) {
+                    if (err) {
+                      return console.log(err);
+                    } else {
+                      console.log(
+                        rootDir +
+                          "/src/index.js ready to work with cordova"
+                      );
+                    }
+                  }
+                )}else{
                   const copydir = require("copy-dir");
 
                   fs.readdir(
@@ -263,7 +315,7 @@ const buildNewProj = (reco, template) => {
                             "./" + rootDir + "/src/" + file,
                             {},
                             () => {
-                              if (err)
+                                      if (err)
                                 console.log(
                                   "ERROR: reco can't copy template files :" +
                                     err
@@ -273,6 +325,8 @@ const buildNewProj = (reco, template) => {
                         });
                     }
                   );
+
+
 
                   fs.readdir(
                     reco.state.args[1].substring(
@@ -313,6 +367,10 @@ const buildNewProj = (reco, template) => {
                     }
                   );
 
+                }
+              
+
+             
                   //---------reco start to build cordova-app---------//
                   console.log();
                   console.log(
@@ -339,26 +397,6 @@ const buildNewProj = (reco, template) => {
                     .on("data", (data) => {
                       // console.log(data.toString());
                     })
-                    .on("close", function () {
-                      reco.state.child_process
-                        .exec(
-                          "cordova platform", //add android
-                          { cwd: "./" + rootDir + "/cordova" },
-                          function (error, stdout, stderr) {
-                            if (error) {
-                              reco.setState({ error: true });
-                              console.error(
-                                "reco-cli-init-cordova--(cordova platform add android) ERROR :" +
-                                  error
-                              );
-                              return;
-                            }
-                            console.log(stdout);
-                          }
-                        )
-                        .stdout.on("data", (data) => {
-                          // console.log(data.toString());
-                        })
                         .on("close", function () {
                           reco.state.child_process
                             .exec(
@@ -666,7 +704,7 @@ const buildNewProj = (reco, template) => {
                                 });
                             });
                         });
-                    });
+                  
 
                   //--
                 }

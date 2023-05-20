@@ -34,7 +34,7 @@ const bundleServe = async (reco) => {
           //
           console.log("cordova serve.");
           reco.state.child_process
-            .exec("npm run-script react start", function (error) {
+            .exec("react-scripts start", function (error) {
               if (error) {
                 reco.setState({ error: true });
                 console.error(
