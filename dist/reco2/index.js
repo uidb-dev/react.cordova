@@ -128,8 +128,8 @@ let reco = {
     console.log("    npm run build browser");
     console.log("    npm run build android");
     console.log("    npm run build ios");
-    console.log("    npm install react.cordova-navigation_controller");
-    console.log("    npm uninstall react.cordova-navigation_controller");
+    console.log("    npm install navigation-controller");
+    console.log("    npm uninstall navigation-controller");
 
     // console.log('   command: ' + colors.green('npm run build'));
     // console.log('   command: ' + colors.green('npm run build <cordova-platform>'));

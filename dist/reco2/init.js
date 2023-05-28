@@ -146,14 +146,14 @@ const buildNewProj = ({
     // console.log(data.toString());
   }).on("close", function () {
     clearInterval(intervalPoint_isWork);
-    reco.state.child_process.exec(withTemplate ? "npm i cordova_script react.cordova-navigation_controller react-browser-notifications" : "npm i cordova_script react.cordova-navigation_controller", {
+    reco.state.child_process.exec(withTemplate ? "npm i cordova_script navigation-controller react-browser-notifications" : "npm i cordova_script navigation-controller", {
       cwd: "./" + rootDir
     }, function (error, stdout, stderr) {
       if (error) {
         reco.setState({
           error: true
         });
-        console.error("reco-cli-init--install-react.cordova-navigation_controller ERROR : " + error);
+        console.error("reco-cli-init--install-navigation-controller ERROR : " + error);
         return;
       }
       console.log(stdout);

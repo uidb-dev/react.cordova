@@ -235,13 +235,13 @@ let reco = {
                 // );
 
                 reco.state.child_process.exec(
-                    withTemplate ? 'npm i react.cordova-navigation_controller react-browser-notifications'
-                        : 'npm i react.cordova-navigation_controller'
+                    withTemplate ? 'npm i navigation-controller react-browser-notifications'
+                        : 'npm i navigation-controller'
                     , { cwd: dir + "/react-js" }
                     , function (error, stdout, stderr) {
                         if (error) {
                             reco.setState({ error: true });
-                            console.error('reco-cli-init--install-react.cordova-navigation_controller ERROR : ' + error);
+                            console.error('reco-cli-init--install-navigation-controller ERROR : ' + error);
                             return;
                         }
                         console.log(stdout);
@@ -256,7 +256,7 @@ let reco = {
                     , function (error, stdout, stderr) {
                         if (error) {
                             reco.setState({ error: true });
-                            console.error('reco-cli-init--install-react.cordova-navigation_controller ERROR : ' + error);
+                            console.error('reco-cli-init--install-navigation-controller ERROR : ' + error);
                             return;
                         }
                         console.log(stdout);

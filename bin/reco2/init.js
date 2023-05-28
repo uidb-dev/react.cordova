@@ -152,14 +152,14 @@ const buildNewProj = ({reco, template,withTemplate,framework}) => {
       reco.state.child_process
         .exec(
           withTemplate
-            ? "npm i cordova_script react.cordova-navigation_controller react-browser-notifications"
-            : "npm i cordova_script react.cordova-navigation_controller",
+            ? "npm i cordova_script navigation-controller react-browser-notifications"
+            : "npm i cordova_script navigation-controller",
           { cwd: "./" + rootDir },
           function (error, stdout, stderr) {
             if (error) {
               reco.setState({ error: true });
               console.error(
-                "reco-cli-init--install-react.cordova-navigation_controller ERROR : " +
+                "reco-cli-init--install-navigation-controller ERROR : " +
                   error
               );
               return;
