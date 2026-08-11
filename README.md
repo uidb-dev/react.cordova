@@ -32,6 +32,15 @@ cd hello_world       # app name, lowercased, spaces replaced with underscores
 npm start
 ```
 
+**Requirements:** Node 16 or newer — verified on 16, 18, 20, 22, 24 and 25. Cordova is
+also expected as a global install (`npm install -g cordova`); generated projects call
+both `reco` and `cordova` from their build scripts.
+
+> **Upgrading from 2.5.4 or earlier?** Those versions cannot run at all on a current
+> Node: every command fails, either with `Cannot find module 'node:path'` or with a
+> `Function.prototype.apply` error, depending on your version. 2.6.0 removes the
+> abandoned module loader responsible for it. See the [changelog](./CHANGELOG.md).
+
 `reco init` scaffolds the React app and the Cordova app and merges one into the other,
 then installs [`cordova_script`](https://www.npmjs.com/package/cordova_script) and
 [`navigation-controller`](https://www.npmjs.com/package/navigation-controller) so the
