@@ -47,6 +47,70 @@ const removeDir = async (dirPath1, callback) => {
   removeDir_(dirPath1);
 };
 
+//---------------------------------------------------------------------------//
+// Dependency pinning for the generated project.
+//
+// reco's runtime helpers (cordova_script, navigation-controller) declare
+// `react@^18.2.0` as a peer dependency, but `create-react-app` installs
+// `react@latest` (19.x). npm then refuses the install with ERESOLVE
+// (issues #33 / #35 / #39), and developers reach for `--force` or
+// `--legacy-peer-deps` to get past it.
+//
+// That workaround is what actually breaks the build: in legacy mode npm
+// ignores peer ranges while hoisting, so `ajv-keywords@5` (which needs ajv 8)
+// gets hoisted next to `ajv@6`, and react-scripts dies with
+// "Cannot find module 'ajv/dist/compile/codegen'" (issue #40).
+//
+// So we pin React to the major our peers actually support, and write an
+// .npmrc that keeps peer resolution strict even when the developer has
+// `legacy-peer-deps=true` in their global npm config.
+const REACT_VERSION = "^18.3.1";
+
+// react-scripts@5.0.1 declares `typescript` as an optional peer of `^3.2.1 || ^4`,
+// but other packages in its own tree (tsutils, fork-ts-checker-webpack-plugin)
+// declare it as a plain peer, so npm installs the newest TypeScript instead.
+// @typescript-eslint@5 (pulled in by eslint-config-react-app) then throws while
+// loading against that TypeScript, eslint-plugin-jest never registers, and the
+// build fails with: Environment key "jest/globals" is unknown.
+// Pinning TypeScript to the range react-scripts actually supports keeps the
+// bundled ESLint config loadable. Reproducible in a plain create-react-app app.
+const TYPESCRIPT_VERSION = "^4.9.5";
+
+const NPMRC_CONTENTS = `; Managed by react.cordova (reco).
+; Keep npm's peer-dependency resolution strict. With legacy-peer-deps=true npm
+; ignores peer ranges while hoisting and places ajv-keywords@5 next to ajv@6,
+; which breaks react-scripts with:
+;   Cannot find module 'ajv/dist/compile/codegen'
+; See https://github.com/uidb-dev/react.cordova/issues/40
+legacy-peer-deps=false
+`;
+
+// Written before the first npm install we run inside the generated project.
+const writeProjectNpmrc = (rootDir) => {
+  try {
+    fs.writeFileSync("./" + rootDir + "/.npmrc", NPMRC_CONTENTS);
+    console.log(rootDir + "/.npmrc ready (strict peer-dependency resolution)");
+  } catch (err) {
+    // Not fatal: the install may still succeed, it is just less deterministic.
+    console.log("reco: could not write .npmrc :" + err);
+  }
+};
+
+// Adds the `overrides` react-scripts@5.0.1 needs to stay installable, without
+// touching anything create-react-app already wrote.
+const pinTypescriptOverride = (rootDir) => {
+  const filePath = "./" + rootDir + "/package.json";
+  try {
+    const pkg = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    pkg.overrides = pkg.overrides || {};
+    if (!pkg.overrides.typescript) pkg.overrides.typescript = TYPESCRIPT_VERSION;
+    fs.writeFileSync(filePath, JSON.stringify(pkg, null, 2) + "\n");
+    console.log("done to pin typescript " + TYPESCRIPT_VERSION + " in package.json");
+  } catch (err) {
+    console.log("reco: could not pin typescript override :" + err);
+  }
+};
+
 //------------------------------------init------------------------------------//
 const init = async (reco) => {
   // welcome message
@@ -149,11 +213,30 @@ const buildNewProj = ({reco, template,withTemplate,framework}) => {
     .on("close", function () {
       clearInterval(intervalPoint_isWork);
 
+      // Keep peer resolution strict from the very first install we run, and drop
+      // the lockfile create-react-app just produced so the tree is re-resolved
+      // with React pinned (see REACT_VERSION above).
+      writeProjectNpmrc(rootDir);
+      pinTypescriptOverride(rootDir);
+      try {
+        if (fs.existsSync("./" + rootDir + "/package-lock.json"))
+          fs.unlinkSync("./" + rootDir + "/package-lock.json");
+      } catch (err) {
+        console.log("reco: could not reset package-lock.json :" + err);
+      }
+
+      const recoDeps =
+        "react@" +
+        REACT_VERSION +
+        " react-dom@" +
+        REACT_VERSION +
+        " cordova_script navigation-controller";
+
       reco.state.child_process
         .exec(
           withTemplate
-            ? "npm i cordova_script navigation-controller react-browser-notifications"
-            : "npm i cordova_script navigation-controller",
+            ? "npm i " + recoDeps + " react-browser-notifications"
+            : "npm i " + recoDeps,
           { cwd: "./" + rootDir },
           function (error, stdout, stderr) {
             if (error) {
