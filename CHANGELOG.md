@@ -4,6 +4,14 @@ All notable changes to `react.cordova` (the `reco` CLI) are documented here.
 
 This project follows [Semantic Versioning](https://semver.org/).
 
+## 2.6.1
+
+### Documentation
+
+- The React logo in the README was hotlinked from Wikipedia, which now returns HTTP 400,
+  leaving a broken image on the npm package page. Both the React and Cordova logos are
+  now served from this repository.
+
 ## 2.6.0
 
 The `reco` command was not being installed at all on one current Node LTS line,
