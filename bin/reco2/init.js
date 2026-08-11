@@ -520,7 +520,7 @@ reportWebVitals();
                                               reactPackageJson
                                             );
                                             reactPackageJson.author =
-                                              "DataCyber-OrChuban, react.cordova: Apache Cordova Team and React.js";
+                                              "ui-db.com, react.cordova: Apache Cordova Team and React.js";
 
                                             jsonfile.writeFile(
                                               filePackageJson_Root,

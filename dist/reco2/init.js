@@ -356,7 +356,7 @@ reportWebVitals();
                           }
                         };
                         await packageJsonLoop(cordovaPackageJson, reactPackageJson);
-                        reactPackageJson.author = "DataCyber-OrChuban, react.cordova: Apache Cordova Team and React.js";
+                        reactPackageJson.author = "ui-db.com, react.cordova: Apache Cordova Team and React.js";
                         jsonfile.writeFile(filePackageJson_Root, reactPackageJson, async function (err) {
                           if (err) {
                             console.error("ERROR: !important error. Unification package.json.  on write", err);
