@@ -250,7 +250,6 @@ let reco = {
           });
         }
       }
-
       rmWwwRootDir("./www/");
     } else {
       let parentDir = "./"; // dirPath1.startsWith("./") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/")) + "/";
@@ -265,7 +264,6 @@ let reco = {
       });
     }
   },
-
   //------------------------------------recoFiles------------------------------------//
   recoFiles: dir => {
     //-- ./react/public/index.html --//

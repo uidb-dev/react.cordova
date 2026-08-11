@@ -40,7 +40,6 @@ const build = async reco => {
       //         });
       // }
     };
-
     reco.replaceWwwRootDir();
   } catch (error) {
     officeService("error", "build ", error);

@@ -138,7 +138,6 @@ let reco = {
         //         });
         // }
       };
-
       reco.replaceWwwRootDir();
     });
   },
@@ -378,7 +377,6 @@ let reco = {
       });
     });
   },
-
   //------------------------------------react------------------------------------//
   react: () => {
     reco.state.child_process.exec('npm ' + reco.state.clientArgsAfter, {
@@ -683,7 +681,6 @@ let reco = {
           });
         }
       }
-
       rmWwwRootDir(dirPath1);
     } else {
       let parentDir = dirPath1.startsWith("./cordova") ? "./" : dirPath1.substring(0, dirPath1.indexOf("/cordova")) + "/";
@@ -698,7 +695,6 @@ let reco = {
       });
     }
   },
-
   //------------------------------------recoFiles------------------------------------//
   recoFiles: dir => {
     //-- ./react/public/index.html --//
