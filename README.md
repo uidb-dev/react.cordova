@@ -9,7 +9,7 @@ codebases or two toolchains.
 [![license](https://img.shields.io/npm/l/react.cordova)](./LICENSE)
 
 <p align="center">
-   <img src="https://raw.githubusercontent.com/uidb-dev/react.cordova/master/assets/react-logo.svg" height="96" alt="React.js"/>
+   <img src="https://raw.githubusercontent.com/uidb-dev/react.cordova/master/assets/react-logo.png" height="96" alt="React.js"/>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <img src="https://raw.githubusercontent.com/uidb-dev/react.cordova/master/assets/cordova-logo.png" height="96" alt="Apache Cordova"/>
 </p>
