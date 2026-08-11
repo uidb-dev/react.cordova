@@ -2,6 +2,16 @@ const fs = require("fs");
 const path = require("path");
 var colors = require('colors');
 
+// PACKAGE_ROOT is resolved from the module's own location, so it stays correct
+// however the CLI was invoked (global install, npx, npm link, symlinked shim)
+// and whatever the launcher directory is named.
+const {
+    PACKAGE_ROOT,
+    installedVersion,
+    latestVersionFrom,
+    isNewer,
+} = require("./version");
+
 
 let reco = {
 
@@ -267,7 +277,7 @@ let reco = {
 
 
                         // destination.txt will be created or overwritten by default.
-                        fs.copyFile(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + "package.json"
+                        fs.copyFile(path.join(PACKAGE_ROOT, "templates", "package.json")
                             , dir + '/package.json', (err) => {
                                 if (err) {
                                     console.log('package.json of reco not copy');
@@ -279,15 +289,14 @@ let reco = {
 
                         const copydir = require("copy-dir");
 
-                        fs.readdir(reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template, (err, files) => {
+                        fs.readdir(path.join(PACKAGE_ROOT, "templates", template), (err, files) => {
                             if (err) console.log(err);
                             else files.forEach(file => {
                                 if (fs.existsSync(dir + "/react-js/src/" + file))
                                     fs.unlink(dir + "/react-js/src/" + file, (err) => {
                                         if (err) console.log("ERROR: reco can't copy template files.(unlink) :" + err);
                                     });
-                                copydir.sync(reco.state.args[1].substring(0
-                                    , reco.state.args[1].lastIndexOf(".bin")) + "templates\\" + template + "\\" + file
+                                copydir.sync(path.join(PACKAGE_ROOT, "templates", template, file)
                                     , dir + "/react-js/src/" + file, {}, () => {
                                         if (err) console.log("ERROR: reco can't copy template files :" + err);
                                     });
@@ -630,7 +639,7 @@ let reco = {
 
     //------------------------------------info------------------------------------//
     info: () => {
-        console.log(' info=> https://github.com/orchoban/react.cordova');
+        console.log(' info=> https://github.com/uidb-dev/react.cordova');
         console.log();
         reco.map();
 
@@ -704,7 +713,7 @@ let reco = {
     credit: () => {
         console.log(`
        #####Created by Or Chuban (Choban)#####
-        info => https://github.com/orchoban/react.cordova`);
+        info => https://github.com/uidb-dev/react.cordova`);
     },
 
     //------------------------------------succeeded------------------------------------//
@@ -867,58 +876,54 @@ let reco = {
 
     version: (automatic) => {
 
+        // The version of react.cordova that is actually running, read from this
+        // package's own package.json rather than parsed out of `npm list -g`.
+        const thisVersion = installedVersion();
+
+        // `exec`'s callback receives the WHOLE response. The registry document is
+        // ~10 kB and arrives in several chunks, so parsing individual 'data'
+        // events (as this used to) always threw and silently gave up.
         reco.state.child_process.exec(
             'npm view react.cordova --json'
-            // , { cwd: 'react-js' }
+            , { maxBuffer: 5120 * 5120 }
             , function (error, stdout, stderr) {
                 if (error) {
-                    reco.setState({ error: true });
-                    console.error('reco-cli-react ERROR : ' + error);
+                    // Offline / registry unreachable is not a reco failure: still
+                    // report the local version when the user asked for it.
+                    if (!automatic) console.log(thisVersion);
                     return;
                 }
-                // console.log(stdout);
-            }).stdout.on('data', (dataView) => {
-                dataView = JSON.parse(dataView);
 
+                const newVersion = latestVersionFrom(stdout);
 
-                const jsonfile = require('jsonfile');
-                const file = reco.state.args[1].substring(0, reco.state.args[1].lastIndexOf(".bin")) + "package.json";
-                jsonfile.readFile(file)
-                    .then(obj => {
-                        const thisVersion = obj.version;
-                        const newVersion = dataView.versions[dataView.versions.length - 1];
+                if (isNewer(newVersion, thisVersion)) {
+                    if (automatic) {
+                        console.log();
+                        console.log();
 
-                        if (automatic && thisVersion !== newVersion) {
-
-                            console.log();
-                            console.log();
-
-                            console.log(
-                                colors.cyan(`
+                        console.log(
+                            colors.cyan(`
         ╭─────────────────────────────────────────────╮
         │                                             │
         │   `)
-                                , `Update available ${thisVersion} → `
-                                , colors.green(newVersion)
-                                , colors.cyan(`         │
+                            , `Update available ${thisVersion} → `
+                            , colors.green(newVersion)
+                            , colors.cyan(`         │
         │   `)
-                                , `Run`
-                                , colors.blue(`npm i -g react.cordova`)
-                                , ` to update`
-                                , colors.cyan(`   │
+                            , `Run`
+                            , colors.blue(`npm i -g react.cordova`)
+                            , ` to update`
+                            , colors.cyan(`   │
         │                                             │
         ╰─────────────────────────────────────────────╯
-        
+
         `));
-                        } else if (!automatic) {
-                            console.log(thisVersion);
-
-                        }
-
-                    });
-
-
-
+                    } else {
+                        console.log(thisVersion);
+                    }
+                } else if (!automatic) {
+                    console.log(thisVersion);
+                }
             });
 
 

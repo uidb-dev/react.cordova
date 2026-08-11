@@ -96,6 +96,49 @@ const writeProjectNpmrc = (rootDir) => {
   }
 };
 
+// The generated project's `start` and `build` scripts call `reco` and `cordova`
+// as bare commands. That is deliberate -- both are global CLIs, the same way
+// Cordova's own workflow expects `cordova` on your PATH -- so they are NOT
+// dependencies of the generated app. Say so in the project's README, otherwise
+// the first thing a teammate who clones the repo hits is "reco: command not
+// found" with nothing to explain it.
+const RECO_README_SECTION = `
+## Requirements
+
+The \`start\` and \`build\` scripts in this project call two command line tools
+that are installed **globally**, not as dependencies of this app:
+
+\`\`\`sh
+npm install -g react.cordova   # provides the "reco" command
+npm install -g cordova         # provides the "cordova" command
+\`\`\`
+
+This is on purpose: reco and Cordova are toolchain CLIs shared across projects,
+like the Cordova CLI itself. Anyone cloning this repository needs both on their
+PATH before \`npm start\` or \`npm run build\` will work.
+
+* \`npm start\` -> \`reco serve\` -- runs the React app with the Cordova bridge.
+* \`npm run build\` -> React build, copy into the Cordova www folder, then
+  \`cordova build\`.
+
+Docs: https://ui-db.com/open-source/react.cordova
+`;
+
+const documentRecoRequirements = (rootDir) => {
+  const filePath = "./" + rootDir + "/README.md";
+  try {
+    const existing = fs.existsSync(filePath)
+      ? fs.readFileSync(filePath, "utf8")
+      : "";
+    if (existing.indexOf("npm install -g react.cordova") !== -1) return;
+    fs.writeFileSync(filePath, existing + RECO_README_SECTION);
+    console.log(rootDir + "/README.md documents the reco/cordova requirement");
+  } catch (err) {
+    // Purely informational, never worth failing an init over.
+    console.log("reco: could not update README.md :" + err);
+  }
+};
+
 // Adds the `overrides` react-scripts@5.0.1 needs to stay installable, without
 // touching anything create-react-app already wrote.
 const pinTypescriptOverride = (rootDir) => {
@@ -218,6 +261,7 @@ const buildNewProj = ({reco, template,withTemplate,framework}) => {
       // with React pinned (see REACT_VERSION above).
       writeProjectNpmrc(rootDir);
       pinTypescriptOverride(rootDir);
+      documentRecoRequirements(rootDir);
       try {
         if (fs.existsSync("./" + rootDir + "/package-lock.json"))
           fs.unlinkSync("./" + rootDir + "/package-lock.json");
@@ -345,10 +389,7 @@ reportWebVitals();
                  `
 
 
-                 const  isWin = process.platform === "win32";
-                //  if(!isWin)
-              if(true)
-               {  fs.writeFile(
+                  fs.writeFile(
                   "./" + rootDir + "/src/index.js",
                   indexFile,
                   function (err) {
@@ -361,97 +402,8 @@ reportWebVitals();
                       );
                     }
                   }
-                )}else{
-                  const copydir = require("copy-dir");
+                );
 
-                  fs.readdir(
-                    reco.state.args[1].substring(
-                      0,
-                      reco.state.args[1].lastIndexOf(".bin")
-                    ) +
-                      "templates\\" +
-                      template,
-                    (err, files) => {
-                      if (err) console.log(err);
-                      else
-                        files.forEach((file) => {
-                          if (fs.existsSync("./" + rootDir + "/src/" + file))
-                            fs.unlink(
-                              "./" + rootDir + "/src/" + file,
-                              (err) => {
-                                if (err)
-                                  console.log(
-                                    "ERROR: reco can't copy template files.(unlink) :" +
-                                      err
-                                  );
-                              }
-                            );
-                          copydir.sync(
-                            reco.state.args[1].substring(
-                              0,
-                              reco.state.args[1].lastIndexOf(".bin")
-                            ) +
-                              "templates\\" +
-                              template +
-                              "\\" +
-                              file,
-                            "./" + rootDir + "/src/" + file,
-                            {},
-                            () => {
-                                      if (err)
-                                console.log(
-                                  "ERROR: reco can't copy template files :" +
-                                    err
-                                );
-                            }
-                          );
-                        });
-                    }
-                  );
-
-
-
-                  fs.readdir(
-                    reco.state.args[1].substring(
-                      0,
-                      reco.state.args[1].lastIndexOf(".bin")
-                    ),
-                    (err, files) => {
-                      if (err) console.log(err);
-                      else
-                        files.forEach((file) => {
-                          if (fs.existsSync("./" + rootDir + "/./README.md"))
-                            fs.unlink(
-                              "./" + rootDir + "/./README.md",
-                              (err) => {
-                                if (err)
-                                  console.log(
-                                    "ERROR: reco can't copy template files.(unlink) README.md :" +
-                                      err
-                                  );
-                              }
-                            );
-                          copydir.sync(
-                            reco.state.args[1].substring(
-                              0,
-                              reco.state.args[1].lastIndexOf(".bin")
-                            ) + "\\README.md",
-                            "./" + rootDir + "/README.md",
-                            {},
-                            () => {
-                              if (err)
-                                console.log(
-                                  "ERROR: reco can't copy template files :" +
-                                    err
-                                );
-                            }
-                          );
-                        });
-                    }
-                  );
-
-                }
-              
 
              
                   //---------reco start to build cordova-app---------//
