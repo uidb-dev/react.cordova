@@ -2,6 +2,8 @@ const fs = require("fs");
 const path = require("path");
 var colors = require("colors");
 
+const { installedVersion, latestVersionFrom, isNewer } = require("../version");
+
 const init = require("./init");
 const build = require("./build");
 const bundleServe = require("./serve");
@@ -94,7 +96,7 @@ let reco = {
 
   //------------------------------------info------------------------------------//
   info: () => {
-    console.log(" info=> https://github.com/orchoban/react.cordova");
+    console.log(" info=> https://github.com/uidb-dev/react.cordova");
     console.log();
     reco.map();
   },
@@ -376,114 +378,74 @@ let reco = {
   },
 
   version: (automatic, fromBuild) => {
+    // The version that is actually running, read from this package's own
+    // package.json. It used to be sliced out of `npm list -g` output, which
+    // only worked for a global install and truncated at 5 characters.
+    const thisVersion = installedVersion();
+
     try {
-      reco.state.child_process
-        .exec(
-          "npm view react.cordova --json",
-          function (error, stdout, stderr) {
-            if (error) {
-              reco.setState({ error: true });
-              console.error("reco-cli-react ERROR : " + error);
-              return;
-            }
-            // console.log(stdout);
-          }
-        )
-        .stdout.on("data", (dataView) => {
-          if (!dataView) return;
-
-          const IsJsonString = (str) => {
-            try {
-              JSON.parse(str);
-            } catch (e) {
-              return false;
-            }
-            return true;
-          };
-
-          if (IsJsonString(dataView)) {
-            dataView = JSON.parse(dataView);
-          } else {
+      // `exec`'s callback receives the WHOLE response. The registry document is
+      // ~10 kB and arrives over several stdout chunks, so the previous code --
+      // which JSON.parse'd each 'data' event -- always threw and bailed out,
+      // making `reco version` and `reco checkversion` silent no-ops.
+      reco.state.child_process.exec(
+        "npm view react.cordova --json",
+        { maxBuffer: 5120 * 5120 },
+        function (error, stdout, stderr) {
+          if (error) {
+            // Offline, or the registry is unreachable. Not a reco failure, and
+            // it must never break a generated project's build script.
+            if (!automatic) console.log(thisVersion);
             return;
           }
 
-          // const jsonfile = require("jsonfile");
-          // const file =
-          //   reco.state.args[1].substring(
-          //     0,
-          //     reco.state.args[1].lastIndexOf(".bin")
-          //   ) + "package.json";
-          reco.state.child_process
-            .exec(
-              "npm list -g",
-              { maxBuffer: 5120 * 5120 },
-              function (error, stdout, stderr) {
-                // if (error) {
-                //   reco.setState({ error: true });
-                //   console.error("reco-cli-react ERROR : " + error);
-                //   return;
-                // }
-                // console.log(stdout);
-              }
-            )
-            .stdout.on("data", (obj) => {
-              let newVersion;
+          const newVersion = latestVersionFrom(stdout);
 
-              const thisVersion = obj.slice(
-                obj.lastIndexOf("react.cordova@") + 14,
-                obj.lastIndexOf("react.cordova@") + 19
-              );
-              if (dataView && dataView.latest && Array.isArray(dataView.latest))
-                newVersion = dataView?.latest[dataView?.versions?.length - 1];
-              //dataView["dist-tags"].latest;
-              else if (
-                dataView &&
-                dataView["dist-tags"] &&
-                dataView["dist-tags"].latest
-              )
-                newVersion = dataView["dist-tags"].latest;
-              else return;
+          if (!newVersion) {
+            if (!automatic) console.log(thisVersion);
+            return;
+          }
 
-              if (thisVersion !== newVersion) {
-                console.log();
-                console.log();
+          if (isNewer(newVersion, thisVersion)) {
+            console.log();
+            console.log();
 
-                console.log(
-                  colors.cyan(`
+            console.log(
+              colors.cyan(`
         ╭─────────────────────────────────────────────╮
         │                                             │
         │   `),
-                  `Update available ${thisVersion} → `,
-                  colors.green(newVersion),
-                  colors.cyan(`         │
+              `Update available ${thisVersion} → `,
+              colors.green(newVersion),
+              colors.cyan(`         │
         │   `),
-                  `Run`,
-                  colors.blue(`npm i -g react.cordova`),
-                  ` to update`,
-                  colors.cyan(`   │
+              `Run`,
+              colors.blue(`npm i -g react.cordova`),
+              ` to update`,
+              colors.cyan(`   │
         │                                             │
         ╰─────────────────────────────────────────────╯
-        
+
         `)
-                );
-                if (fromBuild) {
-                  let cuonter = 0;
-                  const interval = setInterval(() => {
-                    process.stdout.write(".");
-                    cuonter++;
-                    if (cuonter === 6) {
-                      clearInterval(interval);
-                      console.log("");
-                    }
-                  }, 500);
-                } else if (!automatic) {
-                  console.log(thisVersion);
+            );
+            if (fromBuild) {
+              let cuonter = 0;
+              const interval = setInterval(() => {
+                process.stdout.write(".");
+                cuonter++;
+                if (cuonter === 6) {
+                  clearInterval(interval);
+                  console.log("");
                 }
-              } else {
-                if (!automatic) console.log(thisVersion);
-              }
-            });
-        });
+              }, 500);
+            } else if (!automatic) {
+              console.log(thisVersion);
+            }
+          } else {
+            if (!automatic) console.log(thisVersion);
+          }
+        }
+      );
     } catch (error) {
       console.log("Can't check for a newer version");
     }

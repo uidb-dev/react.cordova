@@ -7,21 +7,29 @@ var reco1 = require("./reco1");
 var reco2 = require("./reco2");
 const officeService = require("./office");
 
-export function cli(args) {
+// Commands that answer a question about reco itself and so must work from any
+// directory, not just from inside a generated project. "init", "version" and
+// "help" were always in this list; the aliases the CLI already accepts
+// (`-v`, `--version`, `-help`, `checkversion`, ...) were not, so running them
+// outside a project printed "it is not reco based project" instead of an
+// answer.
+const PROJECT_INDEPENDENT_COMMANDS = [
+  "init",
+  "version",
+  "v",
+  "-v",
+  "-version",
+  "--v",
+  "--version",
+  "checkversion",
+  "help",
+  "-help",
+  "info",
+  "-info",
+];
+
+function cli(args) {
   officeService(args.slice(2)[0]);
-
-  //--react cmd
-  if (args[1].includes(".bin\\react") || args[1].includes(".bin/react")) {
-    let new_args = [];
-    new_args.push(args[0]);
-    new_args.push(args[1]);
-    new_args.push("react");
-    args.slice(2).forEach((arg) => {
-      new_args.push(arg);
-    });
-
-    args = new_args;
-  }
 
   //fix to the new virsion (after v1.2.0 the react folder name it's "react-js")
   if (fs.existsSync("./react"))
@@ -34,7 +42,10 @@ export function cli(args) {
       console.log(stdout);
     });
 
-  if (fs.existsSync("./cordova") && fs.existsSync("./react-js")) {
+  const isRecoV1Project =
+    fs.existsSync("./cordova") && fs.existsSync("./react-js");
+
+  if (isRecoV1Project) {
     reco1.constructor(args);
   }
   if (
@@ -43,7 +54,9 @@ export function cli(args) {
       !fs.existsSync("./react-js")) ||
     args.slice(2)[0] === "init" ||
     args.slice(2)[0] === "version" ||
-    args.slice(2)[0] === "help"
+    args.slice(2)[0] === "help" ||
+    (!isRecoV1Project &&
+      PROJECT_INDEPENDENT_COMMANDS.indexOf(args.slice(2)[0]) !== -1)
   ) {
     reco2.constructor(args);
   } else {
@@ -56,3 +69,5 @@ export function cli(args) {
     console.log("");
   }
 }
+
+module.exports = { cli };

@@ -1,7 +1,6 @@
 const fs = require("fs");
 const ncp = require('ncp').ncp;
 const path = require("path");
-var Promise = require('promise');
 
 
 //------------------------------------init------------------------------------//

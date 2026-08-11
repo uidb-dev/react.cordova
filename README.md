@@ -1,277 +1,168 @@
-![](https://img.shields.io/npm/dt/react.cordova?color=blue&label=Total%20CURRENT%20INSTALLS&style=for-the-badge)
+# Reco — `react.cordova`
 
+**One CLI that bundles React.js and Apache Cordova into a single project.** Write a
+React app; ship it as a native Android, iOS or desktop build without maintaining two
+codebases or two toolchains.
 
-# Reco (react.cordova)
-
-## [Full documentation](https://ui-db.com/open-source/react.cordova)
-
-Welcome to `Reco` (React+Cordova). Reco unifies React.js and Cordova into one CLI which
-bundles both platforms together and provides the developer with the ability to generate Cordova hybrid cross-platform 
-applications built in React.js. This bundled platform facilitates and automates project initialization, 
-compilation and build actions for React.js developers who wish to build web/mobile/desktop applications using the powerful and most vast Cordova environment. Reco is the bundle where both Cordova and React.js platforms merge and work together as one. Enjoy your
-coding and development experience using Reco!
-<br>  
+[![npm](https://img.shields.io/npm/v/react.cordova)](https://www.npmjs.com/package/react.cordova)
+[![downloads](https://img.shields.io/npm/dm/react.cordova)](https://www.npmjs.com/package/react.cordova)
+[![license](https://img.shields.io/npm/l/react.cordova)](./LICENSE)
 
 <p align="center">
-   <img src="https://upload.wikimedia.org/wikipedia/he/thumb/a/a7/React-icon.svg/160px-React-icon.svg.png"  height="128px" alt="React.js"/>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <img src="https://cordova.apache.org/static/img/cordova_bot.png" width="114px" height="128px" alt="Cordova"/>
-   <br />
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>React.js</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Cordova</b>
+   <img src="https://upload.wikimedia.org/wikipedia/he/thumb/a/a7/React-icon.svg/160px-React-icon.svg.png" height="110px" alt="React.js"/>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img src="https://cordova.apache.org/static/img/cordova_bot.png" width="98px" height="110px" alt="Cordova"/>
 </p>
 
+Normally, putting React inside Cordova means two `package.json` files, a build step
+that copies `build/` into `www/`, and a dev loop where the browser and the device
+behave differently. `reco` collapses that into one project directory with one
+`package.json`: `npm start` serves React *and* a Cordova simulation together, and
+`npm run build` runs the React build, the Cordova prepare and the native compile as a
+single command.
 
-<br/><br/>
+---
 
-<p style="color:#000">
-I dedicate a considerable amount of my time to developing and maintaining this Cli, along with my other Open Source software. To help ensure this Cli is kept updated, new features are added and bugfixes are implemented quickly, please donate a couple of dollars (or a little more if you can stretch) as this will help me to afford to dedicate time to its maintenance. Please consider donating if you're using this plugin in an app that makes you money, if you're being paid to make the app, if you're asking for new features or priority bug fixes.
-</p>
+## Quick start
 
-<a href="https://paypal.me/orchoban"> 
-   <br/>  <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" alt=""/>
-   <br/> <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG_global.gif" width="200px" alt=""/>   
-</a>
-
-
-<br/>
-
-### Installing Reco CLI 
-```cli
-sudo npm install -g react.cordova
-```
-
-### Initialize a new bundle project
-
-```cli
+```bash
+npm install -g react.cordova
 reco init com.example.hello "hello world"
-```
-*Note: creates both **`react-app`** and **`cordova-app`** and then will merge one into the other*
-
-### Explore Reco CLI
-
-To get full CLI reference of all commands and features currently available, run the following command
-
-```cli
-reco help
+cd hello_world       # app name, lowercased, spaces replaced with underscores
+npm start
 ```
 
+**Requirements:** Node 16 or newer — verified on 16, 18, 20, 22, 24 and 25. Cordova is
+also expected as a global install (`npm install -g cordova`); generated projects call
+both `reco` and `cordova` from their build scripts.
 
-<!-- <details open> -->
-<summary>
-<i>New version</i>
-</summary>
+> **Upgrading from 2.5.4 or earlier?** Those versions cannot run at all on a current
+> Node: every command fails, either with `Cannot find module 'node:path'` or with a
+> `Function.prototype.apply` error, depending on your version. 2.6.0 removes the
+> abandoned module loader responsible for it. See the [changelog](./CHANGELOG.md).
+
+`reco init` scaffolds the React app and the Cordova app and merges one into the other,
+then installs [`cordova_script`](https://www.npmjs.com/package/cordova_script) and
+[`navigation-controller`](https://www.npmjs.com/package/navigation-controller) so the
+project boots with `deviceready` handling and native-feeling page navigation already
+wired up.
+
+## Prerequisites
+
+| | |
+| --- | --- |
+| **npm** | [get npm](https://www.npmjs.com/get-npm) |
+| **Cordova** | `npm install -g cordova` |
+| **Java** | Required for Android builds. JDK 8 recommended for older Cordova toolchains. |
+| **Xcode** | Required for iOS builds (macOS only). |
+
+## Project layout
+
+`reco` projects are a single merged tree — React's `src/` and `public/` living
+alongside Cordova's `platforms/`, `plugins/` and `www/`:
 
 ```
 project folder
- |
- |--src
- |--public
- |--platforms
- |--plugins
- |--www
- |--build
- |--hooks
- |--package.json
- |--package-lock.json
- |-- ... 
- ```
+ |-- src            # your React app
+ |-- public
+ |-- platforms      # Cordova native projects
+ |-- plugins        # Cordova plugins
+ |-- www            # build output Cordova packages
+ |-- hooks
+ |-- package.json   # one manifest for both halves
+```
 
+## Commands
 
-### Serve debug mode
+### Develop
 
-To run a bundle serve React and Cordova simulation
-
-```cli
+```bash
 npm start
 ```
 
-### Project build
+Serves the React dev server and a Cordova browser simulation together, so plugin calls
+work in the browser during development.
 
-Perform a build action for your project using the following command
+### Build
 
-```cli
-npm run build
-```
-```cli
-npm run build <cordova platform>
-```
-
-Builds **`cordova-app`** for browser, mobile and other platforms.
-
-*Note: will generate an **apk** installable package for Android devices*<br>
-*Note: will generate an **xcworkspace** XCode project that can be compiled and built for deployment on iOS devices*
-<br>
-
-### Integrated Cordova CLI 
-To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova command line
-
-**For example:**
-
-```cli
-cordova <any cordova command line to run>
-
-cordova platform
-
-cordova platform <add/rm> <cordova platform>
-
-cordova plugin <add/rm> <cordova plugin>
+```bash
+npm run build              # all configured platforms
+npm run build browser
+npm run build android      # produces an installable .apk
+npm run build ios          # produces an .xcworkspace to compile in Xcode
 ```
 
-Learn more about Cordova: **[Cordova get started](https://cordova.apache.org/#getstarted).**
+Equivalent to running the React build, then `cordova prepare`, then `cordova compile`.
 
-### Integrated React.js  CLI
+### Cordova and React, unchanged
 
-You can run React.js CLI from within the project's directory
+Both underlying CLIs keep working inside a `reco` project:
 
-**For example:**
-
-```cli
-npm start
-
+```bash
+cordova platform add android
+cordova plugin add cordova-plugin-camera
+npm install navigation-controller
 npm test
-
-npm install <npm packages for react>
-
-npm uninstall <npm packages for react>
-
-npm <any react command line to run>
 ```
 
-Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
-Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
+### CLI reference
 
-<!-- </details> -->
+```bash
+reco help        # full command list
+reco version
+```
 
+Learn more: [Cordova getting started](https://cordova.apache.org/#getstarted) ·
+[React documentation](https://react.dev/)
 
-<br>
+---
 
+## Full documentation
 
+**<https://ui-db.com/open-source/react.cordova>**
 
 <details>
-<summary>
-<i>Old version ( < 2.0.0)</i>
-</summary>
+<summary><b>Legacy project layout (versions &lt; 2.0.0)</b></summary>
 
+<br>
+
+Older projects kept the two halves in separate directories:
 
 ```
 project folder
- |
- |--cordova
- |    |
- |    |--hooks
- |    |--platforms
- |    |--plugins
- |    |--www
- |    |--package.json
- |    |--package-lock.json
- |    |-- ...
- |
- |--react-js
- |    |--src
- |    |--public
- |    |--build
- |    |--package.json
- |    |--package-lock.json
- |    |-- ... 
- ```
+ |-- cordova
+ |    |-- hooks / platforms / plugins / www / package.json
+ |-- react-js
+ |    |-- src / public / build / package.json
+```
 
-### Serve debug mode
+In that layout the `reco` prefix fronted both toolchains:
 
-To run a bundle serve React and Cordova simulation
-
-```cli
+```bash
 reco start
-```
-or
-```cli
-npm start
-```
-
-### Project build
-
-Perform a build action for your project using the following command
-
-```cli
 reco build <cordova platform>
-```
-or
-```cli
-npm run build <cordova platform>
-```
-*Node: `<cordova platform>` is not requred.
-
-Builds **`cordova-app`** for browser, mobile and other platforms.
-
-*Note: will generate an **apk** installable package for Android devices*<br>
-*Note: will generate an **xcworkspace** XCode project that can be compiled and built for deployment on iOS devices*
-<br>
-
-### Integrated Cordova CLI 
-To run Cordova CLI simply prepend the **`reco`** prefix to any Cordova command line
-
-**For example:**
-
-```cli
-reco cordova <any cordova command line to run>
-
-reco platform
-
-reco platform <add/rm> <cordova platform>
-
-reco plugin <add/rm> <cordova plugin>
+reco platform <add|rm> <platform>
+reco plugin <add|rm> <plugin>
+reco install <npm package>
+reco react <any react command>
 ```
 
-Learn more about Cordova: **[Cordova get started](https://cordova.apache.org/#getstarted).**
-
-### Integrated React.js  CLI
-
-You can run React.js CLI from within the project's directory
-
-**For example:**
-
-```cli
-reco start (Choose the first option)
-
-reco test
-
-reco install <npm packages for react>
-
-reco uninstall <npm packages for react>
-
-reco react <any react command line to run>
-
-react <any react command line to run>
-```
-
-Learn more about React.js apps: **[create React.js app documentation](https://facebook.github.io/create-react-app/docs/getting-started)**<br>
-Learn programming in React.js: **[React.js documentation](https://reactjs.org/)**
+`<cordova platform>` was optional. Current versions use the merged layout above and
+plain `npm` / `cordova` commands instead.
 
 </details>
 
+---
 
-<br>
+## Support
 
-_______________________________________________________________________
-### Prerequisites
-#### npm
-[get-npm](https://www.npmjs.com/get-npm)
+- Bugs and feature requests: [GitHub issues](https://github.com/uidb-dev/react.cordova/issues)
+- The CLI entry point is [`bin/cli.js`](https://github.com/uidb-dev/react.cordova/blob/master/bin/cli.js) — pull requests welcome.
+- Paid/private support: [via Fiverr](https://www.fiverr.com/share/5bpN56)
 
-#### Java 
-Recommended version 1.8.0 [get-Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+If this CLI saves you time, you can support its maintenance:
+[donate via PayPal](https://paypal.me/orchoban).
 
-#### Cordova 
-```cli
-npm install -g cordova
-```
+## License
 
-<br>
-
-
-## If you have any problems, please let us know [here](https://github.com/uidb-dev/react.cordova/issues), and we will make our best effort to resolve it soon
-## Feel free to edit the code yourself: go to [bin/cli.js](https://github.com/uidb-dev/react.cordova/blob/master/bin/cli.js)
-
-## If you have any private problems please ask to support [here] (https://www.fiverr.com/share/5bpN56)
-
-
-
-Created by [UIDB](https://ui-db.com)
+MIT · Created by [UIDB](https://ui-db.com)
